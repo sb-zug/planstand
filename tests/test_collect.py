@@ -59,6 +59,12 @@ assert C._datum('<script>var x="1.1.2020"</script><p>Zug, 3. November 2026</p>')
 assert C._datum('{"datePublished": "2026-10-01T08:00"}') == "2026-10-01"
 assert C._datum('<time datetime="2026-09-12">') == "2026-09-12"
 assert C.harvest("https://www.halter.ch/de/news", '<a href="/fr/news/x-y">Dépôt dune demande de permis de construire très long</a>') == []
+x = C.newsroom_einordnen({"titel": "Avadis Anlagestiftung übernimmt Immobilienportfolio", "beschrieb": "", "url": "https://a.ch/n/1", "datum": "2026-10-01"}, "Avadis", None, None)
+assert x and x["typ"] == "Branche"
+x = C.newsroom_einordnen({"titel": "Zuger Immobilienmarkt: starke Nachfrage", "beschrieb": "", "url": "https://a.ch/n/2", "datum": "2026-10-01"}, "Zuger Kantonalbank", "ZG", None)
+assert x and x["kanton"] == "ZG"
+assert C.newsroom_einordnen({"titel": "Die Sommerfeste von Losinger Marazzi AG", "beschrieb": "", "url": "u", "datum": "d"}, "L", None, None) is None
+assert C.newsroom_einordnen({"titel": "Pierre de Soleil: Rohbauarbeiten in Lucens gestartet", "beschrieb": "", "url": "u", "datum": "d"}, "L", None, None) is None
 # Gemeinde
 assert C.gemeinde("ZG", "Gemeinde Steinhausen - Präsidiales", "x") == "Steinhausen"
 assert C.gemeinde("ZG", "Kanton Zug", "Kommunale Baugesuchspublikation: Obermattli 1, Walchwil") == "Walchwil"

@@ -486,6 +486,33 @@ def newsroom_item(name, kanton, gem, href, linktext, page):
             "frist": None, "bild": og_image(page, href)}
 
 
+BRANCHE = re.compile(r"kapitalerhöhung|ergebnis|halbjahr|jahresabschluss|portfolio|übernimmt|übernahme|kauft|verkauft|"
+                     r"akquisition|anleihe|strategie|ernennt|wechsel in der|ceo|cfo|anlagevermögen|wettbewerb|fonds|"
+                     r"anlagegruppe|anlagestiftung|bewertung|transaktion|immobilienmarkt|neue mandate|zusammenarbeit", re.I)
+NR_NEIN = re.compile(r"sommerfest|safety week|markenauftritt|^medienmitteilungs?$|finanz-news|medienkonferenz|^media$|"
+                     r"tiny house|apéro|jubiläum|lehrling|lernende", re.I)
+ADJ = {"Zuger": ("ZG", None), "Zürcher": ("ZH", None)}
+
+
+def newsroom_einordnen(it: dict, name: str, kanton, gem):
+    """Regional (Ort in ZG/ZH) → Medienmitteilung; sonst Unternehmens-/Marktnews → Branche; sonst verwerfen."""
+    text = f"{it['titel']} {it.get('beschrieb', '')}"
+    if NR_NEIN.search(it["titel"]) or LAERM.search(it["titel"]):
+        return None
+    m = ORTE_TEXT.search(text)
+    if m or gem:
+        g = gem or {"Rotkreuz": "Risch", "Oerlikon": "Zürich", "Altstetten": "Zürich", "Glattbrugg": "Opfikon"}.get(m.group(0), m.group(0))
+        k = kanton or ("ZG" if g in ZG_GEMEINDEN else "ZH")
+        return {**it, "id": "nr-" + slug(it["url"])[-70:], "typ": "Medienmitteilung", "kanton": k, "gemeinde": g,
+                "quelle": name, "beschrieb": _kurz(it.get("beschrieb", ""))}
+    a = re.search(r"\b(Zuger|Zürcher)\b", text)
+    if a or BRANCHE.search(text) or IMMO_TEXT.search(text):
+        k = ADJ[a.group(1)][0] if a else kanton
+        return {**it, "id": "nr-" + slug(it["url"])[-70:], "typ": "Branche", "kanton": k, "gemeinde": None,
+                "quelle": name, "beschrieb": _kurz(it.get("beschrieb", ""))}
+    return None
+
+
 def collect_newsrooms(offline: Path | None) -> tuple[list[dict], dict]:
     if offline:
         return [], {}
@@ -580,7 +607,7 @@ def add_images(items: list[dict], offline: bool) -> None:
     """Bild der Medienmitteilung verlinken (nicht kopieren), Quelle wird angezeigt."""
     n = 0
     for m in items:
-        if m.get("typ") != "Medienmitteilung" or "bild" in m:
+        if m.get("typ") not in ("Medienmitteilung", "Branche") or "bild" in m:
             continue
         if offline or n >= BILDER_MAX:
             continue
@@ -651,8 +678,10 @@ def main() -> None:
     def ok(m):
         if m["typ"] == "Marktstudie":
             return not MARKT_NEIN.search(m["titel"]) and bool(MARKT_JA.search(m["titel"]))
+        if m["typ"] == "Branche" or m.get("id", "").startswith(("ms-", "nr-")):
+            return True
         if m["typ"] in ("Medien", "Medienmitteilung"):
-            return m.get("id", "").startswith("ms-") or mm_ok(m["titel"], m.get("beschrieb", ""))
+            return mm_ok(m["titel"], m.get("beschrieb", ""))
         return relevant(rub_of.get(m["typ"], ""), m["titel"], m.get("beschrieb", ""))
     seen_key, dedup = set(), []
     for m in alle:

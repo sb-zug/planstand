@@ -238,7 +238,7 @@ def build() -> None:
     # Start (Magazin)
     artikel = json.loads((DATA / "artikel.json").read_text())["artikel"] if (DATA / "artikel.json").exists() else []
     artikel.sort(key=lambda a: a["datum"], reverse=True)
-    news = [m for m in meldungen if m["typ"] in ("Medienmitteilung", "Medien", "Raumplanung", "Marktstudie")]
+    news = [m for m in meldungen if m["typ"] in ("Medienmitteilung", "Medien", "Raumplanung", "Marktstudie", "Branche")]
     bg = [m for m in meldungen if m["typ"] == "Baugesuch"]
     bg30 = [m for m in bg if m["datum"] >= (TODAY.fromordinal(TODAY.toordinal() - 30)).isoformat()]
     wohn30 = sum(wohnungen(m) for m in bg30)
