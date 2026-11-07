@@ -1,0 +1,29 @@
+{
+ "_hinweis": "Eigene Artikel der Redaktion (wöchentlich von Claude im Donnerstags-Durchlauf). Nur Fakten aus verlinkten Originalquellen, eigene Worte. Felder: slug, datum, rubrik, titel, lead, absaetze (Liste; **fett** erlaubt), quellen [[Label, URL]], projekte [slugs], orte [Namen].",
+ "artikel": [
+  {
+   "slug": "die-woche-2026-45",
+   "datum": "2026-11-07",
+   "rubrik": "Die Woche",
+   "titel": "Zürich plant am Seeufer neu, Zug entscheidet über zwei neue Stadtteile",
+   "lead": "Die Stadt Zürich verhandelt mit der KIBAG über das Areal in Wollishofen, im Kanton Zürich liegen neue Gestaltungspläne auf, und in Zug stehen zwei wichtige Termine für die Lorzenallmend und das LG-Areal an.",
+   "absaetze": [
+    "**Seeufer Wollishofen:** Der Zürcher Stadtrat will die Möglichkeiten für das KIBAG-Areal neu ausloten. Ziel der Planung ist vor allem eine grössere Seeuferanlage; dazu nimmt die Stadt Verhandlungen mit der Grundeigentümerin auf.",
+    "**Tagesschule Auhof:** Für den Ersatzneubau der Tagesschule Auhof in Zürich steht das Siegerprojekt fest. Den Wettbewerb gewannen EMI Architekt*innen mit Ganz Landschaftsarchitekten. Der Neubau bringt das ganze Betreuungsangebot unter ein Dach.",
+    "**Neue Gestaltungspläne:** In Boppelsen liegt der private Gestaltungsplan «Wasen-Maiacher» öffentlich auf. In Meilen ist der Gestaltungsplan «Alte Landstrasse» auf dem ehemaligen Areal der Schweizer Getränkefabrik in Kraft getreten. Langnau am Albis legt die Revision seiner Bau- und Zonenordnung auf.",
+    "**Baugesuche:** Allein am 6. November wurden im Kanton Zürich Gesuche für mindestens 75 neue Wohnungen publiziert, darunter zwei Mehrfamilienhäuser mit 26 Wohnungen an der Riedenhaldenstrasse sowie sieben Wohnhäuser an der Schwellistrasse, beide in der Stadt Zürich. In Kleinandelfingen sind sechs Mehrfamilienhäuser geplant.",
+    "**Zug, nächste Woche:** Am 9. November informiert die Stadt Zug über die Äussere Lorzenallmend, am 17. November berät der Grosse Gemeinderat in erster Lesung den Bebauungsplan für das LG-Areal beim Bahnhof."
+   ],
+   "quellen": [
+    ["Stadt Zürich: Seeufer Wollishofen", "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/10/seeufer-wollishofen-stadtrat-will-moeglichkeiten-fuer-kibag-areal-neu-ausloten.html"],
+    ["Stadt Zürich: Tagesschule Auhof", "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/11/ersatzneubau-vereint-betreuung-unter-einem-dach.html"],
+    ["Amtsblatt ZH: Gestaltungsplan Wasen-Maiacher", "https://amtsblatt.zh.ch/#!/search/publications/detail/bf6cc77b-3bcb-424e-a8a9-c364f4d06fb0"],
+    ["Amtsblatt ZH: Gestaltungsplan Alte Landstrasse", "https://amtsblatt.zh.ch/#!/search/publications/detail/715a21e9-d77c-4d75-ac59-5b41fd814e5b"],
+    ["Amtsblatt ZH: BZO Langnau a. A.", "https://amtsblatt.zh.ch/#!/search/publications/detail/8a77f848-3b01-4dd2-b811-23665d6ffa70"],
+    ["Amtsblatt ZH: Baugesuch In Böden / Riedenhaldenstrasse", "https://amtsblatt.zh.ch/#!/search/publications/detail/4e15c6bb-5880-4213-9e3d-2bb541cabeac"]
+   ],
+   "projekte": ["aeussere-lorzenallmend", "lg-areal"],
+   "orte": ["Zürich", "Boppelsen", "Meilen", "Langnau a.A.", "Zug"]
+  }
+ ]
+}

@@ -50,3 +50,19 @@ h1{font-size:clamp(28px,4vw,42px);margin:28px 0 8px}h2{font-size:22px;margin:28p
 .side .shead h2{font-size:18px}.side .mlist a{font-size:15px}
 .nlbox{background:var(--fg);color:var(--bg);padding:16px 18px;border-radius:6px}.nlbox p{margin:6px 0 12px;font-size:15px;opacity:.85}
 .mlist li.t-medienmitteilung .meta,.mlist li.t-raumplanung .meta{color:var(--accent-2)}
+/* Magazin */
+.hero-a{padding:6px 0 20px;border-bottom:2px solid var(--fg);margin-bottom:8px}
+.hero-a h1{font-size:clamp(30px,4.2vw,46px);margin:8px 0 12px;letter-spacing:-.5px}.hero-a h1 a,.hero-a h2 a{color:var(--fg);text-decoration:none}
+.hero-a p{font-size:19px;color:var(--muted);margin:0 0 10px}.hero-a.small{border-bottom:1px solid var(--line)}
+.rubrik{font-size:12px;text-transform:uppercase;letter-spacing:.8px;color:var(--accent);font-weight:700}
+.more{font-weight:600}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 6px}@media(max-width:700px){.tiles{grid-template-columns:1fr}}
+.tile{display:flex;flex-direction:column;gap:4px;color:var(--fg);text-decoration:none}.tile b{font:600 17px/1.3 var(--display)}
+.tile .img{display:block;aspect-ratio:3/2;background:var(--tint) center/cover no-repeat;border-radius:4px}
+.credit{font-size:11px;color:var(--muted)}
+.g2{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.pitch{border:2px solid var(--accent);padding:16px 18px;border-radius:6px;margin-bottom:16px}.pitch p{font-size:15px;color:var(--muted);margin:6px 0 12px}
+.radar{display:block;margin-top:24px;background:var(--tint);padding:16px 18px;border-radius:6px;color:var(--fg);text-decoration:none}
+.radar span{display:block;font-size:13px;color:var(--muted)}.radar b{display:block;font:700 44px var(--display);color:var(--accent-2)}
+.radar em{font-style:normal;font-weight:600;font-size:14px;color:var(--accent-2)}
+.artikel{max-width:720px}.artikel p{font-size:18px;line-height:1.65}.artikel .lead{font-size:21px}

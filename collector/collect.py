@@ -418,6 +418,35 @@ def collect_feeds(offline: Path | None) -> tuple[list[dict], dict]:
     return out, status
 
 
+# ---------------------------------------------------------------- Bilder (nur Medienmitteilungen)
+
+BILDER_MAX = 40   # neue og:image-Abrufe pro Lauf
+
+
+def og_image(page: str, base: str):
+    m = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)', page, re.I) or \
+        re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image', page, re.I)
+    if not m:
+        return None
+    u = urllib.parse.urljoin(base, html.unescape(m.group(1)))
+    return u if u.startswith("https://") and not re.search(r"logo|wappen|favicon|default", u, re.I) else None
+
+
+def add_images(items: list[dict], offline: bool) -> None:
+    """Bild der Medienmitteilung verlinken (nicht kopieren), Quelle wird angezeigt."""
+    n = 0
+    for m in items:
+        if m.get("typ") != "Medienmitteilung" or "bild" in m:
+            continue
+        if offline or n >= BILDER_MAX:
+            continue
+        n += 1
+        try:
+            m["bild"] = og_image(fetch(m["url"], "text/html"), m["url"])
+        except Exception:  # noqa: BLE001
+            m["bild"] = None
+
+
 # ---------------------------------------------------------------- Zuordnung zu Projekten
 
 def match_projects(items: list[dict], projekte: list[dict]) -> None:
@@ -463,6 +492,9 @@ def main() -> None:
 
     by_id = {m["id"]: m for m in archiv}
     for m in neu:
+        alt = by_id.get(m["id"])
+        if alt and "bild" in alt:
+            m["bild"] = alt["bild"]
         by_id[m["id"]] = m
     cutoff = (TODAY - timedelta(days=ARCHIVE_DAYS)).isoformat()
     alle = sorted((m for m in by_id.values() if (m.get("datum") or "") >= cutoff),
@@ -483,6 +515,7 @@ def main() -> None:
         seen_key.add(k)
         dedup.append(m)
     alle = dedup
+    add_images(alle, bool(args.offline))
     match_projects(alle, projekte)
 
     f_meld.write_text(json.dumps({"stand": datetime.now(timezone.utc).isoformat(timespec="minutes"),

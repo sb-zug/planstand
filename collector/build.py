@@ -20,7 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SITE, DATA, OUT = ROOT / "site", ROOT / "site" / "data", ROOT / "_site"
 NAME = "Planstand"
-CLAIM = "News zu Immobilien- und Arealentwicklung in Zug und Zürich"
+CLAIM = "Immobilien- und Arealentwicklung in Zug und Zürich"
 SITE_URL = os.environ.get("SITE_URL", "https://sb-zug.github.io/planstand")
 BASE = os.environ.get("BASE_PATH", "/planstand/")
 TODAY = date.today()
@@ -81,12 +81,12 @@ def page(path: str, title: str, desc: str, body: str, rss: str | None = None) ->
 </head><body>
 <header class="top"><div class="wrap"><a class="logo" href="{u('')}">{NAME}<span>Beta</span></a><span class="claim">{CLAIM}</span>
 <nav><a href="{u('meldungen/')}">News</a><a href="{u('projekte/')}">Projekte</a><a href="{u('orte/')}">Orte</a>
-<a href="{u('newsletter/')}" class="nl">Newsletter</a></nav></div></header>
+<a href="{u('projekt-melden/')}" class="nl">Projekt melden</a></nav></div></header>
 <main class="wrap">{body}</main>
 <footer class="foot"><div class="wrap"><p><b>{NAME}</b> sammelt automatisch amtliche Publikationen, Medienmitteilungen und
 Projektinformationen zu Immobilien- und Arealentwicklungen in den Kantonen Zug und Zürich. Massgebend sind die verlinkten
 Originalquellen. Medienberichte werden nur verlinkt. Prototyp, Stand {dlabel(TODAY.isoformat())}.</p>
-<p><a href="{u('rss.xml')}">RSS</a> · <a href="{u('ueber/')}">Über Planstand</a></p></div></footer>
+<p><a href="{u('newsletter/')}">Newsletter</a> · <a href="{u('baugesuche/')}">Baugesuch-Radar</a> · <a href="{u('projekt-melden/')}">Projekt melden</a> · <a href="{u('rss.xml')}">RSS</a> · <a href="{u('ueber/')}">Über Planstand</a></p></div></footer>
 </body></html>"""
     f = OUT / path.lstrip("/")
     if path.endswith("/") or path == "":
@@ -135,12 +135,59 @@ def amt_titel(m: dict) -> str:
     return t
 
 
+WOHN = re.compile(r"(\d{1,4})\s*(?:wohnungen|wohneinheiten)", re.I)
+ZAHLW = {"zwei": 2, "drei": 3, "vier": 4, "fünf": 5, "sechs": 6, "sieben": 7, "acht": 8, "neun": 9, "zehn": 10}
+
+
+def wohnungen(m: dict) -> int:
+    return max((int(x) for x in WOHN.findall(m.get("beschrieb") or "")), default=0)
+
+
+def bg_titel(m: dict) -> str:
+    """Schlagzeile für ein Baugesuch: Zahl voran, Ort dazu."""
+    b, ort = m.get("beschrieb") or "", m.get("gemeinde") or ""
+    n = wohnungen(m)
+    if n:
+        return f"{n} neue Wohnungen in {ort}"
+    h = re.search(r"(\d+|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn)\s+(mehrfamilienh\w*|wohnhäuser\w*|mfh)", b, re.I)
+    if h:
+        k = h.group(1).lower()
+        return f"{ZAHLW.get(k, k)} neue Wohnhäuser in {ort}"
+    for rx, t in ((r"wohn- und geschäftsh", "Neues Wohn- und Geschäftshaus"), (r"wohn- und gewerbe", "Neuer Wohn- und Gewerbebau"),
+                  (r"überbauung", "Neue Überbauung"), (r"hochhaus", "Neues Hochhaus"), (r"schul", "Neubau für die Schule"),
+                  (r"hotel", "Neues Hotel"), (r"büro|geschäftshaus", "Neues Geschäftshaus")):
+        if re.search(rx, b, re.I):
+            return f"{t} in {ort}"
+    return f"Grösseres Bauvorhaben in {ort}"
+
+
+def plan_titel(m: dict) -> str:
+    """Schlagzeile für eine Planung aus dem Amtsblatt."""
+    t, ort = amt_titel(m), m.get("gemeinde") or ""
+    roh = m["titel"].lower()
+    status = ("liegt öffentlich auf" if "auflage" in roh else "ist in Kraft" if "inkrafttreten" in roh
+              else "ist genehmigt" if "genehmigung" in roh else "ist festgesetzt" if "festsetzung" in roh else "")
+    name = re.search(r"[«„\"]([^»“\"]+)[»“\"]", t)
+    if "gestaltungsplan" in roh:
+        return f"{ort}: Gestaltungsplan «{name.group(1)}» {status}".strip() if name else f"{ort}: Gestaltungsplan {status}".strip()
+    if "bebauungsplan" in roh:
+        return f"{ort}: Bebauungsplan «{name.group(1)}» {status}".strip() if name else f"{ort}: Bebauungsplan {status}".strip()
+    if re.search(r"nutzungsplanung|bzo|zonenplan|ortsplanung", roh):
+        art = "Teilrevision der Nutzungsplanung" if "teilrevision" in roh else "Revision der Nutzungsplanung"
+        if name:
+            art += f" «{name.group(1)}»"
+        if "nichtgenehmigung" in roh:
+            return f"{ort}: Kanton genehmigt {art} nur teilweise"
+        return f"{ort}: {art} {status}".strip()
+    return f"{ort}: {t}"
+
+
 def headline(m: dict) -> tuple[str, str]:
     """Schlagzeile + Zusatz. Baugesuche: Beschrieb als Titel, Adresse als Zusatz."""
-    if m["typ"] == "Baugesuch" and m.get("beschrieb"):
-        return _cut(m["beschrieb"], 120), amt_titel(m)
+    if m["typ"] == "Baugesuch":
+        return bg_titel(m), _cut(f'{amt_titel(m)} · {m.get("beschrieb") or ""}', 170)
     if m["quelle"].startswith("Amtsblatt"):
-        return _cut(amt_titel(m), 160), m.get("beschrieb") or ""
+        return plan_titel(m), ""
     return m["titel"], m.get("beschrieb") or ""
 
 
@@ -185,38 +232,76 @@ def build() -> None:
     medien = [m for m in meldungen if m["typ"] == "Medien"]
     aktiv = sorted(projekte, key=lambda p: (mdate((next_step(p) or {}).get("datum")) or date(2100, 1, 1)))
 
-    # Start (News-Seite)
-    top_orte = sorted(orte.items(), key=lambda kv: -(len(kv[1]["p"]) * 5 + len(kv[1]["m"])))[:14]
-    chips = "".join(f'<a href="{u("orte/" + k + "/")}">{e(o["name"])}</a>' for k, o in top_orte)
-    news = [m for m in meldungen if m["typ"] != "Baugesuch"]
-    rang = {"Medienmitteilung": 0, "Raumplanung": 1, "Medien": 2}
-    recent = [m for m in news if m["datum"] >= news[0]["datum"][:8] + "01"] if news else []
-    lead = sorted(recent[:12], key=lambda m: (rang.get(m["typ"], 3), -int(m["datum"].replace("-", ""))))[0] if recent else None
-    stream = [m for m in news if m is not lead][:30]
-    bg = [m for m in meldungen if m["typ"] == "Baugesuch"][:7]
+    # Start (Magazin)
+    artikel = json.loads((DATA / "artikel.json").read_text())["artikel"] if (DATA / "artikel.json").exists() else []
+    artikel.sort(key=lambda a: a["datum"], reverse=True)
+    news = [m for m in meldungen if m["typ"] in ("Medienmitteilung", "Medien", "Raumplanung")]
+    bg = [m for m in meldungen if m["typ"] == "Baugesuch"]
+    bg30 = [m for m in bg if m["datum"] >= (TODAY.fromordinal(TODAY.toordinal() - 30)).isoformat()]
+    wohn30 = sum(wohnungen(m) for m in bg30)
     termine = sorted(((mdate(n["datum"]), p, n) for p in projekte if (n := next_step(p)) and mdate(n["datum"])),
-                     key=lambda t: t[0])[:6]
-    lead_html = ""
-    if lead:
-        h, sub = headline(lead)
-        lead_html = (f'<article class="lead-story"><span class="meta">{kicker(lead)}</span>'
-                     f'<h1><a href="{e(lead["url"])}" rel="noopener" target="_blank">{e(h)}</a></h1>'
-                     + (f'<p>{e(sub)}</p>' if sub else "") + "</article>")
+                     key=lambda t: t[0])[:5]
+    hero = ""
+    if artikel:
+        a0 = artikel[0]
+        hero = (f'<article class="hero-a"><span class="rubrik">{e(a0["rubrik"])} · {e(dlabel(a0["datum"]))}</span>'
+                f'<h1><a href="{u("artikel/" + a0["slug"] + "/")}">{e(a0["titel"])}</a></h1><p>{e(a0["lead"])}</p>'
+                f'<a class="more" href="{u("artikel/" + a0["slug"] + "/")}">Weiterlesen →</a></article>')
+    bildnews = [m for m in news if m.get("bild")][:3]
+    tiles = "".join(
+        f'<a class="tile" href="{e(m["url"])}" rel="noopener" target="_blank"><span class="img" style="background-image:url({e(m["bild"])})"></span>'
+        f'<span class="meta">{e(m.get("gemeinde") or "")} · {e(m["quelle"])}</span><b>{e(headline(m)[0])}</b>'
+        f'<span class="credit">Bild: {e(m["quelle"])}</span></a>' for m in bildnews)
+    rest = [m for m in news if m not in bildnews][:14]
+    proj = "".join(card(p) for p in aktiv[:4])
     term_html = "".join(f'<li><span class="meta">{e(dlabel(n["datum"]))} · {e(p["gemeinde"])}</span>'
                         f'<a href="{u("projekte/" + p["slug"] + "/")}">{e(p["titel"])}</a><span class="d">{e(n["text"])}</span></li>'
                         for _, p, n in termine)
-    body = (f'<div class="news"><div class="main">{lead_html}'
-            f'<div class="shead"><h2>Aktuell</h2><a href="{u("meldungen/")}">Alle Meldungen →</a></div>'
-            f'{mlist(stream, empty="Noch keine Meldungen.")}</div>'
-            f'<aside class="side"><div class="nlbox"><b>Der Wochen-Überblick</b><p>Jeden Freitag die wichtigsten Schritte bei '
-            f'Bauprojekten in Zug und Zürich.</p><a class="btn" href="{u("newsletter/")}">Abonnieren</a></div>'
-            f'<div class="shead"><h2>Nächste Termine</h2><a href="{u("projekte/")}">Projekte →</a></div><ul class="mlist">{term_html}</ul>'
-            f'<div class="shead"><h2>Neue Baugesuche</h2></div>{mlist(bg, empty="Keine grösseren Baugesuche.")}'
-            f'<div class="shead"><h2>Orte</h2><a href="{u("orte/")}">Alle →</a></div><p class="chips">{chips}</p></aside></div>'
-            f'<section><div class="shead"><h2>Projekte im Überblick</h2><a href="{u("projekte/")}">Alle {len(projekte)} →</a></div>'
-            f'<div class="grid">{"".join(card(p) for p in aktiv[:6])}</div></section>')
-    page("", NAME, f"{CLAIM}: News, Medienmitteilungen, Baugesuche und Projekt-Datenbank mit Phase und nächstem Schritt.",
+    body = (f'<div class="news"><div class="main">{hero}'
+            + (f'<div class="tiles">{tiles}</div>' if tiles else "")
+            + f'<div class="shead"><h2>News</h2><a href="{u("meldungen/")}">Alle News →</a></div>{mlist(rest)}'
+            f'<div class="shead"><h2>Projekte</h2><a href="{u("projekte/")}">Alle {len(projekte)} →</a></div><div class="grid g2">{proj}</div></div>'
+            f'<aside class="side"><div class="pitch"><b>Sie entwickeln, bauen oder vermarkten?</b><p>Senden Sie uns Ihre Medienmitteilung '
+            f'oder tragen Sie Ihr Projekt ein. Planstand begleitet es von der Planung bis zum Bezug.</p>'
+            f'<a class="btn" href="{u("projekt-melden/")}">Projekt melden</a></div>'
+            f'<div class="nlbox"><b>Der Wochenbrief</b><p>Jeden Freitag: die wichtigsten Projekte, Entscheide und Termine in Zug und Zürich.</p>'
+            f'<a class="btn" href="{u("newsletter/")}">Abonnieren</a></div>'
+            f'<div class="shead"><h2>Termine</h2></div><ul class="mlist">{term_html}</ul>'
+            f'<a class="radar" href="{u("baugesuche/")}"><span>Baugesuch-Radar · 30 Tage</span><b>{wohn30}</b>'
+            f'<span>neue Wohnungen in {len(bg30)} grösseren Baugesuchen beantragt</span><em>Zum Radar →</em></a>'
+            f'</aside></div>')
+    page("", NAME, f"{CLAIM}: Projekte, Entscheide und Termine der Immobilien- und Arealentwicklung, jede Woche neu.",
          body, "rss.xml")
+
+    # Artikel
+    for a in artikel:
+        txt = "".join("<p>" + re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", e(t)) + "</p>" for t in a["absaetze"])
+        q = "".join(f'<li><a href="{e(b)}" rel="noopener" target="_blank">{e(l)}</a></li>' for l, b in a.get("quellen", []))
+        rel = "".join(card(p) for p in projekte if p["slug"] in a.get("projekte", []))
+        page(f'artikel/{a["slug"]}/', a["titel"], a["lead"],
+             f'<article class="artikel"><span class="rubrik">{e(a["rubrik"])} · {e(dlabel(a["datum"]))} · Redaktion Planstand</span>'
+             f'<h1>{e(a["titel"])}</h1><p class="lead">{e(a["lead"])}</p>{txt}<h3>Quellen</h3><ul class="links">{q}</ul></article>'
+             + (f'<section><h2>Projekte in diesem Artikel</h2><div class="grid">{rel}</div></section>' if rel else ""))
+    page("artikel/", "Artikel", "Wochenüberblick und Hintergründe zur Immobilien- und Arealentwicklung in Zug und Zürich.",
+         "<h1>Artikel</h1>" + "".join(f'<article class="hero-a small"><span class="rubrik">{e(a["rubrik"])} · {e(dlabel(a["datum"]))}</span>'
+                                      f'<h2><a href="{u("artikel/" + a["slug"] + "/")}">{e(a["titel"])}</a></h2><p>{e(a["lead"])}</p></article>' for a in artikel))
+
+    # Baugesuch-Radar
+    page("baugesuche/", "Baugesuch-Radar", "Grössere Baugesuche in den Kantonen Zug und Zürich: neue Wohnungen, Überbauungen, Geschäftshäuser.",
+         f'<h1>Baugesuch-Radar</h1><p class="lead">Grössere Baugesuche aus den Amtsblättern Zug und Zürich: Neubauten ab 8 Wohnungen, '
+         f'mehrere Wohnhäuser, Überbauungen und grosse Geschäftsbauten. In den letzten 30 Tagen: <b>{wohn30} Wohnungen</b> in {len(bg30)} Gesuchen.</p>'
+         f'{mlist(bg[:200])}')
+
+    # Projekt melden
+    page("projekt-melden/", "Projekt melden", "Projektentwickler, Eigentümer und Vermarkter: Medienmitteilung senden oder Projekt eintragen.",
+         '<article class="artikel"><h1>Projekt melden</h1><p class="lead">Sie entwickeln, bauen oder vermarkten ein Projekt in Zug oder Zürich? '
+         'Planstand macht es sichtbar – für Fachleute, Behörden, Investoren und künftige Bewohnerinnen und Bewohner.</p>'
+         '<h2>Medienmitteilung senden</h2><p>Senden Sie Medienmitteilungen, Bilder (mit Freigabe und Bildnachweis) und Termine an '
+         '<b>redaktion@planstand.ch</b>. Wir berichten über Wettbewerbe, Planungsschritte, Baustart, Aufrichte, Vermarktung und Bezug.</p>'
+         '<h2>Projekt-Steckbrief</h2><p>Jedes grössere Projekt erhält einen Steckbrief mit Phase, Meilensteinen, Fakten und Links. '
+         'In der Beta-Phase tragen wir Projekte kostenlos ein. Senden Sie uns: Projektname, Ort, Bauherrschaft, Architektur, '
+         'Nutzung und Anzahl Wohnungen, Zeitplan, Website, ein Bild.</p>'
+         '<h2>Was Planstand nicht macht</h2><p>Keine bezahlten Inhalte ohne Kennzeichnung, keine Personendaten privater Bauherrschaften.</p></article>')
 
     # Projekte
     by_phase = "".join(
@@ -269,9 +354,9 @@ def build() -> None:
              f'({KT[o["kanton"]]}): Phase, nächste Schritte, amtliche Meldungen.', body, f"orte/{k}/rss.xml")
         rss(f"orte/{k}/rss.xml", f'{NAME} – {o["name"]}', o["m"])
 
-    page("meldungen/", "Meldungen", "Neue amtliche Meldungen zu Bauvorhaben und Planungen in Zug und Zürich.",
-         f'<h1>Meldungen</h1><p class="note">Baugesuche grösserer Vorhaben, Gestaltungs- und Bebauungspläne, Auflagen und '
-         f'Abstimmungen. Kleinere Baugesuche (z. B. Wärmepumpen) werden ausgefiltert.</p>{mlist(meldungen[:300])}')
+    page("meldungen/", "News", "News zur Immobilien- und Arealentwicklung in Zug und Zürich: Medienmitteilungen, Planungen, Medienberichte.",
+         f'<h1>News</h1><p class="note">Medienmitteilungen, Planungsentscheide und Medienberichte. Baugesuche finden Sie im '
+         f'<a href="{u("baugesuche/")}">Baugesuch-Radar</a>.</p>{mlist([m for m in meldungen if m["typ"] != "Baugesuch"][:300])}')
     page("newsletter/", "Newsletter", "Der Planstand-Newsletter: jede Woche die wichtigsten Schritte bei Bauvorhaben in Zug und Zürich.",
          '<h1>Wochen-Newsletter</h1><p>Jede Woche die wichtigsten Schritte bei Immobilien- und Arealprojekten in Zug und Zürich: '
          'neue Projekte, Auflagen, Abstimmungen, Baugesuche. Kostenlos.</p><p class="note">Anmeldung folgt in Kürze. '

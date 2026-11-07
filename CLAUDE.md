@@ -12,7 +12,10 @@ Sprache: Deutsch (Schweiz, «ss» statt «ß»).
 5. Medienspiegel: per Websuche Artikel der Fachmedien (Immobilien Business, Hochparterre, espazium, NZZ, Tages-Anzeiger u. a.)
    zu ZG/ZH-Projekten der Woche suchen und in `site/data/medienspiegel.json` eintragen (Titel, Medium, Datum, URL, eigene Notiz).
    Nichts aus dem Artikel abschreiben.
-6. `python3 tests/test_collect.py && python3 collector/build.py` laufen lassen, dann committen und pushen.
+6. Wochenartikel «Die Woche» in `site/data/artikel.json` schreiben (vorne einfügen): Titel mit den 2 wichtigsten Themen, Lead,
+   4–6 Absätze mit **fettem** Einstieg, nur Fakten aus Originalquellen (Medienmitteilungen, Amtsblatt, Projektseiten), Quellenliste.
+   Planstand ist ein Medium für die Branche (Entwickler, Eigentümer, Vermarkter), kein Baugesuch-Verzeichnis: Projekte und Entscheide vor Baugesuchen.
+7. `python3 tests/test_collect.py && python3 collector/build.py` laufen lassen, dann committen und pushen.
 
 ## Leitplanken
 - Keine Personendaten privater Bauherrschaften publizieren.
