@@ -1,88 +1,472 @@
 [
  {
-  "name": "zentralplus Wohnen & Bauen",
-  "url": "https://www.zentralplus.ch/wohnen-bauen/feed/",
+  "name": "Implenia",
+  "url": "https://implenia.com/de/medien/medienmitteilungen/",
   "error": "HTTP Error 404: Not Found",
   "robots_ok": true,
-  "group": "Regionalmedien"
+  "group": "Entwickler & Bau"
  },
  {
-  "name": "zentralplus",
-  "url": "https://www.zentralplus.ch/feed/",
+  "name": "Halter",
+  "url": "https://www.halter.ch/de/news",
   "status": 200,
-  "feed": "https://www.zentralplus.ch/feed/",
-  "items": 40,
-  "latest": "2026-11-07",
-  "sample": [
-   "Feiern zu Schlacht bei Murten 1476",
-   "Wartet neuer Wohnraum nur darauf, gefunden zu werden?",
-   "Südafrika: Wahlniederlage für ANC"
+  "html": true,
+  "newslinks": 140,
+  "newssample": [
+   "Baueingabe für die Wiedereröffnung der Buvette Sonnenberg in Seelisberg Schlieren / Seelis",
+   "Dépôt d’une demande de permis de construire pour la réouverture de la buvette Sonnenberg à",
+   "Building permit application submitted for the reopening of Buvette Sonnenberg in Seelisber"
   ],
+  "links": [],
+  "title": "Medien - Halter AG",
   "robots_ok": true,
-  "group": "Regionalmedien"
+  "group": "Entwickler & Bau"
  },
  {
-  "name": "Tsüri",
-  "url": "https://tsri.ch/rss",
-  "error": "HTTP Error 404: Not Found",
-  "robots_ok": false,
-  "group": "Regionalmedien"
- },
- {
-  "name": "Tsüri 2",
-  "url": "https://tsri.ch/feed.xml",
-  "error": "HTTP Error 404: Not Found",
-  "robots_ok": false,
-  "group": "Regionalmedien"
- },
- {
-  "name": "SRF RSS-Übersicht",
-  "url": "https://www.srf.ch/allgemeines/rss-feeds",
-  "error": "HTTP Error 404: Not Found",
+  "name": "Losinger Marazzi",
+  "url": "https://www.losinger-marazzi.ch/de/news",
+  "status": 200,
+  "html": true,
+  "newslinks": 12,
+  "newssample": [
+   "Publiziert am 16.10.2026 Neuer Produktionsstandort für die Wymed AG in Embrach Gemeinsam e",
+   "Publiziert am 02.10.2026 Die Sommerfeste von Losinger Marazzi AG Von Ende Mai bis Septembe",
+   "Publiziert am 17.09.2026 Bauen für morgen auf Arealen von heute Bezahlbarer Wohnraum, Grün"
+  ],
+  "links": [],
+  "title": "News | Losinger Marazzi",
   "robots_ok": true,
-  "group": "Regionalmedien"
+  "group": "Entwickler & Bau"
  },
  {
-  "name": "20min Zürich",
-  "url": "https://partner-feeds.20min.ch/rss/20minuten/zuerich",
-  "error": "HTTP Error 404: Not Found",
+  "name": "Steiner",
+  "url": "https://www.steiner.ch/de/news",
+  "status": 200,
+  "html": true,
+  "newslinks": 0,
+  "newssample": [],
+  "links": [],
+  "title": "sachwalter-steiner.ch",
   "robots_ok": true,
-  "group": "Regionalmedien"
+  "group": "Entwickler & Bau"
  },
  {
-  "name": "Zürcher Unterländer",
-  "url": "https://www.zuonline.ch/",
-  "error": "HTTP Error 302: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nMoved Temporarily",
-  "robots_ok": false,
-  "group": "Regionalmedien"
+  "name": "HRS",
+  "url": "https://www.hrs.ch/de/news",
+  "status": 200,
+  "html": true,
+  "newslinks": 0,
+  "newssample": [],
+  "links": [],
+  "title": "News",
+  "robots_ok": true,
+  "group": "Entwickler & Bau"
  },
  {
-  "name": "Limmattaler Zeitung",
-  "url": "https://www.limmattalerzeitung.ch/",
+  "name": "Allreal",
+  "url": "https://www.allreal.ch/de/news",
   "error": "HTTP Error 403: Forbidden",
   "robots_ok": false,
-  "group": "Regionalmedien"
+  "group": "Entwickler & Bau"
  },
  {
-  "name": "Hochparterre Wettbewerbe",
-  "url": "https://www.hochparterre-wettbewerbe.ch/",
+  "name": "Mobimo",
+  "url": "https://www.mobimo.ch/de/medien/medienmitteilungen",
   "status": 200,
   "html": true,
+  "newslinks": 0,
+  "newssample": [],
   "links": [],
-  "title": "Hochparterre Wettbewerbe – Das Archiv für Architekturwettbewerbe",
+  "title": "Mobimo",
   "robots_ok": true,
-  "group": "Regionalmedien"
+  "group": "Entwickler & Bau"
  },
  {
-  "name": "Swiss Real Estate News (iazi)",
-  "url": "https://www.iazi.ch/news",
+  "name": "PSP Swiss Property",
+  "url": "https://www.psp.info/de/medien/medienmitteilungen",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": false,
+  "group": "Entwickler & Bau"
+ },
+ {
+  "name": "Swiss Prime Site",
+  "url": "https://www.sps.swiss/de/medien/medienmitteilungen",
   "status": 200,
   "html": true,
+  "newslinks": 124,
+  "newssample": [
+   "Ad-hoc 26. Oktober 2026 / Ad-Hoc Swiss Prime Site gibt strategische Prioritäten und Ambiti",
+   "Ad-hoc 20. August 2026 / Ad-Hoc 1H26: Swiss Prime Site mit starkem operativem Ergebnis und",
+   "25. Juni 2026 Swiss Prime Site haucht Maag-Hallen neues Leben ein"
+  ],
+  "links": [],
+  "title": "Übersicht - Swiss Prime Site",
+  "robots_ok": true,
+  "group": "Entwickler & Bau"
+ },
+ {
+  "name": "Senn",
+  "url": "https://www.senn.com/de/news",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Entwickler & Bau"
+ },
+ {
+  "name": "Intershop",
+  "url": "https://www.intershop.ch/de/news",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Entwickler & Bau"
+ },
+ {
+  "name": "Zug Estates",
+  "url": "https://www.zugestates.ch/de/medien",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Entwickler & Bau"
+ },
+ {
+  "name": "Fundamenta",
+  "url": "https://www.fundamentagroup.com/de/news",
+  "status": 200,
+  "html": true,
+  "newslinks": 10,
+  "newssample": [
+   "Weitere finden Sie auf unserer Newsseite",
+   "Medienmitteilungen 04. Nov. 2026 Eckdaten für die 18. Kapitalerhöhung des Akara Swiss Dive",
+   "Stories 29. Okt. 2026 Mehr Wohnraum schaffen: Wie Verdichtung im Bestand gelingt mehr"
+  ],
+  "links": [],
+  "title": "Real Estate Asset Manager | Swiss Prime Site Solutions",
+  "robots_ok": true,
+  "group": "Entwickler & Bau"
+ },
+ {
+  "name": "SBB Immobilien",
+  "url": "https://company.sbb.ch/de/medien/medienmitteilungen.html",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Entwickler & Bau"
+ },
+ {
+  "name": "Post Immobilien",
+  "url": "https://www.post.ch/de/ueber-uns/medien/medienmitteilungen",
+  "status": 200,
+  "html": true,
+  "newslinks": 0,
+  "newssample": [],
+  "links": [],
+  "title": "Medienmitteilungen | Schweizerische Post",
+  "robots_ok": true,
+  "group": "Entwickler & Bau"
+ },
+ {
+  "name": "Mettler2Invest",
+  "url": "https://www.mettler2invest.ch/news",
+  "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.mettler2invest.ch'. (_ssl.c:1011",
+  "robots_ok": null,
+  "group": "Entwickler & Bau"
+ },
+ {
+  "name": "Steiner Investment",
+  "url": "https://www.steiner.ch/de/medien",
+  "status": 200,
+  "html": true,
+  "newslinks": 0,
+  "newssample": [],
+  "links": [],
+  "title": "sachwalter-steiner.ch",
+  "robots_ok": true,
+  "group": "Entwickler & Bau"
+ },
+ {
+  "name": "Marti",
+  "url": "https://www.marti.ch/de/news",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": false,
+  "group": "Entwickler & Bau"
+ },
+ {
+  "name": "Priora",
+  "url": "https://www.priora.ch/de/news",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Entwickler & Bau"
+ },
+ {
+  "name": "Halter Entwicklungen",
+  "url": "https://www.halter.ch/de/medien",
+  "status": 200,
+  "html": true,
+  "newslinks": 140,
+  "newssample": [
+   "Baueingabe für die Wiedereröffnung der Buvette Sonnenberg in Seelisberg Schlieren / Seelis",
+   "Dépôt d’une demande de permis de construire pour la réouverture de la buvette Sonnenberg à",
+   "Building permit application submitted for the reopening of Buvette Sonnenberg in Seelisber"
+  ],
+  "links": [],
+  "title": "Medien - Halter AG",
+  "robots_ok": true,
+  "group": "Entwickler & Bau"
+ },
+ {
+  "name": "Pensimo",
+  "url": "https://www.pensimo.ch/de/news",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Anlagestiftungen & Fonds"
+ },
+ {
+  "name": "Swiss Life Asset Managers",
+  "url": "https://www.swisslife-am.com/de/home/media.html",
+  "error": "HTTP Error 403: Forbidden",
+  "robots_ok": false,
+  "group": "Anlagestiftungen & Fonds"
+ },
+ {
+  "name": "UBS Anlagestiftungen",
+  "url": "https://www.ubs.com/ch/de/asset-management/investment-foundations.html",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Anlagestiftungen & Fonds"
+ },
+ {
+  "name": "Zürich Anlagestiftung",
+  "url": "https://www.zurich-anlagestiftung.ch/de/news",
+  "error": "<urlopen error [SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1011)>",
+  "robots_ok": null,
+  "group": "Anlagestiftungen & Fonds"
+ },
+ {
+  "name": "Avadis",
+  "url": "https://www.avadis.ch/de/news",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Anlagestiftungen & Fonds"
+ },
+ {
+  "name": "Ecoreal",
+  "url": "https://www.ecoreal.ch/de/news",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Anlagestiftungen & Fonds"
+ },
+ {
+  "name": "Helvetia Immobilien",
+  "url": "https://www.helvetia.com/ch/web/de/ueber-uns/medien/medienmitteilungen.html",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Anlagestiftungen & Fonds"
+ },
+ {
+  "name": "AXA IM Real Assets",
+  "url": "https://www.axa-im.ch/de/medien",
+  "status": 200,
+  "html": true,
+  "newslinks": 0,
+  "newssample": [],
+  "links": [],
+  "title": "BNP Paribas Asset Management - BNP Paribas Asset Management - Schweiz deutsch",
+  "robots_ok": true,
+  "group": "Anlagestiftungen & Fonds"
+ },
+ {
+  "name": "Swisscanto Immobilien",
+  "url": "https://www.swisscanto.com/ch/de/institutionelle/news.html",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Anlagestiftungen & Fonds"
+ },
+ {
+  "name": "Patrimonium",
+  "url": "https://www.patrimonium.ch/de/news",
+  "status": 200,
+  "html": true,
+  "newslinks": 7,
+  "newssample": [
+   "Patrimonium Anlagestiftung erreicht CHF 1.8 Mrd. Anlagevermögen – erste Ausschüttung bei A",
+   "Creative Factory gewinnt den Prix de l’Immobilier Romand 2026 Wir freuen uns, bekannt zu g",
+   "Sustainable Real Estate Switzerland veröffentlicht Jahresbericht, informiert über geplante"
+  ],
+  "links": [],
+  "title": "News - Patrimonium",
+  "robots_ok": true,
+  "group": "Anlagestiftungen & Fonds"
+ },
+ {
+  "name": "Previs",
+  "url": "https://www.previs.ch/news",
+  "status": 200,
+  "html": true,
+  "newslinks": 0,
+  "newssample": [],
+  "links": [],
+  "title": "Newsletter abmelden | Previs Vorsorge",
+  "robots_ok": false,
+  "group": "Anlagestiftungen & Fonds"
+ },
+ {
+  "name": "Turidomus/Adimora (Pensimo)",
+  "url": "https://www.pensimo.ch/de/medien",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Anlagestiftungen & Fonds"
+ },
+ {
+  "name": "ABZ",
+  "url": "https://www.abz.ch/aktuell",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Genossenschaften & öffentliche"
+ },
+ {
+  "name": "Wohnbaugenossenschaften Zürich",
+  "url": "https://www.wbg-zh.ch/aktuell/",
+  "status": 200,
+  "html": true,
+  "newslinks": 1,
+  "newssample": [
+   "' + value.Name + value.Extension); }); }else{ $('.documents'+event_number).hide(); } if(ev"
+  ],
+  "links": [],
+  "title": "Wohnbaugenossenschaften Zürich",
+  "robots_ok": false,
+  "group": "Genossenschaften & öffentliche"
+ },
+ {
+  "name": "Kanton Zürich Immobilien",
+  "url": "https://www.zh.ch/de/planen-bauen/immobilien.html",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Genossenschaften & öffentliche"
+ },
+ {
+  "name": "Korporation Zug",
+  "url": "https://www.korporation-zug.ch/aktuelles",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Genossenschaften & öffentliche"
+ },
+ {
+  "name": "Zuger Kantonalbank",
+  "url": "https://www.zugerkb.ch/medien",
+  "status": 200,
+  "html": true,
+  "newslinks": 3,
+  "newssample": [
+   "Zuger Kantonalbank lanciert neuen Markenauftritt",
+   "Zuger Immobilienmarkt – starke Nachfrage und knappes Angebot pr&#228;gen Zuger Wohnungsmar",
+   "Alexander Hunziker wird neuer Chief Investment Officer der Zuger Kantonalbank"
+  ],
+  "links": [],
+  "title": "Medienmitteilungen - Zuger Kantonalbank",
+  "robots_ok": true,
+  "group": "Genossenschaften & öffentliche"
+ },
+ {
+  "name": "ZKB",
+  "url": "https://www.zkb.ch/de/ueber-uns/medien.html",
+  "status": 200,
+  "html": true,
+  "newslinks": 5,
+  "newssample": [
+   "Medienmitteilungen Lesen Sie unsere Medienmitteilungen vom laufenden Jahr und von den letz",
+   "Medienkontakt Wir von der Unternehmenskommunikation informieren Sie als Journalistin oder ",
+   "Bilder Nutzen Sie Fotos der Generaldirektion, des Bankpräsidiums oder der Standorte der Zü"
+  ],
+  "links": [],
+  "title": "Medien: Medienmitteilungen, Informationen und Kontakt",
+  "robots_ok": true,
+  "group": "Genossenschaften & öffentliche"
+ },
+ {
+  "name": "Wüest Partner",
+  "url": "https://www.wuestpartner.com/ch-de/insights/",
+  "status": 200,
+  "html": true,
+  "newslinks": 8,
+  "newssample": [
+   "Studien und Markteinschätzungen",
+   "Schweizer Arbeitsmarkt trotzt den Unsicherheiten",
+   "Andreas Ammann tritt aus der Partnerschaft von Wüest Partner aus"
+  ],
+  "links": [
+   "https://www.wuestpartner.com/ch-de/feed/"
+  ],
+  "title": "Insights News, Fachartikel, Videos von Wüest Partner",
+  "feed": "https://www.wuestpartner.com/ch-de/feed/",
+  "items": 10,
+  "latest": "2026-10-14",
+  "sample": [
+   "Schweizer Arbeitsmarkt trotzt den Unsicherheiten",
+   "Andreas Ammann tritt aus der Partnerschaft von Wüest Partner aus",
+   "Sedlmayr Grund und Immobilien AG führt Bewertung, Planung und Nachhaltigkeit mit Wüest Dim"
+  ],
+  "robots_ok": true,
+  "group": "Vermarkter & Berater"
+ },
+ {
+  "name": "Walde",
+  "url": "https://www.walde.ch/news",
+  "status": 200,
+  "html": true,
+  "newslinks": 0,
+  "newssample": [],
+  "links": [],
+  "title": "News und Infos aus der Immobilien-Welt | Walde Immobilien",
+  "robots_ok": true,
+  "group": "Vermarkter & Berater"
+ },
+ {
+  "name": "Ginesta",
+  "url": "https://ginesta.ch/de/news",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Vermarkter & Berater"
+ },
+ {
+  "name": "Engel & Völkers CH",
+  "url": "https://www.engelvoelkers.com/ch/de/news",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": false,
+  "group": "Vermarkter & Berater"
+ },
+ {
+  "name": "Fahrländer",
+  "url": "https://www.fpre.ch/news",
+  "status": 200,
+  "html": true,
+  "newslinks": 0,
+  "newssample": [],
+  "links": [
+   "https://fpre.ch/feed/"
+  ],
+  "title": "News &amp; Medien | FPRE",
+  "feed": "https://fpre.ch/feed/",
+  "items": 10,
+  "latest": "2026-10-30",
+  "sample": [
+   "Marktmieten und Marktwerte von Renditeimmobilien Schweiz (Datenstand 30. September 2026)",
+   "Vom Zonenplan zum Landwert",
+   "Transaktionspreis- und Baulandindizes für Wohneigentum Schweiz (Datenstand: 30. September "
+  ],
+  "robots_ok": true,
+  "group": "Vermarkter & Berater"
+ },
+ {
+  "name": "IAZI",
+  "url": "https://www.iazicifi.ch/news/",
+  "status": 200,
+  "html": true,
+  "newslinks": 1,
+  "newssample": [
+   "Für die Öffentliche Hand und Medien"
+  ],
   "links": [
    "https://www.iazicifi.ch/feed/",
    "https://www.iazicifi.ch/comments/feed/"
   ],
-  "title": "Homepage - IAZI AG – CIFI SA",
+  "title": "News - IAZI AG – CIFI SA",
   "feed": "https://www.iazicifi.ch/feed/",
   "items": 10,
   "latest": "2026-10-27",
@@ -92,28 +476,41 @@
    "IAZI Preisindizes für Immobilien 3. Quartal 2026"
   ],
   "robots_ok": true,
-  "group": "Regionalmedien"
+  "group": "Vermarkter & Berater"
  },
  {
-  "name": "Wüest Partner",
-  "url": "https://www.wuestpartner.com/ch-de/news/",
-  "error": "HTTP Error 404: Not Found",
-  "robots_ok": true,
-  "group": "Regionalmedien"
- },
- {
-  "name": "moneycab Immobilien",
-  "url": "https://www.moneycab.com/feed/",
+  "name": "Raiffeisen Immobilien",
+  "url": "https://www.raiffeisen.ch/rch/de/ueber-uns/news.html",
   "status": 200,
-  "feed": "https://www.moneycab.com/feed/",
+  "html": true,
+  "newslinks": 0,
+  "newssample": [],
+  "links": [
+   "https://www.raiffeisen.ch/rch/de/ueber-uns/news/_jcr_content/newsstream.feed.rss",
+   "https://www.raiffeisen.ch/rch/de/ueber-uns/news.html#icon-social-rss-fill"
+  ],
+  "title": "News",
+  "feed": "https://www.raiffeisen.ch/rch/de/ueber-uns/news/_jcr_content/newsstream.feed.rss",
   "items": 40,
-  "latest": "2026-11-07",
+  "latest": "2026-11-02",
   "sample": [
-   "Trump ersetzt Stabschefin Wiles durch Hardliner Miller",
-   "Moneycab-App aktualisiert",
-   "US-Schluss: Tech-Sektor erholt sich etwas nach Ausverkauf"
+   "Industrie wächst weiter, Dynamik nimmt ab",
+   "Anlageguide November 2026: Politik bewegt Märkte",
+   "Raiffeisen Vorsorgeguide: Das Eigenheim als Vermögensbaustein"
   ],
   "robots_ok": true,
-  "group": "Regionalmedien"
+  "group": "Vermarkter & Berater"
+ },
+ {
+  "name": "SVIT",
+  "url": "https://www.svit.ch/de/news",
+  "status": 200,
+  "html": true,
+  "newslinks": 0,
+  "newssample": [],
+  "links": [],
+  "title": "News",
+  "robots_ok": true,
+  "group": "Vermarkter & Berater"
  }
 ]
