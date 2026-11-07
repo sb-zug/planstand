@@ -41,7 +41,7 @@ AMTSBLATT = {
 }
 LOOKBACK_DAYS = 21      # so weit zurück bei jedem Lauf (Archiv bleibt erhalten)
 PAGES = 6               # max. Seiten à 200 pro Kanton
-DETAIL_MAX = 120        # max. Volltexte (XML) pro Lauf, nur Baugesuche; gecacht über die Meldungs-ID
+DETAIL_MAX = 250        # max. Volltexte (XML) pro Lauf, nur Baugesuche; gecacht über die Meldungs-ID
 ARCHIVE_DAYS = 730      # Meldungen so lange behalten
 
 FEEDS = [
@@ -49,25 +49,47 @@ FEEDS = [
     ("Hochparterre", ["https://www.hochparterre.ch/rss.xml", "https://www.hochparterre.ch/rss"]),
 ]
 
-# Grosse Bauvorhaben: mindestens ein Plus-Begriff (Titel oder Volltext).
-PLUS = re.compile(
-    r"neubau|ersatzneubau|überbauung|ueberbauung|arealüberbauung|arealbebauung|wohnüberbauung|siedlung|"
-    r"mehrfamilienh|mfh\b|wohn- und geschäftsh|geschäftshaus|bürogebäude|hochhaus|gestaltungsplan|"
-    r"bebauungsplan|sondernutzungsplan|quartierplan|areal\b|arealentwicklung|tiefgarage|"
-    r"\b\d{2,3}\s*wohnungen|wohnungen\b|alterszentrum|schulanlage|schulhaus|hotel|überbauungsordnung",
-    re.I)
-# Kleinkram, der allein nicht reicht (wenn kein starker Begriff vorkommt)
-STRONG = re.compile(r"überbauung|ueberbauung|arealüberbauung|arealbebauung|gestaltungsplan|bebauungsplan|"
-                    r"sondernutzungsplan|hochhaus|mehrfamilienh|wohnüberbauung|\b\d{2,3}\s*wohnungen|siedlung", re.I)
-SMALL = re.compile(r"wärmepumpe|photovoltaik|solaranlage|pv-anlage|einfamilienhaus|pergola|carport|velounterstand|"
-                   r"sitzplatz|dachfenster|balkonverglasung|reklame|fassadensanierung|stützmauer|gartenhaus|"
-                   r"poolanlage|schwimmbad|terrassenüberdachung|antenne|mobilfunk", re.I)
+# Grosse Bauvorhaben (Baugesuche). Regel: GROSS trifft zu, ÄNDERUNG nicht.
+#   GROSS = Planungsbegriff (Gestaltungsplan, Arealüberbauung, Hochhaus …)
+#        oder ab WOHNUNGEN_MIN Wohnungen
+#        oder Neubau mehrerer Wohnhäuser / Neubau eines grossen Nicht-Wohnbaus (Geschäftshaus, Schulanlage …)
+WOHNUNGEN_MIN = 8
+STRONG = re.compile(r"arealüberbauung|arealbebauung|überbauung|ueberbauung|gestaltungsplan|bebauungsplan|"
+                    r"sondernutzungsplan|quartierplan|hochhaus|siedlung", re.I)
+NEU = re.compile(r"\b(?:ersatz)?neubau(?:ten)?\b|neubauprojekt|neuüberbauung", re.I)
+MEHRERE = re.compile(r"mehrfamilienhäuser|\b(?:[2-9]|\d{2}|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn)\s+"
+                     r"(?:mehrfamilienh|wohnhäuser|wohngebäude|wohnbauten|mfh)|wohnhäusern", re.I)
+GROSSBAU = re.compile(r"wohn- und geschäftsh|wohn- und gewerbe|geschäftshaus|bürogebäude|büro- und|verwaltungsgebäude|"
+                      r"schulanlage|schulhaus|alterszentrum|pflegezentrum|hotel|einkaufszentrum|dienstleistungsgebäude", re.I)
+UEBERBAUUNG = re.compile(r"arealüberbauung|arealbebauung|wohnüberbauung|überbauung|ueberbauung", re.I)
+KLEIN = re.compile(r"wärmepumpe|photovoltaik|pv-anlage|solaranlage|reklame|fassadensanierung|sanierung|umbau|"
+                   r"sichtschutz|pergola|carport|velounterstand|einfriedung|stützmauer|antenne|mobilfunk|pool", re.I)
+WOHNUNGEN = re.compile(r"(\d{1,4})\s*(?:wohnungen|wohneinheiten|whg\b)", re.I)
+AENDERUNG = re.compile(r"projektänderung|abänderung|änderung zu|nachträglich|grundriss- und fassadenänderung|"
+                       r"wiederherstellung|umnutzung einer|liftanbau|lukarne", re.I)
+
+
+def gross(text: str) -> bool:
+    neu = NEU.search(text) or (UEBERBAUUNG.search(text) and not KLEIN.search(text))
+    if AENDERUNG.search(text) or not neu:   # ohne Neubau kein grosses Vorhaben (Sanierung, Reklame, PV …)
+        return False
+    if STRONG.search(text):
+        return True
+    n = max((int(x) for x in WOHNUNGEN.findall(text)), default=0)
+    if n >= WOHNUNGEN_MIN:
+        return True
+    return bool(NEU.search(text) and (MEHRERE.search(text) or GROSSBAU.search(text)))
+
+
 # Planung & Politik ausserhalb der Baugesuche (Titel)
 PLANUNG = re.compile(r"gestaltungsplan|bebauungsplan|zonenplan|ortsplanung|richtplan|bau- und zonenordnung|bzo\b|"
                      r"sondernutzungsplan|quartierplan|planauflage|öffentliche auflage|mitwirkung|"
                      r"arealentwicklung|überbauung|nutzungsplan|baulinien|landabtausch|baurecht", re.I)
 NICHT_PLANUNG = re.compile(r"abwasser|abfall|gebühr|steuer|wald|jagd|fischerei|konzession|parkier|verkehrsanordnung|"
-                           r"signalisation|reglement über|friedhof", re.I)
+                           r"signalisation|reglement über|friedhof|strasse|trottoir|lärmsanierung|lichtsignal|belag|"
+                           r"gewässerr|richtplanung .?verkehr|veloweg|radweg|bushaltestelle|knoten", re.I)
+PLAN_STARK = re.compile(r"gestaltungsplan|bebauungsplan|sondernutzungsplan|quartierplan|nutzungsplanung|"
+                        r"bau- und zonenordnung|\bbzo\b|zonenplan|ortsplanung|arealentwicklung|überbauung", re.I)
 PRIVAT = re.compile(r"testament|erbschaft|erbenruf|verschollen|schuldenruf|konkurs|betreibung|nachlass|"
                     r"kraftloserklärung|einbürgerung|strafbefehl|gerichtlich", re.I)
 
@@ -154,13 +176,11 @@ def relevant(rub: str, title: str, full: str = "") -> bool:
         return False
     text = f"{title} {full}"
     if rub == "BP":
-        if not PLUS.search(text):
-            return False
-        if SMALL.search(text) and not STRONG.search(text):
-            return False
-        return True
+        return gross(text)
     if rub in ("RP", "AB", "RS", "KO", "VE"):
-        return bool(PLANUNG.search(title)) and not NICHT_PLANUNG.search(title)
+        if not PLANUNG.search(title):
+            return False
+        return bool(PLAN_STARK.search(title)) or not NICHT_PLANUNG.search(title)
     return False
 
 
@@ -206,7 +226,9 @@ def collect_amtsblatt(kanton: str, host: str, known: dict, seen: set, offline: P
                 continue
             office = (m.get("registrationOffice") or {}).get("displayName", "")
             ort = gemeinde(kanton, office, title)
-            t = re.sub(r"^(Kommunale\s+)?Baugesuchs?publikation:\s*", "", title)
+            if ort:   # ZH-Titel enden oft mit «…, Öffentliche Auflage, Gemeinde» → Ende kürzen
+                title = re.sub(rf"(,\s*(Öffentliche Auflage|Genehmigung|Festsetzung))*,\s*{re.escape(ort)}\s*$", "", title)
+            t = re.sub(r"^((Kommunale\s+)?Baugesuchs?publikation|Bauprojekt):\s*", "", title)
             out.append({
                 "id": mid,
                 "datum": (m.get("publicationDate") or "")[:10],
@@ -224,8 +246,19 @@ def collect_amtsblatt(kanton: str, host: str, known: dict, seen: set, offline: P
 
 # ---------------------------------------------------------------- Fachmedien (nur Titel + Link)
 
+def _fix_xml(raw: str) -> str:
+    """Viele Feeds enthalten HTML-Entities (&nbsp;) oder nackte & – vor dem Parsen bereinigen."""
+    raw = re.sub(r"&(?!(?:amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);)([a-zA-Z][a-zA-Z0-9]*;)?",
+                 lambda m: html.unescape("&" + m.group(1)) if m.group(1) and html.unescape("&" + m.group(1)) != "&" + m.group(1)
+                 else "&amp;" + (m.group(1) or ""), raw)
+    return re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]", "", raw)
+
+
 def parse_feed(raw: str, name: str) -> list[dict]:
-    root = ET.fromstring(raw)
+    try:
+        root = ET.fromstring(raw)
+    except ET.ParseError:
+        root = ET.fromstring(_fix_xml(raw))
     out = []
     items = root.findall(".//item") or root.findall(".//{http://www.w3.org/2005/Atom}entry")
     for it in items[:40]:
@@ -320,6 +353,22 @@ def main() -> None:
     cutoff = (TODAY - timedelta(days=ARCHIVE_DAYS)).isoformat()
     alle = sorted((m for m in by_id.values() if (m.get("datum") or "") >= cutoff),
                   key=lambda m: m.get("datum") or "", reverse=True)
+    # Filter auch aufs Archiv anwenden (Regeln können sich ändern) und Wiederholungs-Publikationen zusammenfassen
+    rub_of = {v: k for k, v in TYP.items()}
+    def ok(m):
+        if m["typ"] == "Medien":
+            return True
+        return relevant(rub_of.get(m["typ"], ""), m["titel"], m.get("beschrieb", ""))
+    seen_key, dedup = set(), []
+    for m in alle:
+        if not ok(m):
+            continue
+        k = (m.get("kanton"), m["titel"].lower(), (m.get("beschrieb") or "")[:80].lower())
+        if k in seen_key:
+            continue
+        seen_key.add(k)
+        dedup.append(m)
+    alle = dedup
     match_projects(alle, projekte)
 
     f_meld.write_text(json.dumps({"stand": datetime.now(timezone.utc).isoformat(timespec="minutes"),

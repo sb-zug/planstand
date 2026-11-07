@@ -11,10 +11,29 @@ assert C.relevant("BP", "Feldweg 3, Cham", "Arealüberbauung Feldpark, Gestaltun
 assert not C.relevant("BP", "Obermattli 1, Walchwil", "Ersatz Ölheizung durch Wärmepumpe")
 assert not C.relevant("BP", "Rainweg 2, Zug", "Neubau Einfamilienhaus mit Photovoltaikanlage")
 assert not C.relevant("BP", "Rainweg 2, Zug", "")
+assert not C.relevant("BP", "x", "Neubau Wegbeleuchtung")
+assert not C.relevant("BP", "x", "Abbruch EFH / Neubau MFH")
+assert not C.relevant("BP", "x", "Liftanbau Mehrfamilienhaus, Wohn- und Gewerbezone")
+assert not C.relevant("BP", "x", "4. Projektänderung zu dem bewilligten Ersatzneubau Mehrfamilienhaus mit 12 Wohnungen")
+assert C.relevant("BP", "x", "Ersatzneubau mit 7 Wohnhäusern und Tiefgarage für 75 Autos")
+assert C.relevant("BP", "x", "Ersatzneubau 2 Mehrfamilienhäuser mit 26 Wohnungen und gemeinsamer Tiefgarage")
+assert C.relevant("BP", "x", "Neubau Wohn- und Geschäftshaus mit Tiefgarage")
+assert C.relevant("BP", "x", "Ersatzneubau Mehrfamilienhaus mit 13 Wohnungen")
+assert not C.relevant("BP", "x", "Ersatzneubau Mehrfamilienhaus mit 5 Wohnungen")
 # Planung
 assert C.relevant("KO", "Öffentliche Auflage: Bebauungsplan Lorzenallmend, Zug")
 assert not C.relevant("KO", "Öffentliche Auflage: Totalrevision Abwasserreglement (AR) der Einwohnergemeinde Baar, Baar")
 assert not C.relevant("BP", "Testamentseröffnung: X", "Neubau Mehrfamilienhaus")
+assert C.relevant("RP", "Privater Gestaltungsplan «Wasen-Maiacher» Öffentliche Auflage, Boppelsen")
+assert not C.relevant("VE", "Strassenlärmsanierung: Rautistrasse, Öffentliche Planauflage, Zürich")
+assert not C.relevant("RP", "Festlegung der Gewässerräume im Siedlungsgebiet Walchwil, Öffentliche Auflage")
+assert C.relevant("RP", "Kommunale Nutzungsplanung. Privater Gestaltungsplan „Alte Landstrasse, Obermeilen“")
+assert not C.relevant("BP", "x", "Ersatz eines Reklameträgers, im Perimeter des Bebauungsplans")
+assert not C.relevant("BP", "x", "Luft/Wasser-Wärmepumpe auf dem Dach, Siedlung Heuried")
+# Feed mit HTML-Entities
+f = C.parse_feed('<rss><channel><item><title>Wohnen &nbsp;am See & mehr</title><link>https://x.ch/a</link>'
+                 '<pubDate>Fri, 06 Nov 2026 10:00:00 +0100</pubDate></item></channel></rss>', "T")
+assert f and f[0]["datum"] == "2026-11-06" and "am See" in f[0]["titel"]
 # Gemeinde
 assert C.gemeinde("ZG", "Gemeinde Steinhausen - Präsidiales", "x") == "Steinhausen"
 assert C.gemeinde("ZG", "Kanton Zug", "Kommunale Baugesuchspublikation: Obermattli 1, Walchwil") == "Walchwil"
