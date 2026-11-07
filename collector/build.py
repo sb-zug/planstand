@@ -54,7 +54,7 @@ def dlabel(s: str) -> str:
 
 
 def mdate(s: str):
-    """Meilenstein-Datum → date (Monat/Jahr = Ende) oder None."""
+    """Meilenstein-Datum date (Monat/Jahr = Ende) oder None."""
     s = str(s or "")
     for rx, f in ((r"(\d{4})-(\d{2})-(\d{2})", lambda g: date(*map(int, g))),
                   (r"(\d{4})-(\d{2})", lambda g: date(int(g[0]), int(g[1]), 28)),
@@ -76,10 +76,11 @@ def page(path: str, title: str, desc: str, body: str, rss: str | None = None) ->
 <title>{e(full)}</title><meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{e(canon)}"><meta property="og:title" content="{e(full)}">
 <meta property="og:description" content="{e(desc)}"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.bunny.net"><link rel="stylesheet" href="https://fonts.bunny.net/css?family=schibsted-grotesk:400,500,600,700,800&display=swap">
 <link rel="stylesheet" href="{u('assets/app.css')}">{feed}
 <link rel="alternate" type="application/rss+xml" title="{NAME} – alle Meldungen" href="{u('rss.xml')}">
 </head><body>
-<header class="top"><div class="wrap"><a class="logo" href="{u('')}">{NAME}<span>Beta</span></a><span class="claim">{CLAIM}</span>
+<header class="top"><div class="wrap"><a class="logo" href="{u('')}"><i aria-hidden="true"><b style="background:var(--p1)"></b><b style="background:var(--p3)"></b><b style="background:var(--p5)"></b><b style="background:var(--p7)"></b></i>{NAME}<span>Beta</span></a><span class="claim">{CLAIM}</span>
 <nav><a href="{u('meldungen/')}">News</a><a href="{u('projekte/')}">Projekte</a><a href="{u('orte/')}">Orte</a>
 <a href="{u('projekt-melden/')}" class="nl">Projekt melden</a></nav></div></header>
 <main class="wrap">{body}</main>
@@ -100,7 +101,7 @@ PAGES: list[str] = []
 
 
 def phasebar(ph: int) -> str:
-    cells = "".join(f'<li class="{"done" if i < ph else "now" if i == ph else ""}">{p}</li>'
+    cells = "".join(f'<li class="ph{i} {"done" if i < ph else "now" if i == ph else ""}">{p}</li>'
                     for i, p in enumerate(PHASEN, 1))
     return f'<ol class="phases" aria-label="Phase {ph} von 7: {PHASEN[ph - 1]}">{cells}</ol>'
 
@@ -115,8 +116,8 @@ def next_step(p: dict):
 
 def card(p: dict) -> str:
     n = next_step(p)
-    nxt = f'<p class="next"><b>Nächster Schritt:</b> {e(dlabel(n["datum"]))} · {e(n["text"])}</p>' if n else ""
-    return (f'<a class="card" href="{u("projekte/" + p["slug"] + "/")}"><span class="tag">{e(p["gemeinde"])} · '
+    nxt = f'<p class="next"><b>{e(dlabel(n["datum"]))}</b> {e(n["text"])}</p>' if n else ""
+    return (f'<a class="card ph{p["phase"]}" href="{u("projekte/" + p["slug"] + "/")}"><span class="tag">{e(p["gemeinde"])}, '
             f'{e(PHASEN[p["phase"] - 1])}</span><h3>{e(p["titel"])}</h3><p>{e(p.get("untertitel", ""))}</p>{nxt}</a>')
 
 
@@ -193,13 +194,14 @@ def headline(m: dict) -> tuple[str, str]:
 
 
 def kicker(m: dict, ort=True) -> str:
-    parts = [dlabel(m["datum"]), m["typ"]] + ([m["gemeinde"]] if ort and m.get("gemeinde") else []) + [m["quelle"]]
-    return " · ".join(e(x) for x in parts if x)
+    wo = f'{e(m["gemeinde"])}, ' if ort and m.get("gemeinde") else ""
+    return (f'<span class="typ">{e(m["typ"])}</span><span>{wo}{e(dlabel(m["datum"]))}</span>'
+            f'<span>Quelle: {e(m["quelle"])}</span>')
 
 
 def mrow(m: dict, ort=True) -> str:
     h, sub = headline(m)
-    ext = " ↗" if m["typ"] == "Medien" else ""
+    ext = ""
     return (f'<li class="t-{slug(m["typ"])}"><span class="meta">{kicker(m, ort)}</span>'
             f'<a href="{e(m["url"])}" rel="noopener" target="_blank">{e(h)}{ext}</a>'
             + (f'<span class="d">{e(sub)}</span>' if sub else "") + "</li>")
@@ -245,31 +247,41 @@ def build() -> None:
     hero = ""
     if artikel:
         a0 = artikel[0]
-        hero = (f'<article class="hero-a"><span class="rubrik">{e(a0["rubrik"])} · {e(dlabel(a0["datum"]))}</span>'
+        hero = (f'<article class="hero-a"><span class="rubrik">{e(a0["rubrik"])}</span> <span class="meta" style="display:inline-flex">{e(dlabel(a0["datum"]))}</span>'
                 f'<h1><a href="{u("artikel/" + a0["slug"] + "/")}">{e(a0["titel"])}</a></h1><p>{e(a0["lead"])}</p>'
-                f'<a class="more" href="{u("artikel/" + a0["slug"] + "/")}">Weiterlesen →</a></article>')
+                f'<a class="more" href="{u("artikel/" + a0["slug"] + "/")}">Weiterlesen</a></article>')
     bildnews = [m for m in news if m.get("bild")][:3]
     tiles = "".join(
         f'<a class="tile" href="{e(m["url"])}" rel="noopener" target="_blank"><span class="img" style="background-image:url({e(m["bild"])})"></span>'
-        f'<span class="meta">{e(m.get("gemeinde") or "")} · {e(m["quelle"])}</span><b>{e(headline(m)[0])}</b>'
+        f'<span class="meta">{e(m.get("gemeinde") or "")}</span><b>{e(headline(m)[0])}</b>'
         f'<span class="credit">Bild: {e(m["quelle"])}</span></a>' for m in bildnews)
     rest = [m for m in news if m not in bildnews][:14]
     proj = "".join(card(p) for p in aktiv[:4])
-    term_html = "".join(f'<li><span class="meta">{e(dlabel(n["datum"]))} · {e(p["gemeinde"])}</span>'
+    term_html = "".join(f'<li><span class="meta">{e(p["gemeinde"])}, {e(dlabel(n["datum"]))}</span>'
                         f'<a href="{u("projekte/" + p["slug"] + "/")}">{e(p["titel"])}</a><span class="d">{e(n["text"])}</span></li>'
                         for _, p, n in termine)
-    body = (f'<div class="news"><div class="main">{hero}'
+    cols = ""
+    for i, ph in enumerate(PHASEN, 1):
+        ps = [p for p in projekte if p["phase"] == i]
+        items = "".join(f'<a href="{u("projekte/" + p["slug"] + "/")}">{e(p["titel"])}<small>{e(p["gemeinde"])}'
+                        + (f', {e(dlabel(n["datum"]))}' if (n := next_step(p)) and mdate(n["datum"]) else "") + "</small></a>" for p in ps)
+        cols += (f'<section class="col ph{i}{"" if ps else " leer"}" aria-label="{ph}"><header>{ph}<span>{len(ps)}</span></header>'
+                 + (items or '<em>Noch keine</em>') + "</section>")
+    board = (f'<section class="board"><h1>Wo Bauprojekte in Zug und Zürich stehen</h1>'
+             f'<p class="sub">Jedes Projekt von der ersten Planung bis zum Bezug. Täglich nachgeführt aus Amtsblättern, Medienmitteilungen und Projektseiten.</p>'
+             f'<div class="cols">{cols}</div></section>')
+    body = (board + f'<div class="news"><div class="main">{hero}'
             + (f'<div class="tiles">{tiles}</div>' if tiles else "")
-            + f'<div class="shead"><h2>News</h2><a href="{u("meldungen/")}">Alle News →</a></div>{mlist(rest)}'
-            f'<div class="shead"><h2>Projekte</h2><a href="{u("projekte/")}">Alle {len(projekte)} →</a></div><div class="grid g2">{proj}</div></div>'
+            + f'<div class="shead"><h2>News</h2><a href="{u("meldungen/")}">Alle News</a></div>{mlist(rest)}'
+            f'<div class="shead"><h2>Projekte</h2><a href="{u("projekte/")}">Alle {len(projekte)}</a></div><div class="grid g2">{proj}</div></div>'
             f'<aside class="side"><div class="pitch"><b>Sie entwickeln, bauen oder vermarkten?</b><p>Senden Sie uns Ihre Medienmitteilung '
             f'oder tragen Sie Ihr Projekt ein. Planstand begleitet es von der Planung bis zum Bezug.</p>'
             f'<a class="btn" href="{u("projekt-melden/")}">Projekt melden</a></div>'
             f'<div class="nlbox"><b>Der Wochenbrief</b><p>Jeden Freitag: die wichtigsten Projekte, Entscheide und Termine in Zug und Zürich.</p>'
             f'<a class="btn" href="{u("newsletter/")}">Abonnieren</a></div>'
             f'<div class="shead"><h2>Termine</h2></div><ul class="mlist">{term_html}</ul>'
-            f'<a class="radar" href="{u("baugesuche/")}"><span>Baugesuch-Radar · 30 Tage</span><b>{wohn30}</b>'
-            f'<span>neue Wohnungen in {len(bg30)} grösseren Baugesuchen beantragt</span><em>Zum Radar →</em></a>'
+            f'<a class="radar" href="{u("baugesuche/")}"><b>{wohn30}</b><span>Wohnungen beantragt</span>'
+            f'<span>in {len(bg30)} grösseren Baugesuchen der letzten 30 Tage</span></a>'
             f'</aside></div>')
     page("", NAME, f"{CLAIM}: Projekte, Entscheide und Termine der Immobilien- und Arealentwicklung, jede Woche neu.",
          body, "rss.xml")
@@ -280,11 +292,11 @@ def build() -> None:
         q = "".join(f'<li><a href="{e(b)}" rel="noopener" target="_blank">{e(l)}</a></li>' for l, b in a.get("quellen", []))
         rel = "".join(card(p) for p in projekte if p["slug"] in a.get("projekte", []))
         page(f'artikel/{a["slug"]}/', a["titel"], a["lead"],
-             f'<article class="artikel"><span class="rubrik">{e(a["rubrik"])} · {e(dlabel(a["datum"]))} · Redaktion Planstand</span>'
+             f'<article class="artikel"><span class="rubrik">{e(a["rubrik"])}</span> <span class="meta" style="display:inline-flex">{e(dlabel(a["datum"]))}, Redaktion Planstand</span>'
              f'<h1>{e(a["titel"])}</h1><p class="lead">{e(a["lead"])}</p>{txt}<h3>Quellen</h3><ul class="links">{q}</ul></article>'
              + (f'<section><h2>Projekte in diesem Artikel</h2><div class="grid">{rel}</div></section>' if rel else ""))
     page("artikel/", "Artikel", "Wochenüberblick und Hintergründe zur Immobilien- und Arealentwicklung in Zug und Zürich.",
-         "<h1>Artikel</h1>" + "".join(f'<article class="hero-a small"><span class="rubrik">{e(a["rubrik"])} · {e(dlabel(a["datum"]))}</span>'
+         "<h1>Artikel</h1>" + "".join(f'<article class="hero-a small"><span class="rubrik">{e(a["rubrik"])}</span> <span class="meta" style="display:inline-flex">{e(dlabel(a["datum"]))}</span>'
                                       f'<h2><a href="{u("artikel/" + a["slug"] + "/")}">{e(a["titel"])}</a></h2><p>{e(a["lead"])}</p></article>' for a in artikel))
 
     # Baugesuch-Radar
@@ -323,9 +335,9 @@ def build() -> None:
         fakten = "".join(f"<dt>{e(a)}</dt><dd>{e(b)}</dd>" for a, b in p.get("fakten", []))
         links = "".join(f'<li><a href="{e(b)}" rel="noopener" target="_blank">{e(a)}</a></li>' for a, b in p.get("links", []))
         pm = [m for m in meldungen if p["slug"] in m.get("projekte", [])]
-        body = (f'<p class="crumb"><a href="{u("orte/" + p["kslug"] + "/")}">{e(p["gemeinde"])}</a> · {e(p.get("art", ""))}</p>'
+        body = (f'<div class="ph{p["phase"]}"><p class="crumb"><a href="{u("orte/" + p["kslug"] + "/")}">{e(p["gemeinde"])}</a>, {e(p.get("art", ""))}</p>'
                 f'<h1>{e(p["titel"])}</h1><p class="lead">{e(p.get("untertitel", ""))}</p>{phasebar(p["phase"])}'
-                + (f'<div class="nextbox"><b>Nächster Schritt</b> {e(dlabel(n["datum"]))}: {e(n["text"])}</div>' if n else "")
+                + (f'<div class="nextbox"><b>Nächster Schritt, {e(dlabel(n["datum"]))}:</b> {e(n["text"])}</div>' if n else "")
                 + f'<section class="two"><div><p>{e(p.get("kurz", ""))}</p>'
                 + (f'<p class="note"><b>Mitreden:</b> {e(p["mitreden"])}</p>' if p.get("mitreden") else "")
                 + f'<h2>Meilensteine</h2><ol class="ms">{rows}</ol>'
@@ -333,7 +345,7 @@ def build() -> None:
                 f'<h2>In den Medien</h2>{mlist([m for m in pm if m["typ"] == "Medien"], False, "Noch keine Medienberichte zugeordnet.")}'
                 f'</div><aside><dl class="facts">{fakten}</dl><h3>Links</h3><ul class="links">{links}</ul>'
                 f'<p class="note">Stand Dossier: {e(dlabel(p.get("stand", "")) or "laufend")}. Fehler oder Ergänzung? '
-                f'<a href="{u("ueber/")}">Melden</a></p></aside></section>')
+                f'<a href="{u("projekt-melden/")}">Melden</a></p></aside></section></div>')
         page(f'projekte/{p["slug"]}/', p["titel"], f'{p["titel"]} in {p["gemeinde"]}: Phase {PHASEN[p["phase"] - 1]}, '
              f'nächste Schritte, Meilensteine und Meldungen.', body)
 
@@ -374,7 +386,7 @@ def build() -> None:
     sm = "".join(f"<url><loc>{e(SITE_URL.rstrip('/') + '/' + p)}</loc></url>" for p in PAGES)
     (OUT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{sm}</urlset>')
     (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL.rstrip('/')}/sitemap.xml\n")
-    print(f"{len(PAGES)} Seiten, {len(orte)} Orte, {len(projekte)} Projekte, {len(meldungen)} Meldungen → _site/")
+    print(f"{len(PAGES)} Seiten, {len(orte)} Orte, {len(projekte)} Projekte, {len(meldungen)} Meldungen _site/")
 
 
 def rss(path: str, title: str, items: list[dict]) -> None:
