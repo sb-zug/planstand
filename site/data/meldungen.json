@@ -1,5 +1,5 @@
 {
- "stand": "2026-11-07T12:42+00:00",
+ "stand": "2026-11-07T13:18+00:00",
  "meldungen": [
   {
    "id": "md-hnen-bauen-wartet-neuer-wohnraum-nur-darauf-gefunden-zu-werden-2909935",
@@ -251,6 +251,19 @@
    "projekte": []
   },
   {
+   "id": "mk--marktwerte-von-renditeimmobilien-schweiz-datenstand-30-september-2026",
+   "datum": "2026-10-30",
+   "typ": "Marktstudie",
+   "titel": "Marktmieten und Marktwerte von Renditeimmobilien Schweiz (Datenstand 30. September 2026)",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Fahrländer Partner",
+   "url": "https://fpre.ch/marktmieten-und-marktwerte-von-renditeimmobilien-schweiz-datenstand-30-september-2026/",
+   "projekte": []
+  },
+  {
    "id": "mm-shofen-stadtrat-will-moeglichkeiten-fuer-kibag-areal-neu-ausloten-html",
    "datum": "2026-10-29",
    "typ": "Medienmitteilung",
@@ -265,6 +278,21 @@
    "projekte": []
   },
   {
+   "id": "mk-https-fpre-ch-vom-zonenplan-zum-landwert",
+   "datum": "2026-10-29",
+   "typ": "Marktstudie",
+   "titel": "Vom Zonenplan zum Landwert",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Fahrländer Partner",
+   "url": "https://fpre.ch/vom-zonenplan-zum-landwert/",
+   "projekte": [
+    "ortsplanung"
+   ]
+  },
+  {
    "id": "mm-uell-medienmitteilungen-rege-beteiligung-an-den-ortsplanungs-workshops",
    "datum": "2026-10-21",
    "typ": "Medienmitteilung",
@@ -276,6 +304,32 @@
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/rege-beteiligung-an-den-ortsplanungs-workshops",
    "bild": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/rege-beteiligung-an-den-ortsplanungs-workshops/mitteilung-vom-21-oktober-2026/@@images/865cba6c-7e99-4a9e-8d58-442d200e263e.png",
+   "projekte": []
+  },
+  {
+   "id": "mk-artner-com-ch-de-blog-schweizer-arbeitsmarkt-trotzt-den-unsicherheiten",
+   "datum": "2026-10-14",
+   "typ": "Marktstudie",
+   "titel": "Schweizer Arbeitsmarkt trotzt den Unsicherheiten",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Wüest Partner",
+   "url": "https://www.wuestpartner.com/ch-de/blog/schweizer-arbeitsmarkt-trotzt-den-unsicherheiten/",
+   "projekte": []
+  },
+  {
+   "id": "mk--baulandindizes-fuer-wohneigentum-schweiz-datenstand-30-september-2026",
+   "datum": "2026-10-14",
+   "typ": "Marktstudie",
+   "titel": "Transaktionspreis- und Baulandindizes für Wohneigentum Schweiz (Datenstand: 30. September 2026)",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Fahrländer Partner",
+   "url": "https://fpre.ch/transaktionspreis-und-baulandindizes-fuer-wohneigentum-schweiz-datenstand-30-september-2026/",
    "projekte": []
   },
   {
@@ -302,6 +356,97 @@
    "frist": null,
    "quelle": "IAZI",
    "url": "https://www.iazicifi.ch/hitzeschutz-politik/",
+   "projekte": []
+  },
+  {
+   "id": "mk-https-www-iazicifi-ch-menschen-hinter-iazi-prayut-parsekar",
+   "datum": "2026-10-07",
+   "typ": "Marktstudie",
+   "titel": "Wer sind die Menschen hinter IAZI? Episode 20: Prayut Parsekar",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "IAZI",
+   "url": "https://www.iazicifi.ch/menschen-hinter-iazi-prayut-parsekar/",
+   "projekte": []
+  },
+  {
+   "id": "mk-https-fpre-ch-toplagen-fuer-verkauf-und-buero-sind-rar",
+   "datum": "2026-10-07",
+   "typ": "Marktstudie",
+   "titel": "Toplagen für Verkauf und Büro sind rar",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Fahrländer Partner",
+   "url": "https://fpre.ch/toplagen-fuer-verkauf-und-buero-sind-rar/",
+   "projekte": []
+  },
+  {
+   "id": "mk--blog-andreas-ammann-tritt-aus-der-partnerschaft-von-wuest-partner-aus",
+   "datum": "2026-10-05",
+   "typ": "Marktstudie",
+   "titel": "Andreas Ammann tritt aus der Partnerschaft von Wüest Partner aus",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Wüest Partner",
+   "url": "https://www.wuestpartner.com/ch-de/blog/andreas-ammann-tritt-aus-der-partnerschaft-von-wuest-partner-aus/",
+   "projekte": []
+  },
+  {
+   "id": "mk-de-blog-sedlmayr-bewertung-planung-nachhaltigkeit-mit-wuest-dimensions",
+   "datum": "2026-10-05",
+   "typ": "Marktstudie",
+   "titel": "Sedlmayr Grund und Immobilien AG führt Bewertung, Planung und Nachhaltigkeit mit Wüest Dimensions zusammen",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Wüest Partner",
+   "url": "https://www.wuestpartner.com/ch-de/blog/sedlmayr-bewertung-planung-nachhaltigkeit-mit-wuest-dimensions/",
+   "projekte": []
+  },
+  {
+   "id": "mk-log-wuest-partner-msci-partnerschaft-fuer-datenbasierte-entscheidungen",
+   "datum": "2026-10-02",
+   "typ": "Marktstudie",
+   "titel": "Wüest Partner und MSCI bündeln ihre Kräfte für datenbasierte Entscheidungen",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Wüest Partner",
+   "url": "https://www.wuestpartner.com/ch-de/blog/wuest-partner-msci-partnerschaft-fuer-datenbasierte-entscheidungen/",
+   "projekte": []
+  },
+  {
+   "id": "mk-www-wuestpartner-com-ch-de-blog-was-bei-der-wohnungssuche-heute-zaehlt",
+   "datum": "2026-10-01",
+   "typ": "Marktstudie",
+   "titel": "Was bei der Wohnungssuche heute zählt",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Wüest Partner",
+   "url": "https://www.wuestpartner.com/ch-de/blog/was-bei-der-wohnungssuche-heute-zaehlt/",
+   "projekte": []
+  },
+  {
+   "id": "mk--fpreview-q4-2026-hedonic-dcf-schnellbewertung-von-renditeimmobilien-2",
+   "datum": "2026-09-25",
+   "typ": "Marktstudie",
+   "titel": "FPREview Q4 2026: Hedonic DCF – Schnellbewertung von Renditeimmobilien",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Fahrländer Partner",
+   "url": "https://fpre.ch/fpreview-q4-2026-hedonic-dcf-schnellbewertung-von-renditeimmobilien-2/",
    "projekte": []
   },
   {
@@ -333,6 +478,22 @@
    "projekte": []
   },
   {
+   "id": "mm-https-www-korporation-zug-ch-baueingabe-schliffi-ist-erfolgt",
+   "datum": "2026-09-07",
+   "typ": "Medienmitteilung",
+   "titel": "Baueingabe „Schliffi“ ist erfolgt",
+   "beschrieb": "Der Korporationspräsident Urban Keiser hat am 2. September 2026 die Baueingabe für die Wohnüberbauung „Schliffi“ im Stadthaus eingereicht. Auf dem Areal „Schliffi“ entstehen 280 preisgünstige Wohnungen.",
+   "kanton": "ZG",
+   "gemeinde": "Zug",
+   "frist": null,
+   "quelle": "Korporation Zug",
+   "url": "https://www.korporation-zug.ch/baueingabe-schliffi-ist-erfolgt/",
+   "bild": null,
+   "projekte": [
+    "schliffi"
+   ]
+  },
+  {
    "id": "mm-teilungen-grosses-interesse-fuer-den-neustart-der-ortsplanungsrevision",
    "datum": "2026-09-02",
    "typ": "Medienmitteilung",
@@ -344,6 +505,19 @@
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/grosses-interesse-fuer-den-neustart-der-ortsplanungsrevision",
    "bild": null,
+   "projekte": []
+  },
+  {
+   "id": "mk-g-bueroflaechenmarkt-schweiz-wie-entwickeln-sich-angebot-und-nachfrage",
+   "datum": "2026-08-29",
+   "typ": "Marktstudie",
+   "titel": "Büroflächenmarkt Schweiz: Wie entwickeln sich Angebot und Nachfrage?",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Wüest Partner",
+   "url": "https://www.wuestpartner.com/ch-de/blog/bueroflaechenmarkt-schweiz-wie-entwickeln-sich-angebot-und-nachfrage/",
    "projekte": []
   },
   {
@@ -361,6 +535,32 @@
    "projekte": []
   },
   {
+   "id": "mk-s-www-wuestpartner-com-ch-de-blog-stadt-baden-preisguenstiger-wohnraum",
+   "datum": "2026-08-24",
+   "typ": "Marktstudie",
+   "titel": "Stadt Baden schafft Grundlage für preisgünstigen Wohnraum im Immobilienportfolio",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Wüest Partner",
+   "url": "https://www.wuestpartner.com/ch-de/blog/stadt-baden-preisguenstiger-wohnraum/",
+   "projekte": []
+  },
+  {
+   "id": "mk-w-wuestpartner-com-ch-de-blog-thurgauer-kantonalbank-wueest-dimensions",
+   "datum": "2026-08-21",
+   "typ": "Marktstudie",
+   "titel": "Die Thurgauer Kantonalbank schafft mit Wüest Dimensions eine zentrale Plattform für 600 Mitarbeitende",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Wüest Partner",
+   "url": "https://www.wuestpartner.com/ch-de/blog/thurgauer-kantonalbank-wueest-dimensions/",
+   "projekte": []
+  },
+  {
    "id": "mm-eilungen-gemeindeeigene-liegenschaft-im-gewerbegebiet-boesch-vermietet",
    "datum": "2026-08-12",
    "typ": "Medienmitteilung",
@@ -372,6 +572,84 @@
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/gemeindeeigene-liegenschaft-im-gewerbegebiet-boesch-vermietet",
    "bild": null,
+   "projekte": []
+  },
+  {
+   "id": "mk-eigentum-in-zeiten-der-unsicherheit-wie-robust-ist-der-schweizer-markt",
+   "datum": "2026-08-10",
+   "typ": "Marktstudie",
+   "titel": "Wohneigentum in Zeiten der Unsicherheit: Wie robust ist der Schweizer Markt?",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Wüest Partner",
+   "url": "https://www.wuestpartner.com/ch-de/blog/wohneigentum-in-zeiten-der-unsicherheit-wie-robust-ist-der-schweizer-markt/",
+   "projekte": []
+  },
+  {
+   "id": "mk-https-fpre-ch-wenn-die-strategie-politik-finanzen-und-bau-verbindet",
+   "datum": "2026-07-31",
+   "typ": "Marktstudie",
+   "titel": "Wenn die Strategie Politik, Finanzen und Bau verbindet",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Fahrländer Partner",
+   "url": "https://fpre.ch/wenn-die-strategie-politik-finanzen-und-bau-verbindet/",
+   "projekte": []
+  },
+  {
+   "id": "mk-tps-fpre-ch-marktmieten-und-marktwerte-von-renditeimmobilien-schweiz-6",
+   "datum": "2026-07-31",
+   "typ": "Marktstudie",
+   "titel": "Marktmieten und Marktwerte von Renditeimmobilien Schweiz",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Fahrländer Partner",
+   "url": "https://fpre.ch/marktmieten-und-marktwerte-von-renditeimmobilien-schweiz-6/",
+   "projekte": []
+  },
+  {
+   "id": "mk-https-fpre-ch-mit-wem-teilen-sie-ihre-daten",
+   "datum": "2026-07-23",
+   "typ": "Marktstudie",
+   "titel": "Mit wem teilen Sie Ihre Daten?",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Fahrländer Partner",
+   "url": "https://fpre.ch/mit-wem-teilen-sie-ihre-daten/",
+   "projekte": []
+  },
+  {
+   "id": "mk-https-www-wuestpartner-com-ch-de-blog-industrie-und-logistikimmobilien",
+   "datum": "2026-07-15",
+   "typ": "Marktstudie",
+   "titel": "Industrie- und Logistikimmobilien: Vom Nischensegment zur willkommenen Anlagealternative",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Wüest Partner",
+   "url": "https://www.wuestpartner.com/ch-de/blog/industrie-und-logistikimmobilien/",
+   "projekte": []
+  },
+  {
+   "id": "mk-s-und-baulandindizes-fuer-wohneigentum-schweiz-datenstand-30-juni-2026",
+   "datum": "2026-07-10",
+   "typ": "Marktstudie",
+   "titel": "Transaktionspreis- und Baulandindizes für Wohneigentum Schweiz (Datenstand: 30. Juni 2026)",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Fahrländer Partner",
+   "url": "https://fpre.ch/transaktionspreis-und-baulandindizes-fuer-wohneigentum-schweiz-datenstand-30-juni-2026/",
    "projekte": []
   },
   {
