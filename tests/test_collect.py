@@ -37,6 +37,14 @@ assert f and f[0]["datum"] == "2026-11-06" and "am See" in f[0]["titel"]
 f = C.parse_feed('<rss><channel><item><title><![CDATA[Neubau <b>am See]]></title><link>https://x.ch/b</link>'
                  '<description>kaputt < 5 & <br></description></item></channel></rss>', "T")
 assert f and f[0]["url"] == "https://x.ch/b"
+# Medienmitteilungen / Medien
+raw = [{"titel": "Neue Überbauung mit 120 Wohnungen in Baar", "beschrieb": "Die Firma X baut. " * 30, "url": "https://a.ch/1", "datum": "2026-11-06"},
+       {"titel": "Auto Zürich 2026: Premieren", "beschrieb": "Autos", "url": "https://a.ch/2", "datum": "2026-11-06"},
+       {"titel": "Wohnungen in Bern", "beschrieb": "", "url": "https://a.ch/3", "datum": "2026-11-06"}]
+mm = C.mm_items(raw, "presseportal.ch", None, None, True)
+assert len(mm) == 1 and mm[0]["gemeinde"] == "Baar" and mm[0]["kanton"] == "ZG" and len(mm[0]["beschrieb"]) <= 262
+md = C.mm_items(raw, "zentralplus", None, None, True, "medien")
+assert md[0]["typ"] == "Medien" and md[0]["beschrieb"] == ""
 # Gemeinde
 assert C.gemeinde("ZG", "Gemeinde Steinhausen - Präsidiales", "x") == "Steinhausen"
 assert C.gemeinde("ZG", "Kanton Zug", "Kommunale Baugesuchspublikation: Obermattli 1, Walchwil") == "Walchwil"

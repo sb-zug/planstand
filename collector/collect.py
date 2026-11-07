@@ -47,14 +47,19 @@ ARCHIVE_DAYS = 730      # Meldungen so lange behalten
 # Medienmitteilungen & Meldungen per RSS. Felder: Name, URL, Kanton, Gemeinde (oder None), Ort im Text nötig?
 # Geprüft mit tools/probe.py (7.11.2026). Fachmedien selbst: kein erlaubter Feed → Medienspiegel von Hand (medienspiegel.json).
 FEEDS = [
+    # Medienmitteilungen (Kurztext erlaubt)
     ("Stadt Zürich", "https://www.stadt-zuerich.ch/content/web/de/aktuell/medienmitteilungen/jcr:content/mainparsys/teaser.rss",
-     "ZH", "Zürich", False),
-    ("Stadt Winterthur", "https://stadt.winterthur.ch/rss/feed?type=press_release", "ZH", "Winterthur", False),
+     "ZH", "Zürich", False, "mm"),
+    ("Stadt Winterthur", "https://stadt.winterthur.ch/rss/feed?type=press_release", "ZH", "Winterthur", False, "mm"),
     ("Gemeinde Hünenberg", "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/ftw-news-newslistingblock/news_listing_rss",
-     "ZG", "Hünenberg", False),
+     "ZG", "Hünenberg", False, "mm"),
     ("Gemeinde Menzingen", "https://www.zg.ch/behoerden/gemeinden/menzingen/de/ftw-news-newslistingblock/news_listing_rss",
-     "ZG", "Menzingen", False),
-    ("presseportal.ch", "https://www.presseportal.ch/de/rss/presseportal.rss2?langid=1", None, None, True),
+     "ZG", "Menzingen", False, "mm"),
+    ("presseportal.ch", "https://www.presseportal.ch/de/rss/presseportal.rss2?langid=1", None, None, True, "mm"),
+    # Medien (nur Titel + Link, kein Text)
+    ("zentralplus", "https://www.zentralplus.ch/feed/", None, None, True, "medien"),
+    ("moneycab", "https://www.moneycab.com/feed/", None, None, True, "medien"),
+    ("IAZI", "https://www.iazicifi.ch/feed/", None, None, False, "medien"),
 ]
 STADTZUG_NEWS = "https://stadtzug.ch/de/news?content_category=news"
 
@@ -337,7 +342,7 @@ def _kurz(text: str, n: int = 260) -> str:
     return (cut[:dot + 1] if dot > 80 else cut.rsplit(" ", 1)[0] + " …")
 
 
-def mm_items(feed_items: list[dict], name: str, kanton, gem, need_place: bool) -> list[dict]:
+def mm_items(feed_items: list[dict], name: str, kanton, gem, need_place: bool, art: str = "mm") -> list[dict]:
     out = []
     for it in feed_items:
         text = f"{it['titel']} {it.get('beschrieb', '')}"
@@ -349,9 +354,13 @@ def mm_items(feed_items: list[dict], name: str, kanton, gem, need_place: bool) -
             if not m:
                 continue
             g = {"Rotkreuz": "Risch", "Oerlikon": "Zürich", "Altstetten": "Zürich", "Glattbrugg": "Opfikon"}.get(m.group(0), m.group(0))
-        k = kanton or ("ZG" if g in ZG_GEMEINDEN else "ZH")
-        out.append({**it, "id": "mm-" + slug(it["url"])[-70:], "typ": "Medienmitteilung", "kanton": k, "gemeinde": g,
-                    "quelle": name, "beschrieb": _kurz(it.get("beschrieb", ""))})
+        k = kanton or (("ZG" if g in ZG_GEMEINDEN else "ZH") if g else None)
+        if art == "medien":   # Medienartikel: nur Titel + Link
+            out.append({**it, "id": "md-" + slug(it["url"])[-70:], "typ": "Medien", "kanton": k, "gemeinde": g,
+                        "quelle": name, "beschrieb": ""})
+        else:
+            out.append({**it, "id": "mm-" + slug(it["url"])[-70:], "typ": "Medienmitteilung", "kanton": k, "gemeinde": g,
+                        "quelle": name, "beschrieb": _kurz(it.get("beschrieb", ""))})
     return out
 
 
@@ -372,9 +381,9 @@ def parse_stadtzug(page: str) -> list[dict]:
 
 def collect_feeds(offline: Path | None) -> tuple[list[dict], dict]:
     out, status = [], {}
-    sources = [(n, u, k, g, p, parse_feed) for n, u, k, g, p in FEEDS]
-    sources.append(("Stadt Zug", STADTZUG_NEWS, "ZG", "Zug", False, lambda raw, _n: parse_stadtzug(raw)))
-    for name, url, kanton, gem, need_place, parser in sources:
+    sources = [(n, u, k, g, p, a, parse_feed) for n, u, k, g, p, a in FEEDS]
+    sources.append(("Stadt Zug", STADTZUG_NEWS, "ZG", "Zug", False, "mm", lambda raw, _n: parse_stadtzug(raw)))
+    for name, url, kanton, gem, need_place, art, parser in sources:
         try:
             if offline:
                 f = offline / f"feed_{slug(name)}.xml"
@@ -383,7 +392,7 @@ def collect_feeds(offline: Path | None) -> tuple[list[dict], dict]:
                 raw = f.read_text()
             else:
                 raw = fetch(url, "application/rss+xml, application/xml, text/html")
-            items = mm_items(parser(raw, name), name, kanton, gem, need_place)
+            items = mm_items(parser(raw, name), name, kanton, gem, need_place, art)
             out += items
             status[name] = f"ok ({len(items)} relevant)"
         except Exception as e:  # noqa: BLE001

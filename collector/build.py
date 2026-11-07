@@ -20,7 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SITE, DATA, OUT = ROOT / "site", ROOT / "site" / "data", ROOT / "_site"
 NAME = "Planstand"
-CLAIM = "Wo Immobilien- und Arealprojekte in Zug und Zürich stehen"
+CLAIM = "News zu Immobilien- und Arealentwicklung in Zug und Zürich"
 SITE_URL = os.environ.get("SITE_URL", "https://sb-zug.github.io/planstand")
 BASE = os.environ.get("BASE_PATH", "/planstand/")
 TODAY = date.today()
@@ -79,8 +79,8 @@ def page(path: str, title: str, desc: str, body: str, rss: str | None = None) ->
 <link rel="stylesheet" href="{u('assets/app.css')}">{feed}
 <link rel="alternate" type="application/rss+xml" title="{NAME} – alle Meldungen" href="{u('rss.xml')}">
 </head><body>
-<header class="top"><div class="wrap"><a class="logo" href="{u('')}">{NAME}<span>Beta</span></a>
-<nav><a href="{u('projekte/')}">Projekte</a><a href="{u('orte/')}">Orte</a><a href="{u('meldungen/')}">Meldungen</a>
+<header class="top"><div class="wrap"><a class="logo" href="{u('')}">{NAME}<span>Beta</span></a><span class="claim">{CLAIM}</span>
+<nav><a href="{u('meldungen/')}">News</a><a href="{u('projekte/')}">Projekte</a><a href="{u('orte/')}">Orte</a>
 <a href="{u('newsletter/')}" class="nl">Newsletter</a></nav></div></header>
 <main class="wrap">{body}</main>
 <footer class="foot"><div class="wrap"><p><b>{NAME}</b> sammelt automatisch amtliche Publikationen, Medienmitteilungen und
@@ -120,11 +120,41 @@ def card(p: dict) -> str:
             f'{e(PHASEN[p["phase"] - 1])}</span><h3>{e(p["titel"])}</h3><p>{e(p.get("untertitel", ""))}</p>{nxt}</a>')
 
 
+def _cut(t: str, n: int) -> str:
+    return t if len(t) <= n else t[:n].rsplit(" ", 1)[0] + " …"
+
+
+def amt_titel(m: dict) -> str:
+    """Amtsblatt-Titel lesbar machen: Verfahrens-Anhängsel und Gemeinde am Ende weg."""
+    t = re.sub(r"^(Kommunale Nutzungsplanung\.\s*|Bauprojekt:\s*)", "", m["titel"])
+    g = re.escape((m.get("gemeinde") or "§§").split()[0].rstrip("."))
+    for _ in range(6):
+        t = re.sub(rf"(,?\s*(Öffentliche Auflage|Genehmigung|Festsetzung|Bekanntmachung des Inkrafttretens)|,\s*{g}[\w .\-]*)\s*$",
+                   "", t).strip()
+    t = re.sub(r"\s*\((Kat\.|KTN)[^)]*\)", "", t)
+    return t
+
+
+def headline(m: dict) -> tuple[str, str]:
+    """Schlagzeile + Zusatz. Baugesuche: Beschrieb als Titel, Adresse als Zusatz."""
+    if m["typ"] == "Baugesuch" and m.get("beschrieb"):
+        return _cut(m["beschrieb"], 120), amt_titel(m)
+    if m["quelle"].startswith("Amtsblatt"):
+        return _cut(amt_titel(m), 160), m.get("beschrieb") or ""
+    return m["titel"], m.get("beschrieb") or ""
+
+
+def kicker(m: dict, ort=True) -> str:
+    parts = [dlabel(m["datum"]), m["typ"]] + ([m["gemeinde"]] if ort and m.get("gemeinde") else []) + [m["quelle"]]
+    return " · ".join(e(x) for x in parts if x)
+
+
 def mrow(m: dict, ort=True) -> str:
-    where = f' · {e(m["gemeinde"])}' if ort and m.get("gemeinde") else ""
-    desc = f'<span class="d">{e(m["beschrieb"])}</span>' if m.get("beschrieb") else ""
-    return (f'<li><span class="meta">{e(dlabel(m["datum"]))} · {e(m["typ"])}{where} · {e(m["quelle"])}</span>'
-            f'<a href="{e(m["url"])}" rel="noopener" target="_blank">{e(m["titel"])}</a>{desc}</li>')
+    h, sub = headline(m)
+    ext = " ↗" if m["typ"] == "Medien" else ""
+    return (f'<li class="t-{slug(m["typ"])}"><span class="meta">{kicker(m, ort)}</span>'
+            f'<a href="{e(m["url"])}" rel="noopener" target="_blank">{e(h)}{ext}</a>'
+            + (f'<span class="d">{e(sub)}</span>' if sub else "") + "</li>")
 
 
 def mlist(items, ort=True, empty="Zurzeit keine Meldungen.") -> str:
@@ -155,20 +185,37 @@ def build() -> None:
     medien = [m for m in meldungen if m["typ"] == "Medien"]
     aktiv = sorted(projekte, key=lambda p: (mdate((next_step(p) or {}).get("datum")) or date(2100, 1, 1)))
 
-    # Start
-    top_orte = sorted(orte.items(), key=lambda kv: -(len(kv[1]["p"]) * 5 + len(kv[1]["m"])))[:12]
+    # Start (News-Seite)
+    top_orte = sorted(orte.items(), key=lambda kv: -(len(kv[1]["p"]) * 5 + len(kv[1]["m"])))[:14]
     chips = "".join(f'<a href="{u("orte/" + k + "/")}">{e(o["name"])}</a>' for k, o in top_orte)
-    body = (f'<section class="hero"><h1>{CLAIM}</h1><p>Planstand verfolgt Bauvorhaben von der ersten Planung bis zum Bezug: '
-            f'Gestaltungspläne, Mitwirkungen, Abstimmungen, Baugesuche. Automatisch aktualisiert, nach Ort und Projekt geordnet.</p>'
-            f'<a class="btn" href="{u("newsletter/")}">Wochen-Newsletter abonnieren</a></section>'
-            f'<section><div class="shead"><h2>Projekte</h2><a href="{u("projekte/")}">Alle {len(projekte)} →</a></div>'
-            f'<div class="grid">{"".join(card(p) for p in aktiv[:6])}</div></section>'
-            f'<section class="two"><div><div class="shead"><h2>Neu im Amtsblatt</h2><a href="{u("meldungen/")}">Alle →</a></div>'
-            f'{mlist(amtlich[:12])}</div><div><div class="shead"><h2>In den Fachmedien</h2></div>'
-            f'{mlist(medien[:8], empty="Folgt in Kürze.")}<div class="shead"><h2>Orte</h2><a href="{u("orte/")}">Alle →</a></div>'
-            f'<p class="chips">{chips}</p>'
-            f'</div></section>')
-    page("", NAME, f"{CLAIM}: Projekt-Datenbank mit Phase und nächstem Schritt, amtliche Meldungen nach Ort, Wochen-Newsletter.",
+    news = [m for m in meldungen if m["typ"] != "Baugesuch"]
+    rang = {"Medienmitteilung": 0, "Raumplanung": 1, "Medien": 2}
+    recent = [m for m in news if m["datum"] >= news[0]["datum"][:8] + "01"] if news else []
+    lead = sorted(recent[:12], key=lambda m: (rang.get(m["typ"], 3), -int(m["datum"].replace("-", ""))))[0] if recent else None
+    stream = [m for m in news if m is not lead][:30]
+    bg = [m for m in meldungen if m["typ"] == "Baugesuch"][:7]
+    termine = sorted(((mdate(n["datum"]), p, n) for p in projekte if (n := next_step(p)) and mdate(n["datum"])),
+                     key=lambda t: t[0])[:6]
+    lead_html = ""
+    if lead:
+        h, sub = headline(lead)
+        lead_html = (f'<article class="lead-story"><span class="meta">{kicker(lead)}</span>'
+                     f'<h1><a href="{e(lead["url"])}" rel="noopener" target="_blank">{e(h)}</a></h1>'
+                     + (f'<p>{e(sub)}</p>' if sub else "") + "</article>")
+    term_html = "".join(f'<li><span class="meta">{e(dlabel(n["datum"]))} · {e(p["gemeinde"])}</span>'
+                        f'<a href="{u("projekte/" + p["slug"] + "/")}">{e(p["titel"])}</a><span class="d">{e(n["text"])}</span></li>'
+                        for _, p, n in termine)
+    body = (f'<div class="news"><div class="main">{lead_html}'
+            f'<div class="shead"><h2>Aktuell</h2><a href="{u("meldungen/")}">Alle Meldungen →</a></div>'
+            f'{mlist(stream, empty="Noch keine Meldungen.")}</div>'
+            f'<aside class="side"><div class="nlbox"><b>Der Wochen-Überblick</b><p>Jeden Freitag die wichtigsten Schritte bei '
+            f'Bauprojekten in Zug und Zürich.</p><a class="btn" href="{u("newsletter/")}">Abonnieren</a></div>'
+            f'<div class="shead"><h2>Nächste Termine</h2><a href="{u("projekte/")}">Projekte →</a></div><ul class="mlist">{term_html}</ul>'
+            f'<div class="shead"><h2>Neue Baugesuche</h2></div>{mlist(bg, empty="Keine grösseren Baugesuche.")}'
+            f'<div class="shead"><h2>Orte</h2><a href="{u("orte/")}">Alle →</a></div><p class="chips">{chips}</p></aside></div>'
+            f'<section><div class="shead"><h2>Projekte im Überblick</h2><a href="{u("projekte/")}">Alle {len(projekte)} →</a></div>'
+            f'<div class="grid">{"".join(card(p) for p in aktiv[:6])}</div></section>')
+    page("", NAME, f"{CLAIM}: News, Medienmitteilungen, Baugesuche und Projekt-Datenbank mit Phase und nächstem Schritt.",
          body, "rss.xml")
 
     # Projekte
