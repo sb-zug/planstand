@@ -23,6 +23,8 @@ Aufbau wie zug.now: statische Seite auf GitHub Pages, Sammler in Python (nur Sta
 | Amtsblatt ZH | `amtsblatt.zh.ch/api/v1/publications` | wie ZG |
 | Medienmitteilungen | RSS: Stadt Zürich, Stadt Winterthur, Hünenberg, Menzingen, presseportal.ch; HTML: Stadt Zug | Immobilienbezug, ohne Lärm (`IMMO`, `LAERM`), Kurztext |
 | Medien | RSS: zentralplus, moneycab, IAZI | nur Titel + Link |
+| Newsrooms (Wächter) | Halter, Losinger Marazzi, Swiss Prime Site, Senn, Intershop, Zug Estates, Avadis, Patrimonium, Wincasa, Zuger KB: neue Links auf der News-Seite | Ort im Titel → Medienmitteilung, sonst Unternehmensnews → «Branche» |
+| Marktstudien | RSS: Wüest Partner, Fahrländer, IAZI; Korporation Zug (RSS) | nur Titel + Link |
 | Fachmedien ohne Feed | `site/data/medienspiegel.json` | wöchentlich von Claude gepflegt, nur Titel + Link |
 
 Quellen-Tests: Workflow «Quellen testen» mit `tools/probe_candidates.json` → `tools/probe_result.json`.
