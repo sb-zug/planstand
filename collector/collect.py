@@ -548,12 +548,12 @@ def collect_newsrooms(offline: Path | None) -> tuple[list[dict], dict]:
                 dbg.append(f"{it['titel'][:70]} → alt {it['datum']}")
                 continue
             bild = it.pop("bild")
-            items = mm_items([it], name, kanton, gem, need_place=gem is None)
-            dbg.append(f"{it['titel'][:70]} {it['datum']} → {'ok' if items else 'kein Immo-/Ortsbezug'}")
-            for x in items:
+            x = newsroom_einordnen(it, name, kanton, gem)
+            dbg.append(f"{it['titel'][:70]} {it['datum']} → {x['typ'] if x else 'verworfen'}")
+            if x:
                 x["bild"] = bild
-            out += items
-            n += len(items)
+                out.append(x)
+                n += 1
         state[url] = list(dict.fromkeys([h for h, _ in links] + list(seen)))[:600]
         status[name] = f"ok ({len(links)} Links, {n} relevant)"
     f.write_text(json.dumps(state, ensure_ascii=False))
