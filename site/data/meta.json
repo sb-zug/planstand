@@ -1,5 +1,5 @@
 {
- "lauf": "2026-11-07T13:32+00:00",
+ "lauf": "2026-11-07T13:36+00:00",
  "quellen": {
   "Amtsblatt ZG": "ok (0 relevant)",
   "Amtsblatt ZH": "ok (16 relevant)",
@@ -16,16 +16,16 @@
   "Fahrländer Partner": "ok (9 relevant)",
   "Raiffeisen": "Fehler: HTTP Error 404: Not Found",
   "Stadt Zug": "ok (0 relevant)",
-  "Halter": "ok (140 Links, 5 relevant)",
+  "Halter": "ok (140 Links, 1 relevant)",
   "Losinger Marazzi": "ok (12 Links, 0 relevant)",
   "Swiss Prime Site": "ok (86 Links, 1 relevant)",
   "Senn": "ok (1 Links, 0 relevant)",
   "Intershop": "ok (5 Links, 0 relevant)",
   "Zug Estates": "ok (2 Links, 0 relevant)",
   "Avadis": "ok (12 Links, 0 relevant)",
-  "Patrimonium": "ok (7 Links, 5 relevant)",
-  "Wincasa": "ok (8 Links, 4 relevant)",
+  "Patrimonium": "ok (7 Links, 4 relevant)",
+  "Wincasa": "ok (8 Links, 3 relevant)",
   "Zuger Kantonalbank": "ok (4 Links, 1 relevant)"
  },
- "anzahl": 63
+ "anzahl": 57
 }

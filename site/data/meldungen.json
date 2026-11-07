@@ -1,5 +1,5 @@
 {
- "stand": "2026-11-07T13:32+00:00",
+ "stand": "2026-11-07T13:36+00:00",
  "meldungen": [
   {
    "id": "md-hnen-bauen-wartet-neuer-wohnraum-nur-darauf-gefunden-zu-werden-2909935",
@@ -293,6 +293,34 @@
    ]
   },
   {
+   "id": "nr-nmitteilungen-medienmitteilungen-2026-10-29-zuger-immobilienmarkt-2026",
+   "datum": "2026-10-29",
+   "titel": "Zuger Immobilienmarkt: starke Nachfrage und knappes Angebot",
+   "beschrieb": "Die aktuelle Studie «Immobilienmarkt 2026» der Zuger Kantonalbank zeigt: Der Zuger Wohnungsmarkt ist weiterhin sehr gefragt.",
+   "url": "https://www.zugerkb.ch/die-zugerkb/medien/medienmitteilungen/medienmitteilungen/2026/10/29/zuger-immobilienmarkt-2026",
+   "frist": null,
+   "typ": "Branche",
+   "kanton": "ZG",
+   "gemeinde": null,
+   "quelle": "Zuger Kantonalbank",
+   "bild": null,
+   "projekte": []
+  },
+  {
+   "id": "nr-stribution-planned-for-the-sustainable-infrastructure-investment-group",
+   "datum": "2026-10-27",
+   "titel": "Patrimonium Anlagestiftung erreicht CHF 1.8 Mrd. Anlagevermögen – erste Ausschüttung bei Anlagegruppe «Nachhaltige Infrastruktur» geplant",
+   "beschrieb": "Baar, 27.10.26 – Die Patrimonium Anlagestiftung hat ihr Anlagevermögen per 30. Juni 2026 auf rund CHF 1.8 Mrd. erhöht.",
+   "url": "https://www.patrimonium.ch/de/press-release-de/patrimonium-investment-foundation-reaches-chf-1-8-billion-in-assets-under-management-first-distribution-planned-for-the-sustainable-infrastructure-investment-group",
+   "frist": null,
+   "typ": "Branche",
+   "kanton": null,
+   "gemeinde": null,
+   "quelle": "Patrimonium",
+   "bild": "https://www.patrimonium.ch/wp-content/uploads/2026/10/Infrastructure_cropped-HD_cropped.jpg",
+   "projekte": []
+  },
+  {
    "id": "mm-uell-medienmitteilungen-rege-beteiligung-an-den-ortsplanungs-workshops",
    "datum": "2026-10-21",
    "typ": "Medienmitteilung",
@@ -304,6 +332,34 @@
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/rege-beteiligung-an-den-ortsplanungs-workshops",
    "bild": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/rege-beteiligung-an-den-ortsplanungs-workshops/mitteilung-vom-21-oktober-2026/@@images/865cba6c-7e99-4a9e-8d58-442d200e263e.png",
+   "projekte": []
+  },
+  {
+   "id": "nr-n-strategischen-partnerschaft-fuer-die-entwicklung-neuer-standorte-aus",
+   "datum": "2026-10-21",
+   "titel": "Padelta und Halter bauen ihre Zusammenarbeit zu einer nationalen strategischen Partnerschaft für die Entwicklung neuer Standorte aus",
+   "beschrieb": "Padelta und Halter weiten ihre Zusammenarbeit aus und gehen eine strategische Partnerschaft ein. Im Zentrum stehen die gemeinsame Entwicklung neuer Standorte und die Aktivierung neuer Nutzungsformen für Areale.",
+   "url": "https://www.halter.ch/de/medien/padelta-und-halter-bauen-ihre-zusammenarbeit-zu-einer-nationalen-strategischen-partnerschaft-fuer-die-entwicklung-neuer-standorte-aus",
+   "frist": null,
+   "typ": "Branche",
+   "kanton": null,
+   "gemeinde": null,
+   "quelle": "Halter",
+   "bild": null,
+   "projekte": []
+  },
+  {
+   "id": "nr-ews-artikel-neue-mandate-und-vielseitige-spezialauftraege-fuer-wincasa",
+   "datum": "2026-10-20",
+   "titel": "Neue Mandate und vielseitige Spezialaufträge für Wincasa",
+   "beschrieb": "Wincasa baut ihr Mandatsportfolio weiter aus: Zu den jüngsten Aufträgen zählen die Bewirtschaftung des Immobilienportfolios der Fondiaria SICAV, das Shoppingcenter INSIDE in Volketswil sowie die Gesamtprojektleitung für die Umnutzung des 28’000 m² grossen …",
+   "url": "https://www.wincasa.ch/de-ch/uber-wincasa/news/artikel/neue-mandate-und-vielseitige-spezialauftraege-fuer-wincasa",
+   "frist": null,
+   "typ": "Branche",
+   "kanton": null,
+   "gemeinde": null,
+   "quelle": "Wincasa",
+   "bild": "https://live-api.wincasa.ch/fileadmin/_processed_/7/d/csm_Leuengasse_41__Uitikon_0985cb9e41.jpeg",
    "projekte": []
   },
   {
@@ -372,6 +428,20 @@
    "projekte": []
   },
   {
+   "id": "nr-asa-news-artikel-wincasa-uebernimmt-arealmanagement-von-wankdorfcity-3",
+   "datum": "2026-10-06",
+   "titel": "Wincasa übernimmt Arealmanagement von Wankdorfcity 3",
+   "beschrieb": "Per 1. Juli 2026 hat Wincasa das gesamte Arealmanagement der Wankdorfcity 3 in Bern übernommen.",
+   "url": "https://www.wincasa.ch/de-ch/uber-wincasa/news/artikel/wincasa-uebernimmt-arealmanagement-von-wankdorfcity-3",
+   "frist": null,
+   "typ": "Branche",
+   "kanton": null,
+   "gemeinde": null,
+   "quelle": "Wincasa",
+   "bild": "https://live-api.wincasa.ch/fileadmin/_processed_/d/6/csm_Wankdorfcity3_2cb12031f0.jpg",
+   "projekte": []
+  },
+  {
    "id": "mk-www-wuestpartner-com-ch-de-blog-was-bei-der-wohnungssuche-heute-zaehlt",
    "datum": "2026-10-01",
    "typ": "Marktstudie",
@@ -399,6 +469,20 @@
    "projekte": []
   },
   {
+   "id": "nr-oposal-to-amend-the-investment-regulations-and-articles-of-association",
+   "datum": "2026-09-29",
+   "titel": "Sustainable Real Estate Switzerland veröffentlicht Jahresbericht, informiert über geplante Kapitalerhöhung und über Antrag auf Anpassung von Anlagereglement und Statuten",
+   "beschrieb": "Ad hoc-Mitteilung gemäss Art. 53 KR Zürich, 25. September 2026: Der nachhaltige Immobilienfonds Sustainable Real Estate Switzerland schliesst das Geschäftsjahr 2025/26 mit einem starken Ergebnis ab.",
+   "url": "https://www.patrimonium.ch/de/press-release-ad-hoc/sustainable-real-estate-switzerland-publishes-annual-report-provides-information-on-planned-capital-increase-and-proposal-to-amend-the-investment-regulations-and-articles-of-association",
+   "frist": null,
+   "typ": "Branche",
+   "kanton": null,
+   "gemeinde": null,
+   "quelle": "Patrimonium",
+   "bild": "https://www.patrimonium.ch/wp-content/uploads/2026/09/Key_Visual_Patrimonium_Building.jpg",
+   "projekte": []
+  },
+  {
    "id": "mk--fpreview-q4-2026-hedonic-dcf-schnellbewertung-von-renditeimmobilien-2",
    "datum": "2026-09-25",
    "typ": "Marktstudie",
@@ -409,6 +493,20 @@
    "frist": null,
    "quelle": "Fahrländer Partner",
    "url": "https://fpre.ch/fpreview-q4-2026-hedonic-dcf-schnellbewertung-von-renditeimmobilien-2/",
+   "projekte": []
+  },
+  {
+   "id": "nr-6-eine-solide-operative-leistung-und-kuendigt-eine-kapitalerhoehung-an",
+   "datum": "2026-09-10",
+   "titel": "Patrimonium Urban Opportunity AG erzielt im ersten Halbjahr 2026 eine solide operative Leistung und kündigt eine Kapitalerhöhung an",
+   "beschrieb": "Ad-hoc-Mitteilung gemäss Ziffer 16 Kotierungsreglement der BX Swiss Crissier, 10.09.2026: Patrimonium Urban Opportunity AG (BX SWISS: PATRI) veröffentlicht ihren Halbjahresbericht 2026 für den am 30.",
+   "url": "https://www.patrimonium.ch/de/press-release-ad-hoc/patrimonium-urban-opportunity-ag-erzielt-im-ersten-halbjahr-2026-eine-solide-operative-leistung-und-kuendigt-eine-kapitalerhoehung-an",
+   "frist": null,
+   "typ": "Branche",
+   "kanton": null,
+   "gemeinde": null,
+   "quelle": "Patrimonium",
+   "bild": "https://www.patrimonium.ch/wp-content/uploads/2026/09/2026_Extension-Gymnase_Bussigny_02-1_cropped.jpg",
    "projekte": []
   },
   {
@@ -510,6 +608,20 @@
    "projekte": []
   },
   {
+   "id": "nr-ivem-ergebnis-und-nachhaltigem-wachstum-ffo-i-von-chf-215-pro-aktie-24",
+   "datum": "2026-08-20",
+   "titel": "1H26: Swiss Prime Site mit starkem operativem Ergebnis und nachhaltigem Wachstum; FFO I von CHF 2.15 pro Aktie (+2.4%)",
+   "beschrieb": "",
+   "url": "https://www.sps.swiss/de/gruppe/medien/medienmitteilungen/uebersicht/medienmitteilung-detail/1h26-swiss-prime-site-mit-starkem-operativem-ergebnis-und-nachhaltigem-wachstum-ffo-i-von-chf-215-pro-aktie-24",
+   "frist": null,
+   "typ": "Branche",
+   "kanton": null,
+   "gemeinde": null,
+   "quelle": "Swiss Prime Site",
+   "bild": "https://mailing-ircockpit.eqs.com/crm-mailing/5c566392-ea7c-11e8-902f-2c44fd856d8c/52f36964-c012-455f-b3ec-f0bee2d6b4f6/30368cbb-b046-496f-be72-ef1f1b5bb99b/Kachelbild.jpg",
+   "projekte": []
+  },
+  {
    "id": "mm-eilungen-gemeindeeigene-liegenschaft-im-gewerbegebiet-boesch-vermietet",
    "datum": "2026-08-12",
    "typ": "Medienmitteilung",
@@ -573,6 +685,20 @@
    "frist": null,
    "quelle": "Wüest Partner",
    "url": "https://www.wuestpartner.com/ch-de/blog/industrie-und-logistikimmobilien/",
+   "projekte": []
+  },
+  {
+   "id": "nr-al-estate-fund-kapitalerhoehung-von-chf-81-mio-vollstaendig-gezeichnet",
+   "datum": "2026-07-13",
+   "titel": "Patrimonium Patrimonium Swiss Real Estate Fund: Kapitalerhöhung von CHF 81 Mio. vollständig gezeichnet",
+   "beschrieb": "Baar, 13. Juli 2026: Der Immobilienfonds Patrimonium Swiss Real Estate Fund (SIX: PSREF) gibt das Ergebnis seiner Kapitalerhöhung bekannt: Sämtliche 511‘532 neuen Anteile wurden gezeichnet.",
+   "url": "https://www.patrimonium.ch/de/press-release-de/patrimonium-patrimonium-swiss-real-estate-fund-kapitalerhoehung-von-chf-81-mio-vollstaendig-gezeichnet",
+   "frist": null,
+   "typ": "Branche",
+   "kanton": null,
+   "gemeinde": null,
+   "quelle": "Patrimonium",
+   "bild": "https://www.patrimonium.ch/wp-content/uploads/2026/06/image-1_cropped-scaled.jpg",
    "projekte": []
   },
   {
