@@ -45,6 +45,16 @@ mm = C.mm_items(raw, "presseportal.ch", None, None, True)
 assert len(mm) == 1 and mm[0]["gemeinde"] == "Baar" and mm[0]["kanton"] == "ZG" and len(mm[0]["beschrieb"]) <= 262
 md = C.mm_items(raw, "zentralplus", None, None, True, "medien")
 assert md[0]["typ"] == "Medien" and md[0]["beschrieb"] == ""
+# Newsroom
+body = ('<a href="/de/news">News</a><a href="/de/news/2026/neubau-wohnueberbauung-in-cham">Publiziert am 16.10.2026 Halter baut 120 Wohnungen in Cham</a>'
+        '<a href="https://other.ch/news/x">Ein externer Link mit sehr langem Text hier</a>')
+h = C.harvest("https://www.halter.ch/de/news", body)
+assert len(h) == 1 and h[0][0].endswith("cham"), h
+assert C._datum("", "Publiziert am 16.10.2026 Halter") == "2026-10-16"
+page = '<meta property="og:title" content="Halter baut 120 Wohnungen in Cham | Halter"><meta property="og:description" content="Überbauung mit 120 Wohnungen in Cham.">'
+it = C.newsroom_item("Halter", None, None, h[0][0], h[0][1], page)
+assert it["titel"] == "Halter baut 120 Wohnungen in Cham" and it["datum"] == "2026-10-16"
+assert C.mm_items([it], "Halter", None, None, True)[0]["gemeinde"] == "Cham"
 # Gemeinde
 assert C.gemeinde("ZG", "Gemeinde Steinhausen - Präsidiales", "x") == "Steinhausen"
 assert C.gemeinde("ZG", "Kanton Zug", "Kommunale Baugesuchspublikation: Obermattli 1, Walchwil") == "Walchwil"

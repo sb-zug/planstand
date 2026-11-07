@@ -59,8 +59,33 @@ FEEDS = [
     # Medien (nur Titel + Link, kein Text)
     ("zentralplus", "https://www.zentralplus.ch/feed/", None, None, True, "medien"),
     ("moneycab", "https://www.moneycab.com/feed/", None, None, True, "medien"),
-    ("IAZI", "https://www.iazicifi.ch/feed/", None, None, False, "medien"),
+    ("Korporation Zug", "https://www.korporation-zug.ch/feed/", "ZG", "Zug", False, "mm"),
+    # Marktstudien (nur Titel + Link)
+    ("IAZI", "https://www.iazicifi.ch/feed/", None, None, False, "markt"),
+    ("Wüest Partner", "https://www.wuestpartner.com/ch-de/feed/", None, None, False, "markt"),
+    ("Fahrländer Partner", "https://fpre.ch/feed/", None, None, False, "markt"),
+    ("Raiffeisen", "https://www.raiffeisen.ch/rch/de/ueber-uns/news/_jcr_content.rss", None, None, False, "markt"),
 ]
+
+# Newsrooms ohne Feed: neue Links auf der Medien-/News-Seite erkennen (geprüft mit tools/probe.py, 7.11.2026).
+# Felder: Name, URL, Kanton/Gemeinde fix (oder None → Ort muss im Text stehen)
+NEWSROOMS = [
+    ("Halter", "https://www.halter.ch/de/news", None, None),
+    ("Losinger Marazzi", "https://www.losinger-marazzi.ch/de/news", None, None),
+    ("Swiss Prime Site", "https://www.sps.swiss/de/medien/medienmitteilungen", None, None),
+    ("Fundamenta", "https://www.fundamentagroup.com/de/news", None, None),
+    ("Senn", "https://senn.com/medien/", None, None),
+    ("Intershop", "https://www.intershop.ch/de/investoren/investor-relations/medienmitteilungen", None, None),
+    ("Zug Estates", "https://zugestates.ch/medien", "ZG", "Zug"),
+    ("Avadis", "https://www.avadis.ch/ueber-uns/unternehmen/medien", None, None),
+    ("Patrimonium", "https://www.patrimonium.ch/de/news", None, None),
+    ("Wincasa", "https://www.wincasa.ch/", None, None),
+    ("Zuger Kantonalbank", "https://www.zugerkb.ch/medien", "ZG", None),
+    ("Zürcher Kantonalbank", "https://www.zkb.ch/de/ueber-uns/medien.html", "ZH", None),
+]
+NEWSROOM_FETCH_MAX = 30   # Artikelseiten pro Lauf
+NEWSWEG = re.compile(r"news|medien|media|press|aktuell|mitteilung|insights|blog|beitr", re.I)
+DATUM = re.compile(r"\b(\d{1,2})\.\s?(\d{1,2})\.\s?(20\d{2})\b")
 STADTZUG_NEWS = "https://stadtzug.ch/de/news?content_category=news"
 
 # Medienmitteilungen: nur mit Immobilien-/Planungsbezug
@@ -357,6 +382,12 @@ def mm_items(feed_items: list[dict], name: str, kanton, gem, need_place: bool, a
     out = []
     for it in feed_items:
         text = f"{it['titel']} {it.get('beschrieb', '')}"
+        if art == "markt":
+            if LAERM.search(it["titel"]):
+                continue
+            out.append({**it, "id": "mk-" + slug(it["url"])[-70:], "typ": "Marktstudie", "kanton": None, "gemeinde": None,
+                        "quelle": name, "beschrieb": ""})
+            continue
         if not mm_ok(it["titel"], it.get("beschrieb", "")):
             continue
         g = gem
@@ -388,6 +419,89 @@ def parse_stadtzug(page: str) -> list[dict]:
                     "titel": clean(a.group(2)), "beschrieb": clean(lead.group(1)) if lead else "", "url": a.group(1),
                     "frist": None})
     return out
+
+
+def _meta(page: str, prop: str) -> str:
+    m = re.search(rf'<meta[^>]+(?:property|name)=["\']{prop}["\'][^>]+content=["\']([^"\']*)', page, re.I) or \
+        re.search(rf'<meta[^>]+content=["\']([^"\']*)["\'][^>]+(?:property|name)=["\']{prop}["\']', page, re.I)
+    return clean(m.group(1)) if m else ""
+
+
+def harvest(url: str, body: str) -> list[tuple[str, str]]:
+    """Kandidaten für Beiträge: Links auf derselben Domain mit News-Pfad und längerem Linktext."""
+    host = urllib.parse.urlsplit(url).netloc.replace("www.", "")
+    out = []
+    for h, t in re.findall(r'<a[^>]+href=["\']([^"\'#]+)["\'][^>]*>(.*?)</a>', body, re.S | re.I):
+        full = urllib.parse.urljoin(url, html.unescape(h)).split("?")[0]
+        txt = clean(t)
+        if urllib.parse.urlsplit(full).netloc.replace("www.", "") != host or len(txt) < 30:
+            continue
+        if not NEWSWEG.search(full) or full.rstrip("/") == url.rstrip("/") or full.lower().endswith((".jpg", ".png", ".zip")):
+            continue
+        out.append((full, txt))
+    return list(dict(out).items())
+
+
+def _datum(*texte: str):
+    for t in texte:
+        m = re.search(r"(20\d{2})-(\d{2})-(\d{2})", t or "")
+        if m:
+            return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+        m = DATUM.search(t or "")
+        if m:
+            return f"{m.group(3)}-{int(m.group(2)):02d}-{int(m.group(1)):02d}"
+    return None
+
+
+def newsroom_item(name, kanton, gem, href, linktext, page):
+    titel = _meta(page, "og:title") or linktext
+    titel = re.sub(r"\s*[|–-]\s*" + re.escape(name) + r".*$", "", titel, flags=re.I).strip() or linktext
+    desc = _meta(page, "og:description") or _meta(page, "description")
+    datum = _datum(_meta(page, "article:published_time"), linktext, page[:20000])
+    return {"id": "nr-" + slug(href)[-70:], "datum": datum, "titel": titel, "beschrieb": desc, "url": href,
+            "frist": None, "bild": og_image(page, href)}
+
+
+def collect_newsrooms(offline: Path | None) -> tuple[list[dict], dict]:
+    if offline:
+        return [], {}
+    f = OUT / "newsrooms.json"
+    state = json.loads(f.read_text()) if f.exists() else {}
+    out, status, fetched = [], {}, 0
+    for name, url, kanton, gem in NEWSROOMS:
+        try:
+            links = harvest(url, fetch(url, "text/html"))
+        except Exception as e:  # noqa: BLE001
+            status[name] = f"Fehler: {e}"[:120]
+            continue
+        seen = set(state.get(url, []))
+        erstmals = url not in state
+        neu = [(h, t) for h, t in links if h not in seen][: (4 if erstmals else 8)]
+        n = 0
+        for h, t in neu:
+            if fetched >= NEWSROOM_FETCH_MAX:
+                break
+            fetched += 1
+            try:
+                it = newsroom_item(name, kanton, gem, h, t, fetch(h, "text/html"))
+            except Exception:  # noqa: BLE001
+                continue
+            if not it["datum"]:
+                if erstmals:
+                    continue
+                it["datum"] = TODAY.isoformat()
+            if it["datum"] < (TODAY - timedelta(days=120)).isoformat():
+                continue
+            bild = it.pop("bild")
+            items = mm_items([it], name, kanton, gem, need_place=gem is None)
+            for x in items:
+                x["bild"] = bild
+            out += items
+            n += len(items)
+        state[url] = list(dict.fromkeys([h for h, _ in links] + list(seen)))[:600]
+        status[name] = f"ok ({len(links)} Links, {n} relevant)"
+    f.write_text(json.dumps(state, ensure_ascii=False))
+    return out, status
 
 
 def collect_feeds(offline: Path | None) -> tuple[list[dict], dict]:
@@ -489,6 +603,9 @@ def main() -> None:
     feeds, fstat = collect_feeds(args.offline)
     status.update(fstat)
     neu += feeds
+    nr, nstat = collect_newsrooms(args.offline)
+    status.update(nstat)
+    neu += nr
 
     by_id = {m["id"]: m for m in archiv}
     for m in neu:
@@ -502,6 +619,8 @@ def main() -> None:
     # Filter auch aufs Archiv anwenden (Regeln können sich ändern) und Wiederholungs-Publikationen zusammenfassen
     rub_of = {v: k for k, v in TYP.items()}
     def ok(m):
+        if m["typ"] == "Marktstudie":
+            return True
         if m["typ"] in ("Medien", "Medienmitteilung"):
             return m.get("id", "").startswith("ms-") or mm_ok(m["titel"], m.get("beschrieb", ""))
         return relevant(rub_of.get(m["typ"], ""), m["titel"], m.get("beschrieb", ""))
