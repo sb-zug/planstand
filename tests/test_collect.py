@@ -55,6 +55,10 @@ page = '<meta property="og:title" content="Halter baut 120 Wohnungen in Cham | H
 it = C.newsroom_item("Halter", None, None, h[0][0], h[0][1], page)
 assert it["titel"] == "Halter baut 120 Wohnungen in Cham" and it["datum"] == "2026-10-16"
 assert C.mm_items([it], "Halter", None, None, True)[0]["gemeinde"] == "Cham"
+assert C._datum('<script>var x="1.1.2020"</script><p>Zug, 3. November 2026</p>') == "2026-11-03"
+assert C._datum('{"datePublished": "2026-10-01T08:00"}') == "2026-10-01"
+assert C._datum('<time datetime="2026-09-12">') == "2026-09-12"
+assert C.harvest("https://www.halter.ch/de/news", '<a href="/fr/news/x-y">Dépôt dune demande de permis de construire très long</a>') == []
 # Gemeinde
 assert C.gemeinde("ZG", "Gemeinde Steinhausen - Präsidiales", "x") == "Steinhausen"
 assert C.gemeinde("ZG", "Kanton Zug", "Kommunale Baugesuchspublikation: Obermattli 1, Walchwil") == "Walchwil"

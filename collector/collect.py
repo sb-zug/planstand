@@ -73,7 +73,6 @@ NEWSROOMS = [
     ("Halter", "https://www.halter.ch/de/news", None, None),
     ("Losinger Marazzi", "https://www.losinger-marazzi.ch/de/news", None, None),
     ("Swiss Prime Site", "https://www.sps.swiss/de/medien/medienmitteilungen", None, None),
-    ("Fundamenta", "https://www.fundamentagroup.com/de/news", None, None),
     ("Senn", "https://senn.com/medien/", None, None),
     ("Intershop", "https://www.intershop.ch/de/investoren/investor-relations/medienmitteilungen", None, None),
     ("Zug Estates", "https://zugestates.ch/medien", "ZG", "Zug"),
@@ -81,7 +80,6 @@ NEWSROOMS = [
     ("Patrimonium", "https://www.patrimonium.ch/de/news", None, None),
     ("Wincasa", "https://www.wincasa.ch/", None, None),
     ("Zuger Kantonalbank", "https://www.zugerkb.ch/medien", "ZG", None),
-    ("Zürcher Kantonalbank", "https://www.zkb.ch/de/ueber-uns/medien.html", "ZH", None),
 ]
 NEWSROOM_FETCH_MAX = 70   # Artikelseiten pro Lauf
 NEWSWEG = re.compile(r"news|medien|media|press|aktuell|mitteilung|insights|blog|beitr", re.I)
@@ -444,18 +442,38 @@ def harvest(url: str, body: str) -> list[tuple[str, str]]:
             continue
         if not NEWSWEG.search(full) or full.rstrip("/") == url.rstrip("/") or full.lower().endswith((".jpg", ".png", ".zip")):
             continue
+        if re.search(r"/(fr|en|it)(/|$)", urllib.parse.urlsplit(full).path):   # nur deutsche Fassung
+            continue
         out.append((full, txt))
     return list(dict(out).items())
 
 
+MONATE = {"januar": 1, "februar": 2, "märz": 3, "maerz": 3, "april": 4, "mai": 5, "juni": 6, "juli": 7, "august": 8,
+          "september": 9, "oktober": 10, "november": 11, "dezember": 12, "january": 1, "february": 2, "march": 3,
+          "may": 5, "june": 6, "july": 7, "october": 10, "december": 12}
+_MON_RX = "|".join(sorted(MONATE, key=len, reverse=True))
+
+
 def _datum(*texte: str):
+    """Datum finden: ISO (Meta, JSON-LD, <time>), 16.10.2026, 16. Oktober 2026, October 16, 2026."""
     for t in texte:
-        m = re.search(r"(20\d{2})-(\d{2})-(\d{2})", t or "")
-        if m:
-            return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
-        m = DATUM.search(t or "")
-        if m:
+        t = t or ""
+        for rx in (r'"datePublished"\s*:\s*"(20\d{2})-(\d{2})-(\d{2})', r'<time[^>]+datetime=["\'](20\d{2})-(\d{2})-(\d{2})',
+                   r'^(20\d{2})-(\d{2})-(\d{2})'):
+            m = re.search(rx, t)
+            if m:
+                return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+        sichtbar = re.sub(r"<(script|style)\b.*?</\1>", " ", t, flags=re.S | re.I)
+        sichtbar = re.sub(r"<[^>]+>", " ", sichtbar)
+        m = DATUM.search(sichtbar)
+        if m and 1 <= int(m.group(2)) <= 12:
             return f"{m.group(3)}-{int(m.group(2)):02d}-{int(m.group(1)):02d}"
+        m = re.search(rf"\b(\d{{1,2}})\.?\s+({_MON_RX})\s+(20\d{{2}})", sichtbar, re.I)
+        if m:
+            return f"{m.group(3)}-{MONATE[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
+        m = re.search(rf"\b({_MON_RX})\s+(\d{{1,2}}),\s+(20\d{{2}})", sichtbar, re.I)
+        if m:
+            return f"{m.group(3)}-{MONATE[m.group(1).lower()]:02d}-{int(m.group(2)):02d}"
     return None
 
 
@@ -463,7 +481,7 @@ def newsroom_item(name, kanton, gem, href, linktext, page):
     titel = _meta(page, "og:title") or linktext
     titel = re.sub(r"\s*[|–-]\s*" + re.escape(name) + r".*$", "", titel, flags=re.I).strip() or linktext
     desc = _meta(page, "og:description") or _meta(page, "description")
-    datum = _datum(_meta(page, "article:published_time"), linktext, page[:20000])
+    datum = _datum(_meta(page, "article:published_time"), linktext, page)
     return {"id": "nr-" + slug(href)[-70:], "datum": datum, "titel": titel, "beschrieb": desc, "url": href,
             "frist": None, "bild": og_image(page, href)}
 
