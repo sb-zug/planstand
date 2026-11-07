@@ -21,7 +21,11 @@ Aufbau wie zug.now: statische Seite auf GitHub Pages, Sammler in Python (nur Sta
 |---|---|---|
 | Amtsblatt ZG | `amtsblatt.zg.ch/api/v1/publications` | Baugesuche grösserer Vorhaben (Volltext), Planungen und Auflagen über Stichworte |
 | Amtsblatt ZH | `amtsblatt.zh.ch/api/v1/publications` | wie ZG |
-| Hochparterre | RSS | nur Titel + Link |
+| Medienmitteilungen | RSS: Stadt Zürich, Stadt Winterthur, Hünenberg, Menzingen, presseportal.ch; HTML: Stadt Zug | Immobilienbezug, ohne Lärm (`IMMO`, `LAERM`), Kurztext |
+| Medien | RSS: zentralplus, moneycab, IAZI | nur Titel + Link |
+| Fachmedien ohne Feed | `site/data/medienspiegel.json` | wöchentlich von Claude gepflegt, nur Titel + Link |
+
+Quellen-Tests: Workflow «Quellen testen» mit `tools/probe_candidates.json` → `tools/probe_result.json`.
 
 Personendaten (Testamente, Konkurse, Strafbefehle usw.) werden nie übernommen; bei Baugesuchen wird die Bauherrschaft nicht angezeigt.
 Filter-Regeln: `PLUS`, `STRONG`, `SMALL`, `PLANUNG` in `collector/collect.py`.

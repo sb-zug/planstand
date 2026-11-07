@@ -68,8 +68,19 @@ IMMO = re.compile(r"überbauung|ueberbauung|wohnungen|wohnraum|wohnsiedlung|sied
                   r"gestaltungsplan|bebauungsplan|nutzungsplan|zonenplan|ortsplanung|\bbzo\b|hochhaus|bauprojekt|"
                   r"baubewilligung|baugesuch|architekturwettbewerb|projektwettbewerb|wettbewerb.{0,40}(?:bau|wohn|areal)|"
                   r"spatenstich|grundsteinlegung|aufrichte|bezugsbereit|immobilie|liegenschaft|baurecht|landkauf|"
-                  r"genossenschaft|stadtentwicklung|quartierentwicklung|mitwirkung|planauflage|bauland|"
-                  r"schulanlage|schulhaus|alterszentrum", re.I)
+                  r"genossenschaft|stadtentwicklung|quartierentwicklung|ortsplanung|planauflage|bauland|"
+                  r"immobilienmarkt|wohnungsmarkt|mietwohnungen|preisgünstig|bezahlbar|eigentumswohnungen|preisindiz", re.I)
+IMMO_TEXT = re.compile(r"überbauung|gestaltungsplan|bebauungsplan|wohnungen|arealentwicklung|ersatzneubau|"
+                       r"hochhaus|wohnsiedlung|baurecht", re.I)
+LAERM = re.compile(r"\bbrand\b|rauch|polizei|unfall|feuerwehr|fledermä|benennung|budget|steuerfuss|kongress|seminar|"
+                   r"\bkurs\b|webinar|release|bewilligte .*baugesuche|baugesuche vom|baugesuche ab|stellen|"
+                   r"abstimmungsvorlage|hat abgestimmt|legislatur|ceref|exklusive", re.I)
+
+
+def mm_ok(titel: str, text: str) -> bool:
+    if LAERM.search(titel):
+        return False
+    return bool(IMMO.search(titel) or IMMO_TEXT.search(text))
 ORTE_TEXT = re.compile(r"\b(?:Zug|Baar|Cham|Steinhausen|Rotkreuz|Risch|Hünenberg|Oberägeri|Unterägeri|Menzingen|Neuheim|"
                        r"Walchwil|Zürich|Winterthur|Uster|Dübendorf|Dietikon|Wetzikon|Wädenswil|Horgen|Kloten|Opfikon|"
                        r"Thalwil|Adliswil|Schlieren|Regensdorf|Bülach|Illnau-Effretikon|Volketswil|Meilen|Küsnacht|"
@@ -346,7 +357,7 @@ def mm_items(feed_items: list[dict], name: str, kanton, gem, need_place: bool, a
     out = []
     for it in feed_items:
         text = f"{it['titel']} {it.get('beschrieb', '')}"
-        if not IMMO.search(text):
+        if not mm_ok(it["titel"], it.get("beschrieb", "")):
             continue
         g = gem
         if need_place:
@@ -460,7 +471,7 @@ def main() -> None:
     rub_of = {v: k for k, v in TYP.items()}
     def ok(m):
         if m["typ"] in ("Medien", "Medienmitteilung"):
-            return True
+            return m.get("id", "").startswith("ms-") or mm_ok(m["titel"], m.get("beschrieb", ""))
         return relevant(rub_of.get(m["typ"], ""), m["titel"], m.get("beschrieb", ""))
     seen_key, dedup = set(), []
     for m in alle:

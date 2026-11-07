@@ -9,7 +9,10 @@ Sprache: Deutsch (Schweiz, «ss» statt «ß»).
 3. Neue Projekte anlegen, wenn eine Meldung ein grösseres Vorhaben zeigt (Gestaltungs-/Bebauungsplan, Überbauung, Wettbewerb).
    Pflichtfelder: slug, titel, untertitel, art, gemeinde, kanton, phase (1–7), kurz, meilensteine, keywords, links.
 4. Texte immer in eigenen Worten, Fakten aus Originalquellen. Keine Medientexte übernehmen, Medien nur verlinken.
-5. `python3 tests/test_collect.py && python3 collector/build.py` laufen lassen, dann committen und pushen.
+5. Medienspiegel: per Websuche Artikel der Fachmedien (Immobilien Business, Hochparterre, espazium, NZZ, Tages-Anzeiger u. a.)
+   zu ZG/ZH-Projekten der Woche suchen und in `site/data/medienspiegel.json` eintragen (Titel, Medium, Datum, URL, eigene Notiz).
+   Nichts aus dem Artikel abschreiben.
+6. `python3 tests/test_collect.py && python3 collector/build.py` laufen lassen, dann committen und pushen.
 
 ## Leitplanken
 - Keine Personendaten privater Bauherrschaften publizieren.
