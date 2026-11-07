@@ -1,0 +1,9 @@
+{
+ "lauf": "2026-11-07T10:57+00:00",
+ "quellen": {
+  "Amtsblatt ZG": "ok (22 relevant)",
+  "Amtsblatt ZH": "ok (45 relevant)",
+  "Hochparterre": "Fehler: not well-formed (invalid token): line 39, column 1695"
+ },
+ "anzahl": 67
+}
