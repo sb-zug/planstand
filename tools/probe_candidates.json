@@ -1,52 +1,194 @@
 {
- "Regionalmedien": [
+ "Entwickler & Bau": [
   [
-   "zentralplus Wohnen & Bauen",
-   "https://www.zentralplus.ch/wohnen-bauen/feed/"
+   "Implenia",
+   "https://implenia.com/de/medien/medienmitteilungen/"
   ],
   [
-   "zentralplus",
-   "https://www.zentralplus.ch/feed/"
+   "Halter",
+   "https://www.halter.ch/de/news"
   ],
   [
-   "Tsüri",
-   "https://tsri.ch/rss"
+   "Losinger Marazzi",
+   "https://www.losinger-marazzi.ch/de/news"
   ],
   [
-   "Tsüri 2",
-   "https://tsri.ch/feed.xml"
+   "Steiner",
+   "https://www.steiner.ch/de/news"
   ],
   [
-   "SRF RSS-Übersicht",
-   "https://www.srf.ch/allgemeines/rss-feeds"
+   "HRS",
+   "https://www.hrs.ch/de/news"
   ],
   [
-   "20min Zürich",
-   "https://partner-feeds.20min.ch/rss/20minuten/zuerich"
+   "Allreal",
+   "https://www.allreal.ch/de/news"
   ],
   [
-   "Zürcher Unterländer",
-   "https://www.zuonline.ch/"
+   "Mobimo",
+   "https://www.mobimo.ch/de/medien/medienmitteilungen"
   ],
   [
-   "Limmattaler Zeitung",
-   "https://www.limmattalerzeitung.ch/"
+   "PSP Swiss Property",
+   "https://www.psp.info/de/medien/medienmitteilungen"
   ],
   [
-   "Hochparterre Wettbewerbe",
-   "https://www.hochparterre-wettbewerbe.ch/"
+   "Swiss Prime Site",
+   "https://www.sps.swiss/de/medien/medienmitteilungen"
   ],
   [
-   "Swiss Real Estate News (iazi)",
-   "https://www.iazi.ch/news"
+   "Senn",
+   "https://www.senn.com/de/news"
   ],
+  [
+   "Intershop",
+   "https://www.intershop.ch/de/news"
+  ],
+  [
+   "Zug Estates",
+   "https://www.zugestates.ch/de/medien"
+  ],
+  [
+   "Fundamenta",
+   "https://www.fundamentagroup.com/de/news"
+  ],
+  [
+   "SBB Immobilien",
+   "https://company.sbb.ch/de/medien/medienmitteilungen.html"
+  ],
+  [
+   "Post Immobilien",
+   "https://www.post.ch/de/ueber-uns/medien/medienmitteilungen"
+  ],
+  [
+   "Mettler2Invest",
+   "https://www.mettler2invest.ch/news"
+  ],
+  [
+   "Steiner Investment",
+   "https://www.steiner.ch/de/medien"
+  ],
+  [
+   "Marti",
+   "https://www.marti.ch/de/news"
+  ],
+  [
+   "Priora",
+   "https://www.priora.ch/de/news"
+  ],
+  [
+   "Halter Entwicklungen",
+   "https://www.halter.ch/de/medien"
+  ]
+ ],
+ "Anlagestiftungen & Fonds": [
+  [
+   "Pensimo",
+   "https://www.pensimo.ch/de/news"
+  ],
+  [
+   "Swiss Life Asset Managers",
+   "https://www.swisslife-am.com/de/home/media.html"
+  ],
+  [
+   "UBS Anlagestiftungen",
+   "https://www.ubs.com/ch/de/asset-management/investment-foundations.html"
+  ],
+  [
+   "Zürich Anlagestiftung",
+   "https://www.zurich-anlagestiftung.ch/de/news"
+  ],
+  [
+   "Avadis",
+   "https://www.avadis.ch/de/news"
+  ],
+  [
+   "Ecoreal",
+   "https://www.ecoreal.ch/de/news"
+  ],
+  [
+   "Helvetia Immobilien",
+   "https://www.helvetia.com/ch/web/de/ueber-uns/medien/medienmitteilungen.html"
+  ],
+  [
+   "AXA IM Real Assets",
+   "https://www.axa-im.ch/de/medien"
+  ],
+  [
+   "Swisscanto Immobilien",
+   "https://www.swisscanto.com/ch/de/institutionelle/news.html"
+  ],
+  [
+   "Patrimonium",
+   "https://www.patrimonium.ch/de/news"
+  ],
+  [
+   "Previs",
+   "https://www.previs.ch/news"
+  ],
+  [
+   "Turidomus/Adimora (Pensimo)",
+   "https://www.pensimo.ch/de/medien"
+  ]
+ ],
+ "Genossenschaften & öffentliche": [
+  [
+   "ABZ",
+   "https://www.abz.ch/aktuell"
+  ],
+  [
+   "Wohnbaugenossenschaften Zürich",
+   "https://www.wbg-zh.ch/aktuell/"
+  ],
+  [
+   "Kanton Zürich Immobilien",
+   "https://www.zh.ch/de/planen-bauen/immobilien.html"
+  ],
+  [
+   "Korporation Zug",
+   "https://www.korporation-zug.ch/aktuelles"
+  ],
+  [
+   "Zuger Kantonalbank",
+   "https://www.zugerkb.ch/medien"
+  ],
+  [
+   "ZKB",
+   "https://www.zkb.ch/de/ueber-uns/medien.html"
+  ]
+ ],
+ "Vermarkter & Berater": [
   [
    "Wüest Partner",
-   "https://www.wuestpartner.com/ch-de/news/"
+   "https://www.wuestpartner.com/ch-de/insights/"
   ],
   [
-   "moneycab Immobilien",
-   "https://www.moneycab.com/feed/"
+   "Walde",
+   "https://www.walde.ch/news"
+  ],
+  [
+   "Ginesta",
+   "https://ginesta.ch/de/news"
+  ],
+  [
+   "Engel & Völkers CH",
+   "https://www.engelvoelkers.com/ch/de/news"
+  ],
+  [
+   "Fahrländer",
+   "https://www.fpre.ch/news"
+  ],
+  [
+   "IAZI",
+   "https://www.iazicifi.ch/news/"
+  ],
+  [
+   "Raiffeisen Immobilien",
+   "https://www.raiffeisen.ch/rch/de/ueber-uns/news.html"
+  ],
+  [
+   "SVIT",
+   "https://www.svit.ch/de/news"
   ]
  ]
 }

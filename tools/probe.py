@@ -54,6 +54,17 @@ def probe(name, url):
             hrefs = [urllib.parse.urljoin(url, h) for l in links for h in re.findall(r'href="([^"]+)"', l)]
             hrefs += [urllib.parse.urljoin(url, h) for h in re.findall(r'href="([^"]*(?:rss|feed)[^"]*)"', body, re.I)][:6]
             res["html"] = True
+            host = urllib.parse.urlsplit(url).netloc
+            nl = []
+            for h, t in re.findall(r'<a[^>]+href="([^"#]+)"[^>]*>(.*?)</a>', body, re.S | re.I):
+                full = urllib.parse.urljoin(url, h)
+                txt = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", t)).strip()
+                if urllib.parse.urlsplit(full).netloc == host and len(txt) > 30 and \
+                        re.search(r"news|medien|media|press|aktuell|mitteilung|insights|blog", full, re.I) and full.rstrip("/") != url.rstrip("/"):
+                    nl.append((full, txt[:90]))
+            nl = list(dict.fromkeys(nl))
+            res["newslinks"] = len(nl)
+            res["newssample"] = [t for _, t in nl[:3]]
             res["links"] = list(dict.fromkeys(hrefs))[:8]
             res["title"] = (re.search(r"<title[^>]*>(.*?)</title>", body, re.S | re.I) or [None, ""])[1].strip()[:80]
             for h in dict.fromkeys(hrefs):
