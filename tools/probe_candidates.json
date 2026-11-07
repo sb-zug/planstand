@@ -1,60 +1,134 @@
 {
- "Fachmedien": [
-  ["Immobilien Business", "https://www.immobilienbusiness.ch/feed/"],
-  ["Immobilien Business (Seite)", "https://www.immobilienbusiness.ch/"],
-  ["Hochparterre (Seite)", "https://www.hochparterre.ch/nachrichten"],
-  ["Hochparterre rss.xml", "https://www.hochparterre.ch/rss.xml"],
-  ["espazium", "https://www.espazium.ch/de/aktuelles"],
-  ["espazium rss", "https://www.espazium.ch/de/rss.xml"],
-  ["Baublatt", "https://www.baublatt.ch/news"],
-  ["Swiss Arc", "https://www.swiss-arc.ch/"],
-  ["Immobilia SVIT", "https://www.svit.ch/de/immobilia"],
-  ["Immobilienwirtschaft (iwj)", "https://www.immobilienwirtschaft.ch/"],
-  ["NZZ Wirtschaft", "https://www.nzz.ch/wirtschaft.rss"],
-  ["NZZ Zürich", "https://www.nzz.ch/zuerich.rss"],
-  ["Tsri", "https://tsri.ch/feed"],
-  ["Zentralplus Zug", "https://www.zentralplus.ch/zug/feed/"],
-  ["Zuger Zeitung", "https://www.zugerzeitung.ch/zentralschweiz/zug"],
-  ["Google News: Überbauung Zug", "https://news.google.com/rss/search?q=%C3%9Cberbauung+Zug&hl=de&gl=CH&ceid=CH:de"],
-  ["Google News: Arealentwicklung Zürich", "https://news.google.com/rss/search?q=Arealentwicklung+Z%C3%BCrich&hl=de&gl=CH&ceid=CH:de"]
+ "Zuger Gemeinden (zg.ch)": [
+  [
+   "baar",
+   "https://www.zg.ch/behoerden/gemeinden/baar/de/ftw-news-newslistingblock/news_listing_rss"
+  ],
+  [
+   "cham",
+   "https://www.zg.ch/behoerden/gemeinden/cham/de/ftw-news-newslistingblock/news_listing_rss"
+  ],
+  [
+   "steinhausen",
+   "https://www.zg.ch/behoerden/gemeinden/steinhausen/de/ftw-news-newslistingblock/news_listing_rss"
+  ],
+  [
+   "risch",
+   "https://www.zg.ch/behoerden/gemeinden/risch/de/ftw-news-newslistingblock/news_listing_rss"
+  ],
+  [
+   "risch-rotkreuz",
+   "https://www.zg.ch/behoerden/gemeinden/risch-rotkreuz/de/ftw-news-newslistingblock/news_listing_rss"
+  ],
+  [
+   "oberaegeri",
+   "https://www.zg.ch/behoerden/gemeinden/oberaegeri/de/ftw-news-newslistingblock/news_listing_rss"
+  ],
+  [
+   "unteraegeri",
+   "https://www.zg.ch/behoerden/gemeinden/unteraegeri/de/ftw-news-newslistingblock/news_listing_rss"
+  ],
+  [
+   "menzingen",
+   "https://www.zg.ch/behoerden/gemeinden/menzingen/de/ftw-news-newslistingblock/news_listing_rss"
+  ],
+  [
+   "neuheim",
+   "https://www.zg.ch/behoerden/gemeinden/neuheim/de/ftw-news-newslistingblock/news_listing_rss"
+  ],
+  [
+   "walchwil",
+   "https://www.zg.ch/behoerden/gemeinden/walchwil/de/ftw-news-newslistingblock/news_listing_rss"
+  ],
+  [
+   "hunenberg",
+   "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/ftw-news-newslistingblock/news_listing_rss"
+  ]
  ],
- "Medienmitteilungen Plattformen": [
-  ["presseportal.ch", "https://www.presseportal.ch/de/"],
-  ["presseportal Immobilien", "https://www.presseportal.ch/de/r/Immobilien"],
-  ["newsroom.ch / cision", "https://news.cision.com/ch/"]
- ],
- "Entwickler & Immobilienfirmen": [
-  ["Zug Estates", "https://zugestates.ch/de/medien"],
-  ["Mobimo", "https://www.mobimo.ch/de/medien"],
-  ["PSP Swiss Property", "https://www.psp.info/de/news"],
-  ["Swiss Prime Site", "https://www.sps.swiss/de/medien"],
-  ["Allreal", "https://www.allreal.ch/de/medien"],
-  ["Implenia", "https://implenia.com/de/medien/"],
-  ["Halter", "https://www.halter.ch/news"],
-  ["Losinger Marazzi", "https://www.losinger-marazzi.ch/de/news"],
-  ["HRS", "https://www.hrs.ch/de/news"],
-  ["Steiner", "https://www.steiner.ch/de/news"],
-  ["SBB Immobilien", "https://news.sbb.ch/de/medien"],
-  ["Swiss Life AM", "https://www.swisslife-am.com/de/home/news.html"],
-  ["Pensimo", "https://www.pensimo.ch/de/aktuelles"],
-  ["Senn", "https://www.senn.com/news"],
-  ["Intershop", "https://www.intershop.ch/de/medien"],
-  ["Peach Property", "https://www.peachproperty.com/de/news"],
-  ["Warteck/Fundamenta", "https://www.fundamentagroup.com/de/news"]
- ],
- "Behörden": [
-  ["Kanton Zürich News", "https://www.zh.ch/de/news-uebersicht.html"],
-  ["Kanton Zürich Newsabo", "https://www.zh.ch/de/newsabo.html"],
-  ["Stadt Zürich Medien", "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen.html"],
-  ["Stadt Winterthur", "https://stadt.winterthur.ch/medien"],
-  ["Kanton Zug News", "https://zg.ch/de/news"],
-  ["Stadt Zug News", "https://stadtzug.ch/de/news?content_category=news"],
-  ["Baar", "https://www.baar.ch/aktuellesinformationen"],
-  ["Cham", "https://www.cham.ch/aktuellesinformationen"],
-  ["Risch", "https://www.risch.ch/aktuellesinformationen"],
-  ["Steinhausen", "https://www.steinhausen.ch/aktuellesinformationen"],
-  ["Hünenberg", "https://www.huenenberg.ch/aktuellesinformationen"],
-  ["Wettbewerbe konkurado", "https://www.konkurado.ch/"],
-  ["simap", "https://www.simap.ch/"]
+ "Weitere": [
+  [
+   "Kanton Zug News rss",
+   "https://zg.ch/de/news/rss"
+  ],
+  [
+   "Kanton Zug News rss 2",
+   "https://zg.ch/de/news.rss"
+  ],
+  [
+   "Baar Seite",
+   "https://www.baar.ch/"
+  ],
+  [
+   "Cham Seite",
+   "https://www.cham.ch/"
+  ],
+  [
+   "Kanton ZH rss",
+   "https://www.zh.ch/de/news-uebersicht.rss"
+  ],
+  [
+   "Kanton ZH Medienmitteilungen",
+   "https://www.zh.ch/de/news-uebersicht/medienmitteilungen.html"
+  ],
+  [
+   "presseportal wirtschaft",
+   "https://www.presseportal.ch/de/rss/wirtschaft.rss2"
+  ],
+  [
+   "presseportal bau",
+   "https://www.presseportal.ch/de/rss/bauen.rss2"
+  ],
+  [
+   "presseportal immobilien",
+   "https://www.presseportal.ch/de/rss/immobilien.rss2"
+  ],
+  [
+   "presseportal Themen",
+   "https://www.presseportal.ch/de/themen"
+  ],
+  [
+   "Mobimo News",
+   "https://www.mobimo.ch/de/news"
+  ],
+  [
+   "Swiss Prime Site News",
+   "https://www.sps.swiss/de/news"
+  ],
+  [
+   "Losinger Marazzi",
+   "https://www.losinger-marazzi.ch/de/news"
+  ],
+  [
+   "HRS",
+   "https://www.hrs.ch/de/news"
+  ],
+  [
+   "Intershop",
+   "https://www.intershop.ch/de/medien"
+  ],
+  [
+   "Steiner",
+   "https://www.steiner.ch/de/news"
+  ],
+  [
+   "Senn",
+   "https://www.senn.com/news"
+  ],
+  [
+   "Hochparterre Home",
+   "https://www.hochparterre.ch/"
+  ],
+  [
+   "Immobilien Business de",
+   "https://www.immobilienbusiness.ch/de/"
+  ],
+  [
+   "Wohnbaugenossenschaften Schweiz",
+   "https://www.wbg-schweiz.ch/aktuell"
+  ],
+  [
+   "Stadt Zug Medien",
+   "https://stadtzug.ch/de/news"
+  ]
  ]
 }

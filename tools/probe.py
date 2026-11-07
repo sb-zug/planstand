@@ -54,6 +54,7 @@ def probe(name, url):
             hrefs = [urllib.parse.urljoin(url, h) for l in links for h in re.findall(r'href="([^"]+)"', l)]
             hrefs += [urllib.parse.urljoin(url, h) for h in re.findall(r'href="([^"]*(?:rss|feed)[^"]*)"', body, re.I)][:6]
             res["html"] = True
+            res["links"] = list(dict.fromkeys(hrefs))[:8]
             res["title"] = (re.search(r"<title[^>]*>(.*?)</title>", body, re.S | re.I) or [None, ""])[1].strip()[:80]
             for h in dict.fromkeys(hrefs):
                 try:
