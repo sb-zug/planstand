@@ -65,6 +65,10 @@ x = C.newsroom_einordnen({"titel": "Zuger Immobilienmarkt: starke Nachfrage", "b
 assert x and x["kanton"] == "ZG"
 assert C.newsroom_einordnen({"titel": "Die Sommerfeste von Losinger Marazzi AG", "beschrieb": "", "url": "u", "datum": "d"}, "L", None, None) is None
 assert C.newsroom_einordnen({"titel": "Pierre de Soleil: Rohbauarbeiten in Lucens gestartet", "beschrieb": "", "url": "u", "datum": "d"}, "L", None, None) is None
+assert C.newsroom_einordnen({"titel": "Baueingabe für die Wiedereröffnung der Buvette Sonnenberg in Seelisberg Schlieren / Seelisberg 30.10.2026", "beschrieb": "Halter AG, Schlieren", "url": "u", "datum": "d"}, "Halter", None, None) is None
+assert C.newsroom_einordnen({"titel": "Dépôt d’une demande de permis de construire", "beschrieb": "", "url": "u", "datum": "d"}, "Halter", None, None) is None
+x = C.newsroom_einordnen({"titel": "Patrimonium Anlagestiftung erreicht CHF 1.8 Mrd. Anlagevermögen", "beschrieb": "Baar, 27.10.2026", "url": "u", "datum": "d"}, "Patrimonium", None, None)
+assert x and x["typ"] == "Branche" and x["gemeinde"] is None
 # Gemeinde
 assert C.gemeinde("ZG", "Gemeinde Steinhausen - Präsidiales", "x") == "Steinhausen"
 assert C.gemeinde("ZG", "Kanton Zug", "Kommunale Baugesuchspublikation: Obermattli 1, Walchwil") == "Walchwil"

@@ -494,19 +494,33 @@ NR_NEIN = re.compile(r"sommerfest|safety week|markenauftritt|^medienmitteilungs?
 ADJ = {"Zuger": ("ZG", None), "Zürcher": ("ZH", None)}
 
 
+FREMDSPRACHE = re.compile(r"\b(the|and|of|for|pour|de la|du|des|les|une?|dépôt|permis)\b", re.I)
+
+
+def _titel_sauber(t: str) -> str:
+    """Ortsmarke/Datum am Schluss von Linktexten entfernen («… Schlieren / Seelisberg 30.10.2026»)."""
+    t = re.sub(r"\s+[A-ZÄÖÜ][\w-]+(\s*/\s*[A-ZÄÖÜ][\w-]+)*\s+\d{1,2}\.?\s*\w*\.?\s*20\d{2}.*$", "", t)
+    t = re.sub(r"\s+[A-ZÄÖÜ][\w-]+\s*/\s*[A-ZÄÖÜ][\w-]+.*$", "", t)
+    return re.sub(r"^\s*\d{1,2}\.\d{1,2}\.20\d{2}\s*[·|-]?\s*", "", t).strip()
+
+
 def newsroom_einordnen(it: dict, name: str, kanton, gem):
-    """Regional (Ort in ZG/ZH) → Medienmitteilung; sonst Unternehmens-/Marktnews → Branche; sonst verwerfen."""
-    text = f"{it['titel']} {it.get('beschrieb', '')}"
-    if NR_NEIN.search(it["titel"]) or LAERM.search(it["titel"]):
+    """Ort im Titel (ZG/ZH) → Medienmitteilung; Unternehmens-/Marktnews → Branche; Projekt anderswo → verwerfen.
+    Nur der Titel zählt für den Ort: im Text steht oft der Firmensitz."""
+    titel = _titel_sauber(it["titel"])
+    it = {**it, "titel": titel}
+    if NR_NEIN.search(titel) or LAERM.search(titel) or FREMDSPRACHE.search(titel):
         return None
-    m = ORTE_TEXT.search(text)
+    m = ORTE_TEXT.search(titel)
     if m or gem:
         g = gem or {"Rotkreuz": "Risch", "Oerlikon": "Zürich", "Altstetten": "Zürich", "Glattbrugg": "Opfikon"}.get(m.group(0), m.group(0))
         k = kanton or ("ZG" if g in ZG_GEMEINDEN else "ZH")
         return {**it, "id": "nr-" + slug(it["url"])[-70:], "typ": "Medienmitteilung", "kanton": k, "gemeinde": g,
                 "quelle": name, "beschrieb": _kurz(it.get("beschrieb", ""))}
-    a = re.search(r"\b(Zuger|Zürcher)\b", text)
-    if a or BRANCHE.search(text) or IMMO_TEXT.search(text):
+    if re.search(r"\b(in|im|nach)\s+[A-ZÄÖÜ][a-zäöüéè]+", titel) and not re.search(r"\b(Zuger|Zürcher)\b", titel):
+        return None   # Projekt an einem anderen Ort
+    a = re.search(r"\b(Zuger|Zürcher)\b", titel)
+    if a or BRANCHE.search(titel):
         k = ADJ[a.group(1)][0] if a else kanton
         return {**it, "id": "nr-" + slug(it["url"])[-70:], "typ": "Branche", "kanton": k, "gemeinde": None,
                 "quelle": name, "beschrieb": _kurz(it.get("beschrieb", ""))}
