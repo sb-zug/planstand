@@ -1,134 +1,52 @@
 {
- "Zuger Gemeinden (zg.ch)": [
+ "Regionalmedien": [
   [
-   "baar",
-   "https://www.zg.ch/behoerden/gemeinden/baar/de/ftw-news-newslistingblock/news_listing_rss"
+   "zentralplus Wohnen & Bauen",
+   "https://www.zentralplus.ch/wohnen-bauen/feed/"
   ],
   [
-   "cham",
-   "https://www.zg.ch/behoerden/gemeinden/cham/de/ftw-news-newslistingblock/news_listing_rss"
+   "zentralplus",
+   "https://www.zentralplus.ch/feed/"
   ],
   [
-   "steinhausen",
-   "https://www.zg.ch/behoerden/gemeinden/steinhausen/de/ftw-news-newslistingblock/news_listing_rss"
+   "Tsüri",
+   "https://tsri.ch/rss"
   ],
   [
-   "risch",
-   "https://www.zg.ch/behoerden/gemeinden/risch/de/ftw-news-newslistingblock/news_listing_rss"
+   "Tsüri 2",
+   "https://tsri.ch/feed.xml"
   ],
   [
-   "risch-rotkreuz",
-   "https://www.zg.ch/behoerden/gemeinden/risch-rotkreuz/de/ftw-news-newslistingblock/news_listing_rss"
+   "SRF RSS-Übersicht",
+   "https://www.srf.ch/allgemeines/rss-feeds"
   ],
   [
-   "oberaegeri",
-   "https://www.zg.ch/behoerden/gemeinden/oberaegeri/de/ftw-news-newslistingblock/news_listing_rss"
+   "20min Zürich",
+   "https://partner-feeds.20min.ch/rss/20minuten/zuerich"
   ],
   [
-   "unteraegeri",
-   "https://www.zg.ch/behoerden/gemeinden/unteraegeri/de/ftw-news-newslistingblock/news_listing_rss"
+   "Zürcher Unterländer",
+   "https://www.zuonline.ch/"
   ],
   [
-   "menzingen",
-   "https://www.zg.ch/behoerden/gemeinden/menzingen/de/ftw-news-newslistingblock/news_listing_rss"
+   "Limmattaler Zeitung",
+   "https://www.limmattalerzeitung.ch/"
   ],
   [
-   "neuheim",
-   "https://www.zg.ch/behoerden/gemeinden/neuheim/de/ftw-news-newslistingblock/news_listing_rss"
+   "Hochparterre Wettbewerbe",
+   "https://www.hochparterre-wettbewerbe.ch/"
   ],
   [
-   "walchwil",
-   "https://www.zg.ch/behoerden/gemeinden/walchwil/de/ftw-news-newslistingblock/news_listing_rss"
+   "Swiss Real Estate News (iazi)",
+   "https://www.iazi.ch/news"
   ],
   [
-   "hunenberg",
-   "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/ftw-news-newslistingblock/news_listing_rss"
-  ]
- ],
- "Weitere": [
-  [
-   "Kanton Zug News rss",
-   "https://zg.ch/de/news/rss"
+   "Wüest Partner",
+   "https://www.wuestpartner.com/ch-de/news/"
   ],
   [
-   "Kanton Zug News rss 2",
-   "https://zg.ch/de/news.rss"
-  ],
-  [
-   "Baar Seite",
-   "https://www.baar.ch/"
-  ],
-  [
-   "Cham Seite",
-   "https://www.cham.ch/"
-  ],
-  [
-   "Kanton ZH rss",
-   "https://www.zh.ch/de/news-uebersicht.rss"
-  ],
-  [
-   "Kanton ZH Medienmitteilungen",
-   "https://www.zh.ch/de/news-uebersicht/medienmitteilungen.html"
-  ],
-  [
-   "presseportal wirtschaft",
-   "https://www.presseportal.ch/de/rss/wirtschaft.rss2"
-  ],
-  [
-   "presseportal bau",
-   "https://www.presseportal.ch/de/rss/bauen.rss2"
-  ],
-  [
-   "presseportal immobilien",
-   "https://www.presseportal.ch/de/rss/immobilien.rss2"
-  ],
-  [
-   "presseportal Themen",
-   "https://www.presseportal.ch/de/themen"
-  ],
-  [
-   "Mobimo News",
-   "https://www.mobimo.ch/de/news"
-  ],
-  [
-   "Swiss Prime Site News",
-   "https://www.sps.swiss/de/news"
-  ],
-  [
-   "Losinger Marazzi",
-   "https://www.losinger-marazzi.ch/de/news"
-  ],
-  [
-   "HRS",
-   "https://www.hrs.ch/de/news"
-  ],
-  [
-   "Intershop",
-   "https://www.intershop.ch/de/medien"
-  ],
-  [
-   "Steiner",
-   "https://www.steiner.ch/de/news"
-  ],
-  [
-   "Senn",
-   "https://www.senn.com/news"
-  ],
-  [
-   "Hochparterre Home",
-   "https://www.hochparterre.ch/"
-  ],
-  [
-   "Immobilien Business de",
-   "https://www.immobilienbusiness.ch/de/"
-  ],
-  [
-   "Wohnbaugenossenschaften Schweiz",
-   "https://www.wbg-schweiz.ch/aktuell"
-  ],
-  [
-   "Stadt Zug Medien",
-   "https://stadtzug.ch/de/news"
+   "moneycab Immobilien",
+   "https://www.moneycab.com/feed/"
   ]
  ]
 }

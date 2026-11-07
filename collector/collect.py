@@ -44,10 +44,31 @@ PAGES = 6               # max. Seiten à 200 pro Kanton
 DETAIL_MAX = 250        # max. Volltexte (XML) pro Lauf, nur Baugesuche; gecacht über die Meldungs-ID
 ARCHIVE_DAYS = 730      # Meldungen so lange behalten
 
+# Medienmitteilungen & Meldungen per RSS. Felder: Name, URL, Kanton, Gemeinde (oder None), Ort im Text nötig?
+# Geprüft mit tools/probe.py (7.11.2026). Fachmedien selbst: kein erlaubter Feed → Medienspiegel von Hand (medienspiegel.json).
 FEEDS = [
-    # (Name, Feed-URLs zum Ausprobieren der Reihe nach)
-    ("Hochparterre", ["https://www.hochparterre.ch/rss.xml", "https://www.hochparterre.ch/rss"]),
+    ("Stadt Zürich", "https://www.stadt-zuerich.ch/content/web/de/aktuell/medienmitteilungen/jcr:content/mainparsys/teaser.rss",
+     "ZH", "Zürich", False),
+    ("Stadt Winterthur", "https://stadt.winterthur.ch/rss/feed?type=press_release", "ZH", "Winterthur", False),
+    ("Gemeinde Hünenberg", "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/ftw-news-newslistingblock/news_listing_rss",
+     "ZG", "Hünenberg", False),
+    ("Gemeinde Menzingen", "https://www.zg.ch/behoerden/gemeinden/menzingen/de/ftw-news-newslistingblock/news_listing_rss",
+     "ZG", "Menzingen", False),
+    ("presseportal.ch", "https://www.presseportal.ch/de/rss/presseportal.rss2?langid=1", None, None, True),
 ]
+STADTZUG_NEWS = "https://stadtzug.ch/de/news?content_category=news"
+
+# Medienmitteilungen: nur mit Immobilien-/Planungsbezug
+IMMO = re.compile(r"überbauung|ueberbauung|wohnungen|wohnraum|wohnsiedlung|siedlung|areal|neubau|ersatzneubau|"
+                  r"gestaltungsplan|bebauungsplan|nutzungsplan|zonenplan|ortsplanung|\bbzo\b|hochhaus|bauprojekt|"
+                  r"baubewilligung|baugesuch|architekturwettbewerb|projektwettbewerb|wettbewerb.{0,40}(?:bau|wohn|areal)|"
+                  r"spatenstich|grundsteinlegung|aufrichte|bezugsbereit|immobilie|liegenschaft|baurecht|landkauf|"
+                  r"genossenschaft|stadtentwicklung|quartierentwicklung|mitwirkung|planauflage|bauland|"
+                  r"schulanlage|schulhaus|alterszentrum", re.I)
+ORTE_TEXT = re.compile(r"\b(?:Zug|Baar|Cham|Steinhausen|Rotkreuz|Risch|Hünenberg|Oberägeri|Unterägeri|Menzingen|Neuheim|"
+                       r"Walchwil|Zürich|Winterthur|Uster|Dübendorf|Dietikon|Wetzikon|Wädenswil|Horgen|Kloten|Opfikon|"
+                       r"Thalwil|Adliswil|Schlieren|Regensdorf|Bülach|Illnau-Effretikon|Volketswil|Meilen|Küsnacht|"
+                       r"Zollikon|Stäfa|Affoltern|Wallisellen|Dielsdorf|Glattbrugg|Oerlikon|Altstetten)\b")
 
 # Grosse Bauvorhaben (Baugesuche). Regel: GROSS trifft zu, ÄNDERUNG nicht.
 #   GROSS = Planungsbegriff (Gestaltungsplan, Arealüberbauung, Hochhaus …)
@@ -263,12 +284,13 @@ def _parse_feed_loose(raw: str, name: str) -> list[dict]:
             v = (m.group(1) if m else "").strip()
             return re.sub(r"^<!\[CDATA\[(.*)\]\]>$", r"\1", v, flags=re.S).strip()
         title, link, d = clean(g("title")), clean(g("link")), g("pubDate")
+        desc = clean(g("description"))
         try:
             dt = parsedate_to_datetime(d).date().isoformat()
         except (TypeError, ValueError):
             dt = TODAY.isoformat()
         if title and link.startswith("http"):
-            out.append({"id": "m-" + slug(link)[-60:], "datum": dt, "typ": "Medien", "titel": title, "beschrieb": "",
+            out.append({"id": "m-" + slug(link)[-60:], "datum": dt, "typ": "Medien", "titel": title, "beschrieb": desc,
                         "kanton": None, "gemeinde": None, "frist": None, "quelle": name, "url": link})
     return out
 
@@ -297,32 +319,82 @@ def parse_feed(raw: str, name: str) -> list[dict]:
             dt = parsedate_to_datetime(d).date().isoformat() if "," in d else d[:10]
         except (TypeError, ValueError):
             dt = TODAY.isoformat()
+        desc = g("description") or g("{http://www.w3.org/2005/Atom}summary")
         if title and link:
             out.append({"id": "m-" + slug(link)[-60:], "datum": dt, "typ": "Medien", "titel": clean(title),
-                        "beschrieb": "", "kanton": None, "gemeinde": None, "frist": None,
+                        "beschrieb": clean(desc), "kanton": None, "gemeinde": None, "frist": None,
                         "quelle": name, "url": link})
+    return out
+
+
+def _kurz(text: str, n: int = 260) -> str:
+    """Erste Sätze einer Medienmitteilung als Kurztext (amtliche/Firmen-Mitteilungen sind zur Verbreitung bestimmt)."""
+    t = clean(text)
+    if len(t) <= n:
+        return t
+    cut = t[:n]
+    dot = cut.rfind(". ")
+    return (cut[:dot + 1] if dot > 80 else cut.rsplit(" ", 1)[0] + " …")
+
+
+def mm_items(feed_items: list[dict], name: str, kanton, gem, need_place: bool) -> list[dict]:
+    out = []
+    for it in feed_items:
+        text = f"{it['titel']} {it.get('beschrieb', '')}"
+        if not IMMO.search(text):
+            continue
+        g = gem
+        if need_place:
+            m = ORTE_TEXT.search(text)
+            if not m:
+                continue
+            g = {"Rotkreuz": "Risch", "Oerlikon": "Zürich", "Altstetten": "Zürich", "Glattbrugg": "Opfikon"}.get(m.group(0), m.group(0))
+        k = kanton or ("ZG" if g in ZG_GEMEINDEN else "ZH")
+        out.append({**it, "id": "mm-" + slug(it["url"])[-70:], "typ": "Medienmitteilung", "kanton": k, "gemeinde": g,
+                    "quelle": name, "beschrieb": _kurz(it.get("beschrieb", ""))})
+    return out
+
+
+def parse_stadtzug(page: str) -> list[dict]:
+    """News der Stadt Zug (HTML-Liste, Parser aus zug.now)."""
+    out = []
+    for li in re.findall(r"<li\b[^>]*>(.*?)</li>", page, re.S):
+        a = re.search(r'<a href="(https://stadtzug\.ch/de/news/20[^"]+)"[^>]*>(.*?)</a>', li, re.S)
+        if not a:
+            continue
+        d = re.search(r"(\d{2})\.(\d{2})\.(\d{4})", li)
+        lead = re.search(r'dxp-typo-body[^"]*"[^>]*>(.*?)</div>', li, re.S)
+        out.append({"datum": f"{d.group(3)}-{d.group(2)}-{d.group(1)}" if d else TODAY.isoformat(),
+                    "titel": clean(a.group(2)), "beschrieb": clean(lead.group(1)) if lead else "", "url": a.group(1),
+                    "frist": None})
     return out
 
 
 def collect_feeds(offline: Path | None) -> tuple[list[dict], dict]:
     out, status = [], {}
-    for name, urls in FEEDS:
-        if offline:
-            f = offline / f"feed_{slug(name)}.xml"
-            if f.exists():
-                out += parse_feed(f.read_text(), name)
-                status[name] = "offline"
-            continue
-        status[name] = "fehlt"
-        for u in urls:
-            try:
-                items = parse_feed(fetch(u, "application/rss+xml, application/xml"), name)
-                if items:
-                    out += items
-                    status[name] = f"ok ({len(items)})"
-                    break
-            except Exception as e:  # noqa: BLE001
-                status[name] = f"Fehler: {e}"[:120]
+    sources = [(n, u, k, g, p, parse_feed) for n, u, k, g, p in FEEDS]
+    sources.append(("Stadt Zug", STADTZUG_NEWS, "ZG", "Zug", False, lambda raw, _n: parse_stadtzug(raw)))
+    for name, url, kanton, gem, need_place, parser in sources:
+        try:
+            if offline:
+                f = offline / f"feed_{slug(name)}.xml"
+                if not f.exists():
+                    continue
+                raw = f.read_text()
+            else:
+                raw = fetch(url, "application/rss+xml, application/xml, text/html")
+            items = mm_items(parser(raw, name), name, kanton, gem, need_place)
+            out += items
+            status[name] = f"ok ({len(items)} relevant)"
+        except Exception as e:  # noqa: BLE001
+            status[name] = f"Fehler: {e}"[:120]
+    # Medienspiegel (Fachmedien): von Hand/Claude gepflegt, nur Titel + Link
+    f = OUT / "medienspiegel.json"
+    if f.exists():
+        for m in json.loads(f.read_text()).get("artikel", []):
+            out.append({"id": "ms-" + slug(m["url"])[-70:], "datum": m["datum"], "typ": "Medien", "titel": m["titel"],
+                        "beschrieb": m.get("notiz", ""), "kanton": m.get("kanton"), "gemeinde": m.get("gemeinde"),
+                        "frist": None, "quelle": m["medium"], "url": m["url"]})
     return out, status
 
 
@@ -378,7 +450,7 @@ def main() -> None:
     # Filter auch aufs Archiv anwenden (Regeln können sich ändern) und Wiederholungs-Publikationen zusammenfassen
     rub_of = {v: k for k, v in TYP.items()}
     def ok(m):
-        if m["typ"] == "Medien":
+        if m["typ"] in ("Medien", "Medienmitteilung"):
             return True
         return relevant(rub_of.get(m["typ"], ""), m["titel"], m.get("beschrieb", ""))
     seen_key, dedup = set(), []
