@@ -1,194 +1,124 @@
 {
- "Entwickler & Bau": [
+ "Startseiten (Newsroom suchen)": [
   [
    "Implenia",
-   "https://implenia.com/de/medien/medienmitteilungen/"
-  ],
-  [
-   "Halter",
-   "https://www.halter.ch/de/news"
-  ],
-  [
-   "Losinger Marazzi",
-   "https://www.losinger-marazzi.ch/de/news"
-  ],
-  [
-   "Steiner",
-   "https://www.steiner.ch/de/news"
-  ],
-  [
-   "HRS",
-   "https://www.hrs.ch/de/news"
-  ],
-  [
-   "Allreal",
-   "https://www.allreal.ch/de/news"
+   "https://implenia.com/de/"
   ],
   [
    "Mobimo",
-   "https://www.mobimo.ch/de/medien/medienmitteilungen"
+   "https://www.mobimo.ch/de/"
+  ],
+  [
+   "Steiner",
+   "https://www.steiner.ch/de/"
+  ],
+  [
+   "HRS",
+   "https://www.hrs.ch/de/"
   ],
   [
    "PSP Swiss Property",
-   "https://www.psp.info/de/medien/medienmitteilungen"
-  ],
-  [
-   "Swiss Prime Site",
-   "https://www.sps.swiss/de/medien/medienmitteilungen"
+   "https://www.psp.info/"
   ],
   [
    "Senn",
-   "https://www.senn.com/de/news"
+   "https://www.senn.com/"
   ],
   [
    "Intershop",
-   "https://www.intershop.ch/de/news"
+   "https://www.intershop.ch/"
   ],
   [
    "Zug Estates",
-   "https://www.zugestates.ch/de/medien"
-  ],
-  [
-   "Fundamenta",
-   "https://www.fundamentagroup.com/de/news"
+   "https://www.zugestates.ch/"
   ],
   [
    "SBB Immobilien",
-   "https://company.sbb.ch/de/medien/medienmitteilungen.html"
+   "https://www.sbb-immobilien.ch/"
   ],
-  [
-   "Post Immobilien",
-   "https://www.post.ch/de/ueber-uns/medien/medienmitteilungen"
-  ],
-  [
-   "Mettler2Invest",
-   "https://www.mettler2invest.ch/news"
-  ],
-  [
-   "Steiner Investment",
-   "https://www.steiner.ch/de/medien"
-  ],
-  [
-   "Marti",
-   "https://www.marti.ch/de/news"
-  ],
-  [
-   "Priora",
-   "https://www.priora.ch/de/news"
-  ],
-  [
-   "Halter Entwicklungen",
-   "https://www.halter.ch/de/medien"
-  ]
- ],
- "Anlagestiftungen & Fonds": [
   [
    "Pensimo",
-   "https://www.pensimo.ch/de/news"
-  ],
-  [
-   "Swiss Life Asset Managers",
-   "https://www.swisslife-am.com/de/home/media.html"
+   "https://www.pensimo.ch/"
   ],
   [
    "UBS Anlagestiftungen",
-   "https://www.ubs.com/ch/de/asset-management/investment-foundations.html"
-  ],
-  [
-   "Zürich Anlagestiftung",
-   "https://www.zurich-anlagestiftung.ch/de/news"
+   "https://www.ubs.com/ch/de/asset-management.html"
   ],
   [
    "Avadis",
-   "https://www.avadis.ch/de/news"
+   "https://www.avadis.ch/"
   ],
   [
    "Ecoreal",
-   "https://www.ecoreal.ch/de/news"
+   "https://www.ecoreal.ch/"
   ],
   [
-   "Helvetia Immobilien",
-   "https://www.helvetia.com/ch/web/de/ueber-uns/medien/medienmitteilungen.html"
+   "Swisscanto",
+   "https://www.swisscanto.com/ch/de.html"
   ],
-  [
-   "AXA IM Real Assets",
-   "https://www.axa-im.ch/de/medien"
-  ],
-  [
-   "Swisscanto Immobilien",
-   "https://www.swisscanto.com/ch/de/institutionelle/news.html"
-  ],
-  [
-   "Patrimonium",
-   "https://www.patrimonium.ch/de/news"
-  ],
-  [
-   "Previs",
-   "https://www.previs.ch/news"
-  ],
-  [
-   "Turidomus/Adimora (Pensimo)",
-   "https://www.pensimo.ch/de/medien"
-  ]
- ],
- "Genossenschaften & öffentliche": [
   [
    "ABZ",
-   "https://www.abz.ch/aktuell"
-  ],
-  [
-   "Wohnbaugenossenschaften Zürich",
-   "https://www.wbg-zh.ch/aktuell/"
-  ],
-  [
-   "Kanton Zürich Immobilien",
-   "https://www.zh.ch/de/planen-bauen/immobilien.html"
+   "https://www.abz.ch/"
   ],
   [
    "Korporation Zug",
-   "https://www.korporation-zug.ch/aktuelles"
-  ],
-  [
-   "Zuger Kantonalbank",
-   "https://www.zugerkb.ch/medien"
-  ],
-  [
-   "ZKB",
-   "https://www.zkb.ch/de/ueber-uns/medien.html"
-  ]
- ],
- "Vermarkter & Berater": [
-  [
-   "Wüest Partner",
-   "https://www.wuestpartner.com/ch-de/insights/"
-  ],
-  [
-   "Walde",
-   "https://www.walde.ch/news"
+   "https://www.korporation-zug.ch/"
   ],
   [
    "Ginesta",
-   "https://ginesta.ch/de/news"
+   "https://ginesta.ch/"
   ],
   [
-   "Engel & Völkers CH",
-   "https://www.engelvoelkers.com/ch/de/news"
-  ],
-  [
-   "Fahrländer",
-   "https://www.fpre.ch/news"
-  ],
-  [
-   "IAZI",
-   "https://www.iazicifi.ch/news/"
-  ],
-  [
-   "Raiffeisen Immobilien",
-   "https://www.raiffeisen.ch/rch/de/ueber-uns/news.html"
+   "Walde",
+   "https://www.walde.ch/"
   ],
   [
    "SVIT",
-   "https://www.svit.ch/de/news"
+   "https://www.svit.ch/"
+  ],
+  [
+   "Priora",
+   "https://www.priora.ch/"
+  ],
+  [
+   "Marti",
+   "https://www.marti.ch/"
+  ],
+  [
+   "Wincasa",
+   "https://www.wincasa.ch/"
+  ],
+  [
+   "Livit",
+   "https://www.livit.ch/"
+  ],
+  [
+   "Losinger Marazzi Medien",
+   "https://www.losinger-marazzi.ch/de/medien"
+  ],
+  [
+   "Baugenossenschaft mehr als wohnen",
+   "https://www.mehralswohnen.ch/"
+  ],
+  [
+   "Stiftung PWG",
+   "https://www.pwg.ch/"
+  ],
+  [
+   "Logis Suisse",
+   "https://www.logis-suisse.ch/"
+  ],
+  [
+   "Anlagestiftung Turidomus",
+   "https://www.turidomus.ch/"
+  ],
+  [
+   "Swiss Life Immopulse",
+   "https://www.swisslife.ch/de/private/immobilien-hypotheken.html"
+  ],
+  [
+   "Peach Property",
+   "https://www.peachproperty.com/de/"
   ]
  ]
 }

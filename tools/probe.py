@@ -82,10 +82,28 @@ def probe(name, url):
     return res
 
 
+NEWSWORD = re.compile(r"^(news|medien|media|newsroom|medienmitteilungen|aktuell|aktuelles|presse|press|mitteilungen|neuigkeiten)$", re.I)
+
+
+def find_newsroom(url):
+    """Auf der Startseite den Link «News/Medien/Aktuell» suchen."""
+    try:
+        _, _, body = get(url)
+    except Exception:  # noqa: BLE001
+        return None
+    for h, t in re.findall(r'<a[^>]+href="([^"#]+)"[^>]*>(.*?)</a>', body, re.S | re.I):
+        txt = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", t)).strip()
+        if NEWSWORD.match(txt):
+            return urllib.parse.urljoin(url, h)
+    return None
+
+
 out = []
 for group, items in CANDS.items():
     for name, url in items:
-        r = probe(name, url)
+        nr = find_newsroom(url) if group.startswith("Startseiten") else None
+        r = probe(name, nr or url)
+        r["newsroom_found"] = nr
         r["group"] = group
         print(json.dumps(r, ensure_ascii=False)[:300])
         out.append(r)
