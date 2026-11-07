@@ -1,5 +1,5 @@
 {
- "stand": "2026-11-07T11:49+00:00",
+ "stand": "2026-11-07T12:42+00:00",
  "meldungen": [
   {
    "id": "md-hnen-bauen-wartet-neuer-wohnraum-nur-darauf-gefunden-zu-werden-2909935",
@@ -233,6 +233,7 @@
    "frist": null,
    "quelle": "Stadt Zürich",
    "url": "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/11/ersatzneubau-vereint-betreuung-unter-einem-dach.html",
+   "bild": null,
    "projekte": []
   },
   {
@@ -246,6 +247,7 @@
    "frist": null,
    "quelle": "Stadt Winterthur",
    "url": "https://stadt.winterthur.ch/medien/winterthur-entwickelt-sein-immobilienmanagement-weiter",
+   "bild": "https://winterthur.rokka.io/og_image/60d61f1e150b69d4b9995dfb8bda8002fc126e29/stadthaus.jpg?h=c4708816&itok=ujMXFoD7",
    "projekte": []
   },
   {
@@ -259,6 +261,7 @@
    "frist": null,
    "quelle": "Stadt Zürich",
    "url": "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/10/seeufer-wollishofen-stadtrat-will-moeglichkeiten-fuer-kibag-areal-neu-ausloten.html",
+   "bild": null,
    "projekte": []
   },
   {
@@ -272,6 +275,7 @@
    "frist": null,
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/rege-beteiligung-an-den-ortsplanungs-workshops",
+   "bild": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/rege-beteiligung-an-den-ortsplanungs-workshops/mitteilung-vom-21-oktober-2026/@@images/865cba6c-7e99-4a9e-8d58-442d200e263e.png",
    "projekte": []
   },
   {
@@ -311,6 +315,7 @@
    "frist": null,
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/workshops-zur-ortsplanungsrevision-starten",
+   "bild": null,
    "projekte": []
   },
   {
@@ -324,6 +329,7 @@
    "frist": null,
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/projektwebsite-ortsplanungsrevision-geht-live",
+   "bild": null,
    "projekte": []
   },
   {
@@ -337,6 +343,7 @@
    "frist": null,
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/grosses-interesse-fuer-den-neustart-der-ortsplanungsrevision",
+   "bild": null,
    "projekte": []
   },
   {
@@ -350,6 +357,7 @@
    "frist": null,
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/vermietungsrichtlinien-fuer-gemeindlichen-wohnraum-beschlossen",
+   "bild": null,
    "projekte": []
   },
   {
@@ -363,6 +371,7 @@
    "frist": null,
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/gemeindeeigene-liegenschaft-im-gewerbegebiet-boesch-vermietet",
+   "bild": null,
    "projekte": []
   },
   {
@@ -376,6 +385,7 @@
    "frist": null,
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/informations-und-dialogveranstaltung-ortsplanungsrevision",
+   "bild": null,
    "projekte": []
   },
   {
@@ -389,6 +399,7 @@
    "frist": null,
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/gesamterneuerungswahlen-plakatierung-und-versand-wahlflyer-und-rechtskraft-bebauungsplan-boesch-rothus",
+   "bild": null,
    "projekte": []
   },
   {
@@ -402,6 +413,7 @@
    "frist": null,
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/revision-des-bebauungsplans-dorfkern-nord-inkrafttreten",
+   "bild": null,
    "projekte": []
   },
   {
@@ -415,6 +427,7 @@
    "frist": null,
    "quelle": "Gemeinde Hünenberg",
    "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/gemeinde/aktuell/medienmitteilungen/ergebnisse-der-nachbefragung-zur-abgelehnten-ortsplanungsrevision-liegen-vor",
+   "bild": null,
    "projekte": []
   }
  ]
