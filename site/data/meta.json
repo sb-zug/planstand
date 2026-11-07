@@ -1,17 +1,17 @@
 {
- "lauf": "2026-11-07T11:47+00:00",
+ "lauf": "2026-11-07T11:49+00:00",
  "quellen": {
   "Amtsblatt ZG": "ok (0 relevant)",
   "Amtsblatt ZH": "ok (16 relevant)",
-  "Stadt Zürich": "ok (3 relevant)",
-  "Stadt Winterthur": "ok (11 relevant)",
-  "Gemeinde Hünenberg": "ok (21 relevant)",
-  "Gemeinde Menzingen": "ok (9 relevant)",
+  "Stadt Zürich": "ok (2 relevant)",
+  "Stadt Winterthur": "ok (1 relevant)",
+  "Gemeinde Hünenberg": "ok (10 relevant)",
+  "Gemeinde Menzingen": "ok (0 relevant)",
   "presseportal.ch": "ok (0 relevant)",
-  "zentralplus": "ok (2 relevant)",
+  "zentralplus": "ok (1 relevant)",
   "moneycab": "ok (0 relevant)",
-  "IAZI": "ok (6 relevant)",
-  "Stadt Zug": "ok (2 relevant)"
+  "IAZI": "ok (2 relevant)",
+  "Stadt Zug": "ok (0 relevant)"
  },
- "anzahl": 70
+ "anzahl": 32
 }
