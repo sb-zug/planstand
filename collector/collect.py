@@ -254,11 +254,33 @@ def _fix_xml(raw: str) -> str:
     return re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]", "", raw)
 
 
+def _parse_feed_loose(raw: str, name: str) -> list[dict]:
+    """Rückfall für fehlerhaftes XML: Items per Regex lesen (nur Titel, Link, Datum)."""
+    out = []
+    for it in re.findall(r"<item\b.*?</item>", raw, re.S)[:40]:
+        def g(tag):
+            m = re.search(rf"<{tag}\b[^>]*>(.*?)</{tag}>", it, re.S)
+            v = (m.group(1) if m else "").strip()
+            return re.sub(r"^<!\[CDATA\[(.*)\]\]>$", r"\1", v, flags=re.S).strip()
+        title, link, d = clean(g("title")), clean(g("link")), g("pubDate")
+        try:
+            dt = parsedate_to_datetime(d).date().isoformat()
+        except (TypeError, ValueError):
+            dt = TODAY.isoformat()
+        if title and link.startswith("http"):
+            out.append({"id": "m-" + slug(link)[-60:], "datum": dt, "typ": "Medien", "titel": title, "beschrieb": "",
+                        "kanton": None, "gemeinde": None, "frist": None, "quelle": name, "url": link})
+    return out
+
+
 def parse_feed(raw: str, name: str) -> list[dict]:
     try:
         root = ET.fromstring(raw)
     except ET.ParseError:
-        root = ET.fromstring(_fix_xml(raw))
+        try:
+            root = ET.fromstring(_fix_xml(raw))
+        except ET.ParseError:
+            return _parse_feed_loose(raw, name)
     out = []
     items = root.findall(".//item") or root.findall(".//{http://www.w3.org/2005/Atom}entry")
     for it in items[:40]:

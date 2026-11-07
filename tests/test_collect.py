@@ -34,6 +34,9 @@ assert not C.relevant("BP", "x", "Luft/Wasser-Wärmepumpe auf dem Dach, Siedlung
 f = C.parse_feed('<rss><channel><item><title>Wohnen &nbsp;am See & mehr</title><link>https://x.ch/a</link>'
                  '<pubDate>Fri, 06 Nov 2026 10:00:00 +0100</pubDate></item></channel></rss>', "T")
 assert f and f[0]["datum"] == "2026-11-06" and "am See" in f[0]["titel"]
+f = C.parse_feed('<rss><channel><item><title><![CDATA[Neubau <b>am See]]></title><link>https://x.ch/b</link>'
+                 '<description>kaputt < 5 & <br></description></item></channel></rss>', "T")
+assert f and f[0]["url"] == "https://x.ch/b"
 # Gemeinde
 assert C.gemeinde("ZG", "Gemeinde Steinhausen - Präsidiales", "x") == "Steinhausen"
 assert C.gemeinde("ZG", "Kanton Zug", "Kommunale Baugesuchspublikation: Obermattli 1, Walchwil") == "Walchwil"
