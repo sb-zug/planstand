@@ -83,7 +83,7 @@ NEWSROOMS = [
     ("Zuger Kantonalbank", "https://www.zugerkb.ch/medien", "ZG", None),
     ("Zürcher Kantonalbank", "https://www.zkb.ch/de/ueber-uns/medien.html", "ZH", None),
 ]
-NEWSROOM_FETCH_MAX = 30   # Artikelseiten pro Lauf
+NEWSROOM_FETCH_MAX = 70   # Artikelseiten pro Lauf
 NEWSWEG = re.compile(r"news|medien|media|press|aktuell|mitteilung|insights|blog|beitr", re.I)
 DATUM = re.compile(r"\b(\d{1,2})\.\s?(\d{1,2})\.\s?(20\d{2})\b")
 STADTZUG_NEWS = "https://stadtzug.ch/de/news?content_category=news"
@@ -100,6 +100,12 @@ IMMO_TEXT = re.compile(r"überbauung|gestaltungsplan|bebauungsplan|wohnungen|are
 LAERM = re.compile(r"\bbrand\b|rauch|polizei|unfall|feuerwehr|fledermä|benennung|budget|steuerfuss|kongress|seminar|"
                    r"\bkurs\b|webinar|release|bewilligte .*baugesuche|baugesuche vom|baugesuche ab|stellen|"
                    r"abstimmungsvorlage|hat abgestimmt|legislatur|ceref|exklusive", re.I)
+
+
+MARKT_JA = re.compile(r"markt|preis|index|indiz|miet|wohn|büro|bau|immobil|transaktion|landwert|leerstand|rendite|eigentum|"
+                      r"logistik|verkauf|nachfrage|angebot", re.I)
+MARKT_NEIN = re.compile(r"episode|podcast|partnerschaft|tritt .*aus|menschen hinter|plattform|mit wem|kunde|"
+                        r"führt .* mit|bündeln|webinar|seminar|veranstaltung", re.I)
 
 
 def mm_ok(titel: str, text: str) -> bool:
@@ -383,7 +389,7 @@ def mm_items(feed_items: list[dict], name: str, kanton, gem, need_place: bool, a
     for it in feed_items:
         text = f"{it['titel']} {it.get('beschrieb', '')}"
         if art == "markt":
-            if LAERM.search(it["titel"]):
+            if LAERM.search(it["titel"]) or MARKT_NEIN.search(it["titel"]) or not MARKT_JA.search(it["titel"]):
                 continue
             out.append({**it, "id": "mk-" + slug(it["url"])[-70:], "typ": "Marktstudie", "kanton": None, "gemeinde": None,
                         "quelle": name, "beschrieb": ""})
@@ -467,7 +473,7 @@ def collect_newsrooms(offline: Path | None) -> tuple[list[dict], dict]:
         return [], {}
     f = OUT / "newsrooms.json"
     state = json.loads(f.read_text()) if f.exists() else {}
-    out, status, fetched = [], {}, 0
+    out, status, fetched, debug = [], {}, 0, {}
     for name, url, kanton, gem in NEWSROOMS:
         try:
             links = harvest(url, fetch(url, "text/html"))
@@ -476,24 +482,29 @@ def collect_newsrooms(offline: Path | None) -> tuple[list[dict], dict]:
             continue
         seen = set(state.get(url, []))
         erstmals = url not in state
-        neu = [(h, t) for h, t in links if h not in seen][: (4 if erstmals else 8)]
+        neu = [(h, t) for h, t in links if h not in seen][: (6 if erstmals else 8)]
         n = 0
         for h, t in neu:
             if fetched >= NEWSROOM_FETCH_MAX:
                 break
             fetched += 1
+            dbg = debug.setdefault(name, [])
             try:
                 it = newsroom_item(name, kanton, gem, h, t, fetch(h, "text/html"))
-            except Exception:  # noqa: BLE001
+            except Exception as e:  # noqa: BLE001
+                dbg.append(f"{t[:60]} → Fehler {e}"[:140])
                 continue
             if not it["datum"]:
                 if erstmals:
+                    dbg.append(f"{it['titel'][:70]} → kein Datum")
                     continue
                 it["datum"] = TODAY.isoformat()
             if it["datum"] < (TODAY - timedelta(days=120)).isoformat():
+                dbg.append(f"{it['titel'][:70]} → alt {it['datum']}")
                 continue
             bild = it.pop("bild")
             items = mm_items([it], name, kanton, gem, need_place=gem is None)
+            dbg.append(f"{it['titel'][:70]} {it['datum']} → {'ok' if items else 'kein Immo-/Ortsbezug'}")
             for x in items:
                 x["bild"] = bild
             out += items
@@ -501,6 +512,7 @@ def collect_newsrooms(offline: Path | None) -> tuple[list[dict], dict]:
         state[url] = list(dict.fromkeys([h for h, _ in links] + list(seen)))[:600]
         status[name] = f"ok ({len(links)} Links, {n} relevant)"
     f.write_text(json.dumps(state, ensure_ascii=False))
+    (OUT / "newsroom_debug.json").write_text(json.dumps(debug, ensure_ascii=False, indent=1))
     return out, status
 
 
@@ -620,7 +632,7 @@ def main() -> None:
     rub_of = {v: k for k, v in TYP.items()}
     def ok(m):
         if m["typ"] == "Marktstudie":
-            return True
+            return not MARKT_NEIN.search(m["titel"]) and bool(MARKT_JA.search(m["titel"]))
         if m["typ"] in ("Medien", "Medienmitteilung"):
             return m.get("id", "").startswith("ms-") or mm_ok(m["titel"], m.get("beschrieb", ""))
         return relevant(rub_of.get(m["typ"], ""), m["titel"], m.get("beschrieb", ""))
