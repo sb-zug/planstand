@@ -188,7 +188,8 @@ def headline(m: dict) -> tuple[str, str]:
         return bg_titel(m), _cut(f'{amt_titel(m)} · {m.get("beschrieb") or ""}', 170)
     if m["quelle"].startswith("Amtsblatt"):
         return plan_titel(m), ""
-    return m["titel"], m.get("beschrieb") or ""
+    sub = m.get("beschrieb") or ""
+    return m["titel"], ("" if sub.strip().lower().startswith(m["titel"].strip().lower()[:40]) else sub)
 
 
 def kicker(m: dict, ort=True) -> str:
