@@ -1,5 +1,5 @@
 {
- "lauf": "2026-11-07T13:18+00:00",
+ "lauf": "2026-11-07T13:22+00:00",
  "quellen": {
   "Amtsblatt ZG": "ok (0 relevant)",
   "Amtsblatt ZH": "ok (16 relevant)",
@@ -11,9 +11,9 @@
   "zentralplus": "ok (1 relevant)",
   "moneycab": "ok (0 relevant)",
   "Korporation Zug": "ok (1 relevant)",
-  "IAZI": "ok (3 relevant)",
-  "Wüest Partner": "ok (10 relevant)",
-  "Fahrländer Partner": "ok (10 relevant)",
+  "IAZI": "ok (2 relevant)",
+  "Wüest Partner": "ok (6 relevant)",
+  "Fahrländer Partner": "ok (9 relevant)",
   "Raiffeisen": "Fehler: HTTP Error 404: Not Found",
   "Stadt Zug": "ok (0 relevant)",
   "Halter": "ok (140 Links, 0 relevant)",
@@ -25,9 +25,9 @@
   "Zug Estates": "ok (3 Links, 0 relevant)",
   "Avadis": "ok (12 Links, 0 relevant)",
   "Patrimonium": "ok (7 Links, 0 relevant)",
-  "Wincasa": "ok (8 Links, 0 relevant)",
+  "Wincasa": "ok (8 Links, 1 relevant)",
   "Zuger Kantonalbank": "ok (4 Links, 0 relevant)",
   "Zürcher Kantonalbank": "ok (4 Links, 0 relevant)"
  },
- "anzahl": 53
+ "anzahl": 48
 }

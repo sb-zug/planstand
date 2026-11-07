@@ -1,5 +1,5 @@
 {
- "stand": "2026-11-07T13:18+00:00",
+ "stand": "2026-11-07T13:22+00:00",
  "meldungen": [
   {
    "id": "md-hnen-bauen-wartet-neuer-wohnraum-nur-darauf-gefunden-zu-werden-2909935",
@@ -359,19 +359,6 @@
    "projekte": []
   },
   {
-   "id": "mk-https-www-iazicifi-ch-menschen-hinter-iazi-prayut-parsekar",
-   "datum": "2026-10-07",
-   "typ": "Marktstudie",
-   "titel": "Wer sind die Menschen hinter IAZI? Episode 20: Prayut Parsekar",
-   "beschrieb": "",
-   "kanton": null,
-   "gemeinde": null,
-   "frist": null,
-   "quelle": "IAZI",
-   "url": "https://www.iazicifi.ch/menschen-hinter-iazi-prayut-parsekar/",
-   "projekte": []
-  },
-  {
    "id": "mk-https-fpre-ch-toplagen-fuer-verkauf-und-buero-sind-rar",
    "datum": "2026-10-07",
    "typ": "Marktstudie",
@@ -385,45 +372,6 @@
    "projekte": []
   },
   {
-   "id": "mk--blog-andreas-ammann-tritt-aus-der-partnerschaft-von-wuest-partner-aus",
-   "datum": "2026-10-05",
-   "typ": "Marktstudie",
-   "titel": "Andreas Ammann tritt aus der Partnerschaft von Wüest Partner aus",
-   "beschrieb": "",
-   "kanton": null,
-   "gemeinde": null,
-   "frist": null,
-   "quelle": "Wüest Partner",
-   "url": "https://www.wuestpartner.com/ch-de/blog/andreas-ammann-tritt-aus-der-partnerschaft-von-wuest-partner-aus/",
-   "projekte": []
-  },
-  {
-   "id": "mk-de-blog-sedlmayr-bewertung-planung-nachhaltigkeit-mit-wuest-dimensions",
-   "datum": "2026-10-05",
-   "typ": "Marktstudie",
-   "titel": "Sedlmayr Grund und Immobilien AG führt Bewertung, Planung und Nachhaltigkeit mit Wüest Dimensions zusammen",
-   "beschrieb": "",
-   "kanton": null,
-   "gemeinde": null,
-   "frist": null,
-   "quelle": "Wüest Partner",
-   "url": "https://www.wuestpartner.com/ch-de/blog/sedlmayr-bewertung-planung-nachhaltigkeit-mit-wuest-dimensions/",
-   "projekte": []
-  },
-  {
-   "id": "mk-log-wuest-partner-msci-partnerschaft-fuer-datenbasierte-entscheidungen",
-   "datum": "2026-10-02",
-   "typ": "Marktstudie",
-   "titel": "Wüest Partner und MSCI bündeln ihre Kräfte für datenbasierte Entscheidungen",
-   "beschrieb": "",
-   "kanton": null,
-   "gemeinde": null,
-   "frist": null,
-   "quelle": "Wüest Partner",
-   "url": "https://www.wuestpartner.com/ch-de/blog/wuest-partner-msci-partnerschaft-fuer-datenbasierte-entscheidungen/",
-   "projekte": []
-  },
-  {
    "id": "mk-www-wuestpartner-com-ch-de-blog-was-bei-der-wohnungssuche-heute-zaehlt",
    "datum": "2026-10-01",
    "typ": "Marktstudie",
@@ -434,6 +382,20 @@
    "frist": null,
    "quelle": "Wüest Partner",
    "url": "https://www.wuestpartner.com/ch-de/blog/was-bei-der-wohnungssuche-heute-zaehlt/",
+   "projekte": []
+  },
+  {
+   "id": "mm-achhaltiges-arealleben-trifft-auf-attraktive-flaechen-fuer-unternehmen",
+   "datum": "2026-10-01",
+   "titel": "Greencity Zürich im Rampenlicht: Nachhaltiges Arealleben trifft auf attraktive Flächen für Unternehmen",
+   "beschrieb": "Die Greencity in Zürich-Manegg hat sich vom ehemaligen Sihlpapier-Areal zu einem lebendigen Quartier entwickelt, das Wohnen, Arbeiten und Nachhaltigkeit verbindet.",
+   "url": "https://www.wincasa.ch/de-ch/uber-wincasa/news/artikel/greencity-zuerich-im-rampenlicht-nachhaltiges-arealleben-trifft-auf-attraktive-flaechen-fuer-unternehmen",
+   "frist": null,
+   "typ": "Medienmitteilung",
+   "kanton": "ZH",
+   "gemeinde": "Zürich",
+   "quelle": "Wincasa",
+   "bild": "https://live-api.wincasa.ch/fileadmin/_processed_/4/7/csm_Wincasa_Greencity_Exports__23_of_65__bd39b7e1b7.jpg",
    "projekte": []
   },
   {
@@ -548,19 +510,6 @@
    "projekte": []
   },
   {
-   "id": "mk-w-wuestpartner-com-ch-de-blog-thurgauer-kantonalbank-wueest-dimensions",
-   "datum": "2026-08-21",
-   "typ": "Marktstudie",
-   "titel": "Die Thurgauer Kantonalbank schafft mit Wüest Dimensions eine zentrale Plattform für 600 Mitarbeitende",
-   "beschrieb": "",
-   "kanton": null,
-   "gemeinde": null,
-   "frist": null,
-   "quelle": "Wüest Partner",
-   "url": "https://www.wuestpartner.com/ch-de/blog/thurgauer-kantonalbank-wueest-dimensions/",
-   "projekte": []
-  },
-  {
    "id": "mm-eilungen-gemeindeeigene-liegenschaft-im-gewerbegebiet-boesch-vermietet",
    "datum": "2026-08-12",
    "typ": "Medienmitteilung",
@@ -611,19 +560,6 @@
    "frist": null,
    "quelle": "Fahrländer Partner",
    "url": "https://fpre.ch/marktmieten-und-marktwerte-von-renditeimmobilien-schweiz-6/",
-   "projekte": []
-  },
-  {
-   "id": "mk-https-fpre-ch-mit-wem-teilen-sie-ihre-daten",
-   "datum": "2026-07-23",
-   "typ": "Marktstudie",
-   "titel": "Mit wem teilen Sie Ihre Daten?",
-   "beschrieb": "",
-   "kanton": null,
-   "gemeinde": null,
-   "frist": null,
-   "quelle": "Fahrländer Partner",
-   "url": "https://fpre.ch/mit-wem-teilen-sie-ihre-daten/",
    "projekte": []
   },
   {
