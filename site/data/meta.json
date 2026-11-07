@@ -1,9 +1,9 @@
 {
- "lauf": "2026-11-07T11:00+00:00",
+ "lauf": "2026-11-07T11:02+00:00",
  "quellen": {
-  "Amtsblatt ZG": "ok (22 relevant)",
-  "Amtsblatt ZH": "ok (45 relevant)",
-  "Hochparterre": "Fehler: not well-formed (invalid token): line 39, column 1695"
+  "Amtsblatt ZG": "ok (0 relevant)",
+  "Amtsblatt ZH": "ok (16 relevant)",
+  "Hochparterre": "fehlt"
  },
  "anzahl": 16
 }
