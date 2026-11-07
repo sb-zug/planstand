@@ -1,307 +1,119 @@
 [
  {
-  "name": "baar",
-  "url": "https://www.zg.ch/behoerden/gemeinden/baar/de/ftw-news-newslistingblock/news_listing_rss",
+  "name": "zentralplus Wohnen & Bauen",
+  "url": "https://www.zentralplus.ch/wohnen-bauen/feed/",
   "error": "HTTP Error 404: Not Found",
   "robots_ok": true,
-  "group": "Zuger Gemeinden (zg.ch)"
+  "group": "Regionalmedien"
  },
  {
-  "name": "cham",
-  "url": "https://www.zg.ch/behoerden/gemeinden/cham/de/ftw-news-newslistingblock/news_listing_rss",
-  "error": "HTTP Error 404: Not Found",
-  "robots_ok": true,
-  "group": "Zuger Gemeinden (zg.ch)"
- },
- {
-  "name": "steinhausen",
-  "url": "https://www.zg.ch/behoerden/gemeinden/steinhausen/de/ftw-news-newslistingblock/news_listing_rss",
-  "error": "HTTP Error 404: Not Found",
-  "robots_ok": true,
-  "group": "Zuger Gemeinden (zg.ch)"
- },
- {
-  "name": "risch",
-  "url": "https://www.zg.ch/behoerden/gemeinden/risch/de/ftw-news-newslistingblock/news_listing_rss",
-  "error": "HTTP Error 404: Not Found",
-  "robots_ok": true,
-  "group": "Zuger Gemeinden (zg.ch)"
- },
- {
-  "name": "risch-rotkreuz",
-  "url": "https://www.zg.ch/behoerden/gemeinden/risch-rotkreuz/de/ftw-news-newslistingblock/news_listing_rss",
-  "error": "HTTP Error 404: Not Found",
-  "robots_ok": true,
-  "group": "Zuger Gemeinden (zg.ch)"
- },
- {
-  "name": "oberaegeri",
-  "url": "https://www.zg.ch/behoerden/gemeinden/oberaegeri/de/ftw-news-newslistingblock/news_listing_rss",
-  "error": "HTTP Error 404: Not Found",
-  "robots_ok": true,
-  "group": "Zuger Gemeinden (zg.ch)"
- },
- {
-  "name": "unteraegeri",
-  "url": "https://www.zg.ch/behoerden/gemeinden/unteraegeri/de/ftw-news-newslistingblock/news_listing_rss",
-  "error": "HTTP Error 404: Not Found",
-  "robots_ok": true,
-  "group": "Zuger Gemeinden (zg.ch)"
- },
- {
-  "name": "menzingen",
-  "url": "https://www.zg.ch/behoerden/gemeinden/menzingen/de/ftw-news-newslistingblock/news_listing_rss",
+  "name": "zentralplus",
+  "url": "https://www.zentralplus.ch/feed/",
   "status": 200,
-  "feed": "https://www.zg.ch/behoerden/gemeinden/menzingen/de/ftw-news-newslistingblock/news_listing_rss",
+  "feed": "https://www.zentralplus.ch/feed/",
   "items": 40,
-  "latest": "2026-11-05",
-  "sample": [
-   "Bauvorhaben Staldenstrasse 23, 6313 Menzingen",
-   "Im Oktober 2026 bewilligte ordentliche Baugesuche",
-   "Ressorts Gemeinderat 2027 bis 2030"
-  ],
-  "robots_ok": true,
-  "group": "Zuger Gemeinden (zg.ch)"
- },
- {
-  "name": "neuheim",
-  "url": "https://www.zg.ch/behoerden/gemeinden/neuheim/de/ftw-news-newslistingblock/news_listing_rss",
-  "error": "HTTP Error 404: Not Found",
-  "robots_ok": true,
-  "group": "Zuger Gemeinden (zg.ch)"
- },
- {
-  "name": "walchwil",
-  "url": "https://www.zg.ch/behoerden/gemeinden/walchwil/de/ftw-news-newslistingblock/news_listing_rss",
-  "error": "HTTP Error 404: Not Found",
-  "robots_ok": true,
-  "group": "Zuger Gemeinden (zg.ch)"
- },
- {
-  "name": "hunenberg",
-  "url": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/ftw-news-newslistingblock/news_listing_rss",
-  "status": 200,
-  "feed": "https://www.zg.ch/behoerden/gemeinden/hunenberg/de/ftw-news-newslistingblock/news_listing_rss",
-  "items": 40,
-  "latest": "2026-11-05",
-  "sample": [
-   "Bewilligte Baugesuche August 2026",
-   "Budget 2027: Positives Ergebnis bei tieferem Steuerfuss",
-   "Gemeinde kauft 4 ½-Zimmerwohnung an der Chamerstrasse 11"
-  ],
-  "robots_ok": true,
-  "group": "Zuger Gemeinden (zg.ch)"
- },
- {
-  "name": "Kanton Zug News rss",
-  "url": "https://zg.ch/de/news/rss",
-  "error": "HTTP Error 404: Not Found",
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "Kanton Zug News rss 2",
-  "url": "https://zg.ch/de/news.rss",
-  "status": 200,
-  "html": true,
-  "links": [],
-  "title": "News",
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "Baar Seite",
-  "url": "https://www.baar.ch/",
-  "status": 200,
-  "html": true,
-  "links": [],
-  "title": "Baar",
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "Cham Seite",
-  "url": "https://www.cham.ch/",
-  "status": 200,
-  "html": true,
-  "links": [],
-  "title": "Cham",
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "Kanton ZH rss",
-  "url": "https://www.zh.ch/de/news-uebersicht.rss",
-  "error": "HTTP Error 404: Not Found",
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "Kanton ZH Medienmitteilungen",
-  "url": "https://www.zh.ch/de/news-uebersicht/medienmitteilungen.html",
-  "status": 200,
-  "html": true,
-  "links": [],
-  "title": "News  | Kanton Zürich",
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "presseportal wirtschaft",
-  "url": "https://www.presseportal.ch/de/rss/wirtschaft.rss2",
-  "status": 200,
-  "feed": "https://www.presseportal.ch/de/rss/wirtschaft.rss2",
-  "items": 15,
-  "latest": "2026-11-06",
-  "sample": [
-   "Migros gewinnt den ersten ASC-Konsumentenliebling Schweiz mit Gambas al ajillo",
-   "Trotz Exit-Flaute: Private-Markets-Investor:innen planen 2027 mehr Allokationen, zeigt Moo",
-   "Online-Tagung für den deutschsprachigen Raum rückt Kinder von Inhaftierten in den Mittelpu"
-  ],
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "presseportal bau",
-  "url": "https://www.presseportal.ch/de/rss/bauen.rss2",
-  "status": 200,
-  "feed": "https://www.presseportal.ch/de/rss/bauen.rss2",
-  "items": 15,
   "latest": "2026-11-07",
   "sample": [
-   "Überraschungsaktion: IGZH pflanzt Baum auf städtischem Grund",
-   "Planungshilfe zur hitzeangepassten Siedlungsentwicklung in Liechtenstein",
-   "Auto Zürich 2026: Premieren, neue Markenwelten und 48 Elektroautos zum Probefahren"
+   "Feiern zu Schlacht bei Murten 1476",
+   "Wartet neuer Wohnraum nur darauf, gefunden zu werden?",
+   "Südafrika: Wahlniederlage für ANC"
   ],
   "robots_ok": true,
-  "group": "Weitere"
+  "group": "Regionalmedien"
  },
  {
-  "name": "presseportal immobilien",
-  "url": "https://www.presseportal.ch/de/rss/immobilien.rss2",
-  "status": 200,
-  "feed": "https://www.presseportal.ch/de/rss/immobilien.rss2",
-  "items": 15,
-  "latest": "2026-11-07",
-  "sample": [
-   "Überraschungsaktion: IGZH pflanzt Baum auf städtischem Grund",
-   "Planungshilfe zur hitzeangepassten Siedlungsentwicklung in Liechtenstein",
-   "Auto Zürich 2026: Premieren, neue Markenwelten und 48 Elektroautos zum Probefahren"
-  ],
-  "robots_ok": true,
-  "group": "Weitere"
+  "name": "Tsüri",
+  "url": "https://tsri.ch/rss",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": false,
+  "group": "Regionalmedien"
  },
  {
-  "name": "presseportal Themen",
-  "url": "https://www.presseportal.ch/de/themen",
+  "name": "Tsüri 2",
+  "url": "https://tsri.ch/feed.xml",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": false,
+  "group": "Regionalmedien"
+ },
+ {
+  "name": "SRF RSS-Übersicht",
+  "url": "https://www.srf.ch/allgemeines/rss-feeds",
   "error": "HTTP Error 404: Not Found",
   "robots_ok": true,
-  "group": "Weitere"
+  "group": "Regionalmedien"
  },
  {
-  "name": "Mobimo News",
-  "url": "https://www.mobimo.ch/de/news",
+  "name": "20min Zürich",
+  "url": "https://partner-feeds.20min.ch/rss/20minuten/zuerich",
+  "error": "HTTP Error 404: Not Found",
+  "robots_ok": true,
+  "group": "Regionalmedien"
+ },
+ {
+  "name": "Zürcher Unterländer",
+  "url": "https://www.zuonline.ch/",
+  "error": "HTTP Error 302: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nMoved Temporarily",
+  "robots_ok": false,
+  "group": "Regionalmedien"
+ },
+ {
+  "name": "Limmattaler Zeitung",
+  "url": "https://www.limmattalerzeitung.ch/",
+  "error": "HTTP Error 403: Forbidden",
+  "robots_ok": false,
+  "group": "Regionalmedien"
+ },
+ {
+  "name": "Hochparterre Wettbewerbe",
+  "url": "https://www.hochparterre-wettbewerbe.ch/",
   "status": 200,
   "html": true,
   "links": [],
-  "title": "Mobimo",
+  "title": "Hochparterre Wettbewerbe – Das Archiv für Architekturwettbewerbe",
   "robots_ok": true,
-  "group": "Weitere"
+  "group": "Regionalmedien"
  },
  {
-  "name": "Swiss Prime Site News",
-  "url": "https://www.sps.swiss/de/news",
-  "status": 200,
-  "html": true,
-  "links": [],
-  "title": "Stories - Swiss Prime Site",
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "Losinger Marazzi",
-  "url": "https://www.losinger-marazzi.ch/de/news",
-  "status": 200,
-  "html": true,
-  "links": [],
-  "title": "News | Losinger Marazzi",
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "HRS",
-  "url": "https://www.hrs.ch/de/news",
-  "status": 200,
-  "html": true,
-  "links": [],
-  "title": "News",
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "Intershop",
-  "url": "https://www.intershop.ch/de/medien",
-  "status": 200,
-  "html": true,
-  "links": [],
-  "title": "Medienmiteilungen",
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "Steiner",
-  "url": "https://www.steiner.ch/de/news",
-  "status": 200,
-  "html": true,
-  "links": [],
-  "title": "sachwalter-steiner.ch",
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "Senn",
-  "url": "https://www.senn.com/news",
-  "status": 200,
-  "html": true,
-  "links": [],
-  "title": "Journal - SENN",
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "Hochparterre Home",
-  "url": "https://www.hochparterre.ch/",
+  "name": "Swiss Real Estate News (iazi)",
+  "url": "https://www.iazi.ch/news",
   "status": 200,
   "html": true,
   "links": [
-   "https://www.hochparterre.ch/rss"
+   "https://www.iazicifi.ch/feed/",
+   "https://www.iazicifi.ch/comments/feed/"
   ],
-  "title": "hochparterre.ch | Hochparterre",
+  "title": "Homepage - IAZI AG – CIFI SA",
+  "feed": "https://www.iazicifi.ch/feed/",
+  "items": 10,
+  "latest": "2026-10-27",
+  "sample": [
+   "19. Schweizer Finanz- und Immobilien-Kongress 2026 im Kunsthaus Zürich",
+   "HEDO Release-Informationen 3Q 2026",
+   "IAZI Preisindizes für Immobilien 3. Quartal 2026"
+  ],
   "robots_ok": true,
-  "group": "Weitere"
+  "group": "Regionalmedien"
  },
  {
-  "name": "Immobilien Business de",
-  "url": "https://www.immobilienbusiness.ch/de/",
-  "error": "HTTP Error 403: Forbidden",
-  "robots_ok": true,
-  "group": "Weitere"
- },
- {
-  "name": "Wohnbaugenossenschaften Schweiz",
-  "url": "https://www.wbg-schweiz.ch/aktuell",
+  "name": "Wüest Partner",
+  "url": "https://www.wuestpartner.com/ch-de/news/",
   "error": "HTTP Error 404: Not Found",
   "robots_ok": true,
-  "group": "Weitere"
+  "group": "Regionalmedien"
  },
  {
-  "name": "Stadt Zug Medien",
-  "url": "https://stadtzug.ch/de/news",
+  "name": "moneycab Immobilien",
+  "url": "https://www.moneycab.com/feed/",
   "status": 200,
-  "html": true,
-  "links": [],
-  "title": "News",
+  "feed": "https://www.moneycab.com/feed/",
+  "items": 40,
+  "latest": "2026-11-07",
+  "sample": [
+   "Trump ersetzt Stabschefin Wiles durch Hardliner Miller",
+   "Moneycab-App aktualisiert",
+   "US-Schluss: Tech-Sektor erholt sich etwas nach Ausverkauf"
+  ],
   "robots_ok": true,
-  "group": "Weitere"
+  "group": "Regionalmedien"
  }
 ]
