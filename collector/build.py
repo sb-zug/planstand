@@ -128,26 +128,55 @@ def bald(m: dict) -> bool:
     return bool(d) and d <= date.fromordinal(TODAY.toordinal() + 365)
 
 
-def planbild(p: dict) -> str:
-    """Projektbild, sonst schematischer Situationsplan (deterministisch aus dem Slug)."""
+def planbild(p: dict, H: int = 250) -> str:
+    """Projektbild, sonst Situationsplan im Architekturstil (deterministisch aus dem Slug)."""
     if p.get("bild"):
         cr = f'<span class="credit">Bild: {e(p.get("bild_credit", ""))}</span>' if p.get("bild_credit") else ""
         return f'<img src="{e(p["bild"])}" alt="" loading="lazy">{cr}'
     import random
     r = random.Random(p["slug"])
-    shapes = []
-    for _ in range(r.randint(5, 9)):
-        w, h = r.choice([(r.randint(24, 60), r.randint(14, 24)), (r.randint(14, 22), r.randint(24, 56))])
-        x, y = r.randint(40, 300 - w - 40), r.randint(34, 200 - h - 34)
-        cls = "f" if r.random() < .45 else "o"
-        shapes.append(f'<rect class="{cls}" x="{x}" y="{y}" width="{w}" height="{h}"/>')
-    road = r.randint(60, 140)
-    return (f'<svg class="plan ph{p.get("phase", 3)}" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Schematischer Plan">'
-            f'<rect class="bg" width="300" height="200"/><path class="road" d="M0 {road} C 90 {road - 30}, 200 {road + 40}, 300 {road + 6}"/>'
-            f'<rect class="per" x="30" y="24" width="240" height="152"/>{"".join(shapes)}'
-            f'<g class="n"><path d="M274 14 l5 14 l-5 -4 l-5 4 z"/><text x="274" y="40">N</text></g>'
-            f'<g class="sc"><rect x="34" y="186" width="20" height="4"/><rect class="o" x="54" y="186" width="20" height="4"/>'
-            f'<rect x="74" y="186" width="20" height="4"/><text x="100" y="191">M 1:2000 · Schema</text></g></svg>')
+    W = 400
+    sid = re.sub(r"[^a-z0-9]", "", p["slug"])[:20] or "p"
+    ang = r.choice([-14, -9, -5, 6, 10])
+    out = []
+    # Umgebung: Nachbarblöcke (hell), Raster aus Strassen
+    for gx in range(-60, W + 60, 92):
+        for gy in range(-60, H + 60, 78):
+            if r.random() < .82:
+                w, h = r.randint(46, 70), r.randint(36, 58)
+                out.append(f'<rect class="nb" x="{gx + r.randint(4, 14)}" y="{gy + r.randint(4, 12)}" width="{w}" height="{h}"/>')
+                if r.random() < .6:
+                    out.append(f'<rect class="nh" x="{gx + r.randint(10, 20)}" y="{gy + r.randint(10, 18)}" width="{r.randint(14, 30)}" height="{r.randint(10, 22)}"/>')
+    hood = f'<g transform="rotate({ang} {W / 2} {H / 2})">{"".join(out)}</g>'
+    px, py, pw, ph = 70, (H - 140) // 2 - 6, 250, 140
+    ry = py + ph + r.randint(18, 40)
+    road = (f'<path class="rd" d="M-20 {ry} C 120 {ry - 40}, 260 {ry + 30}, 420 {ry - 10}"/>'
+            f'<path class="rdl" d="M-20 {ry} C 120 {ry - 40}, 260 {ry + 30}, 420 {ry - 10}"/>')
+    # Projektperimeter + Gebäude
+    bld = []
+    x = px + 16
+    while x < px + pw - 40:
+        w = r.randint(28, 52)
+        h = r.randint(36, 96)
+        y = py + r.randint(10, ph - h - 8) if ph - h - 8 > 10 else py + 10
+        lvl = r.choice(["b1", "b2", "b2", "b3"])
+        bld.append(f'<rect class="sh" x="{x + 5}" y="{y - 5}" width="{w}" height="{h}"/><rect class="{lvl}" x="{x}" y="{y}" width="{w}" height="{h}"/>')
+        if r.random() < .5 and h > 50:
+            bld.append(f'<line class="fl" x1="{x}" y1="{y + h / 2}" x2="{x + w}" y2="{y + h / 2}"/>')
+        x += w + r.randint(10, 22)
+    trees = "".join(f'<circle class="tr" cx="{r.randint(px - 30, px + pw + 30)}" cy="{r.choice([py - 10, py + ph + 12, r.randint(py, py + ph)])}" r="{r.choice([4, 5, 6])}"/>'
+                    for _ in range(26))
+    proj = (f'<g transform="rotate({ang} {W / 2} {H / 2})"><rect class="pa" x="{px}" y="{py}" width="{pw}" height="{ph}"/>'
+            f'{trees}{"".join(bld)}<rect class="per" x="{px - 8}" y="{py - 8}" width="{pw + 16}" height="{ph + 16}"/></g>')
+    defs = (f'<defs><pattern id="h{sid}" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">'
+            f'<line x1="0" y1="0" x2="0" y2="5" class="hl"/></pattern>'
+            f'<pattern id="g{sid}" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" class="gl"/></pattern></defs>'
+            f'<style>#s{sid} .b1,#s{sid} .b2,#s{sid} .b3{{fill:url(#h{sid})}}</style>')
+    return (f'<svg id="s{sid}" class="plan ph{p.get("phase", 3)}" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Situationsplan, schematisch">'
+            f'{defs}<rect class="bg" width="{W}" height="{H}"/><rect width="{W}" height="{H}" fill="url(#g{sid})"/>{hood}{road}{proj}'
+            f'<g class="n"><path d="M{W - 22} 12 l6 16 l-6 -5 l-6 5 z"/><text x="{W - 22}" y="40">N</text></g>'
+            f'<g class="sc"><rect x="14" y="{H - 14}" width="24" height="4"/><rect class="o" x="38" y="{H - 14}" width="24" height="4"/>'
+            f'<rect x="62" y="{H - 14}" width="24" height="4"/><text x="92" y="{H - 9}">0 – 100 m · Schema</text></g></svg>')
 
 
 CH_SVG = ('<svg class="ch" viewBox="0 0 102 70" role="img" aria-label="Schweizer Karte: Zürich und Zug erfasst">'
@@ -355,7 +384,7 @@ def build() -> None:
                 f'<div class="lbtn"><a class="btn sig" href="{u("artikel/" + a0["slug"] + "/")}">Leitartikel lesen →</a>'
                 f'<a class="btn ghost" href="{u("artikel/")}">Frühere Wochenbriefe</a></div>'
                 f'<a class="abo" href="{u("newsletter/")}"><span>Wochenbrief jeden Montag per Mail</span><b>Abonnieren →</b></a></article>'
-                f'<div class="lvis"><a class="vis" href="{u("artikel/" + a0["slug"] + "/")}" tabindex="-1" aria-hidden="true">{planbild(bildp)}</a>{sb}</div></section>')
+                f'<div class="lvis"><a class="vis" href="{u("artikel/" + a0["slug"] + "/")}" tabindex="-1" aria-hidden="true">{planbild(bildp, 420)}</a>{sb}</div></section>')
 
     # 2 Highlights: Projekte aus dem Wochenbrief, dann nächste Entscheide
     hl = ([p for p in projekte if artikel and p["slug"] in artikel[0].get("projekte", [])]
