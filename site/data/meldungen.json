@@ -1,6 +1,19 @@
 {
- "stand": "2026-11-07T17:46+00:00",
+ "stand": "2026-11-08T11:58+00:00",
  "meldungen": [
+  {
+   "id": "md-h-wohnen-bauen-baurechtsexperte-zug-muss-ueber-einzonung-reden-2909879",
+   "datum": "2026-11-08",
+   "typ": "Medien",
+   "titel": "Baurechtsexperte: «Zug muss über Einzonung reden»",
+   "beschrieb": "",
+   "kanton": "ZG",
+   "gemeinde": "Zug",
+   "frist": null,
+   "quelle": "zentralplus",
+   "url": "https://www.zentralplus.ch/wohnen-bauen/baurechtsexperte-zug-muss-ueber-einzonung-reden-2909879/",
+   "projekte": []
+  },
   {
    "id": "md-hnen-bauen-wartet-neuer-wohnraum-nur-darauf-gefunden-zu-werden-2909935",
    "datum": "2026-11-07",
