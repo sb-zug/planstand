@@ -20,14 +20,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SITE, DATA, OUT = ROOT / "site", ROOT / "site" / "data", ROOT / "_site"
 NAME = "Planstand"
-CLAIM = "Immobilien- und Arealentwicklung in Zug und Zürich"
+CLAIM = "Immobilien- und Arealentwicklung in der Schweiz"
 SITE_URL = os.environ.get("SITE_URL", "https://sb-zug.github.io/planstand")
 BASE = os.environ.get("BASE_PATH", "/planstand/")
 TODAY = date.today()
 
 PHASEN = ["Planung", "Mitwirkung", "Parlament", "Abstimmung", "Bewilligung", "Bau", "Bezug"]
 MON = ["Jan.", "Feb.", "März", "Apr.", "Mai", "Juni", "Juli", "Aug.", "Sept.", "Okt.", "Nov.", "Dez."]
-KT = {"ZG": "Kanton Zug", "ZH": "Kanton Zürich"}
+KANTONE = {"AG": "Aargau", "AI": "Appenzell Innerrhoden", "AR": "Appenzell Ausserrhoden", "BE": "Bern", "BL": "Basel-Landschaft",
+           "BS": "Basel-Stadt", "FR": "Freiburg", "GE": "Genf", "GL": "Glarus", "GR": "Graubünden", "JU": "Jura", "LU": "Luzern",
+           "NE": "Neuenburg", "NW": "Nidwalden", "OW": "Obwalden", "SG": "St. Gallen", "SH": "Schaffhausen", "SO": "Solothurn",
+           "SZ": "Schwyz", "TG": "Thurgau", "TI": "Tessin", "UR": "Uri", "VD": "Waadt", "VS": "Wallis", "ZG": "Zug", "ZH": "Zürich"}
+KT = {k: f"Kanton {v}" for k, v in KANTONE.items()}
+AKTIV = ("ZH", "ZG")  # Kantone mit Datenabdeckung (Ausbau Kanton um Kanton)
 
 e = html.escape
 
@@ -80,15 +85,16 @@ def page(path: str, title: str, desc: str, body: str, rss: str | None = None) ->
 <link rel="stylesheet" href="{u('assets/app.css')}">{feed}
 <link rel="alternate" type="application/rss+xml" title="{NAME} – alle Meldungen" href="{u('rss.xml')}">
 </head><body>
-<div class="plankopf"><div class="wrap"><span>Plan Nr. {TODAY.isocalendar()[1]:02d}/{TODAY.year}</span><span>Kantone ZG · ZH</span><span class="pk-hide">Massstab 1:1</span><span>Stand {TODAY.strftime("%d.%m.%Y")}</span></div></div>
+<div class="plankopf"><div class="wrap"><span>Plan Nr. {TODAY.isocalendar()[1]:02d}/{TODAY.year}</span><span>Schweiz · Daten ZG, ZH</span><span class="pk-hide">Massstab 1:1</span><span>Stand {TODAY.strftime("%d.%m.%Y")}</span></div></div>
 <header class="top"><div class="wrap"><a class="logo" href="{u('')}"><i aria-hidden="true"><b style="background:var(--p1)"></b><b style="background:var(--p3)"></b><b style="background:var(--p5)"></b><b style="background:var(--p7)"></b></i>{NAME}<span>Beta</span></a><span class="claim">{CLAIM}</span>
-<nav><a href="{u('meldungen/')}">News</a><a href="{u('projekte/')}">Projekte</a><a href="{u('orte/')}">Orte</a><a href="{u('termine/')}">Termine</a>
-<a href="{u('projekt-melden/')}" class="nl">Projekt melden</a></nav></div></header>
+<nav><a href="{u('meldungen/')}">News</a><a href="{u('projekte/')}">Projekte</a><a href="{u('kantone/')}">Kantone</a><a href="{u('termine/')}">Termine</a>
+<a href="{u('newsletter/')}" class="nl">Wochenbrief</a></nav></div></header>
 <main class="wrap">{body}</main>
 <footer class="foot"><div class="wrap"><p><b>{NAME}</b> sammelt automatisch amtliche Publikationen, Medienmitteilungen und
-Projektinformationen zu Immobilien- und Arealentwicklungen in den Kantonen Zug und Zürich. Massgebend sind die verlinkten
+Projektinformationen zur Immobilien- und Arealentwicklung in der Schweiz. Datenabdeckung derzeit Kantone Zürich und Zug,
+weitere Kantone folgen. Massgebend sind die verlinkten
 Originalquellen. Medienberichte werden nur verlinkt. Prototyp, Stand {dlabel(TODAY.isoformat())}.</p>
-<p><a href="{u('newsletter/')}">Newsletter</a> · <a href="{u('baugesuche/')}">Baugesuch-Radar</a> · <a href="{u('projekt-melden/')}">Projekt melden</a> · <a href="{u('rss.xml')}">RSS</a> · <a href="{u('ueber/')}">Über Planstand</a></p></div></footer>
+<p><a href="{u('newsletter/')}">Newsletter</a> · <a href="{u('baugesuche/')}">Baugesuch-Radar</a> · <a href="{u('kantone/')}">Kantone</a> · <a href="{u('projekt-melden/')}">Projekt melden</a> · <a href="{u('rss.xml')}">RSS</a> · <a href="{u('ueber/')}">Über Planstand</a></p></div></footer>
 </body></html>"""
     f = OUT / path.lstrip("/")
     if path.endswith("/") or path == "":
@@ -183,6 +189,14 @@ def ortkachel(k: str, o: dict) -> str:
                   for i in range(1, 8) if (c := sum(1 for p in ps if p["phase"] == i)))
     return (f'<a class="ort" href="{u("orte/" + k + "/")}"><b>{e(o["name"])}</b><span>{KT[o["kanton"]]}</span>'
             f'<span class="bar">{seg}</span><span>{len(ps)} Projekte · {len(o["m"])} Meldungen</span></a>')
+
+
+def kantkachel(kt: str, ps: list, n_orte: int) -> str:
+    """Kachel für einen Kanton (Ebene 2): Name, Zahlen, Phasen-Streifen."""
+    seg = "".join(f'<i class="ph{i}" style="flex:{c}" title="{PHASEN[i - 1]}: {c}"></i>'
+                  for i in range(1, 8) if (c := sum(1 for p in ps if p["phase"] == i)))
+    return (f'<a class="ort" href="{u("kantone/" + kt.lower() + "/")}"><b>{e(KANTONE[kt])}</b><span>{kt}</span>'
+            f'<span class="bar">{seg}</span><span>{len(ps)} Projekte · {n_orte} Orte</span></a>')
 
 
 def _cut(t: str, n: int) -> str:
@@ -367,12 +381,16 @@ def build() -> None:
     # Ortswahl: Orte mit Projekt-Dossiers, grösste zuerst
     haupt = sorted(((k, o) for k, o in orte.items() if o["p"]), key=lambda kv: (-len(kv[1]["p"]), kv[1]["name"]))
     ort_html = "".join(ortkachel(k, o) for k, o in haupt)
+    kant_html = "".join(kantkachel(kt, [p for p in projekte if p["kanton"] == kt],
+                                   sum(1 for o in orte.values() if o["kanton"] == kt and o["p"])) for kt in AKTIV)
+    kant_html += (f'<a class="ort off" href="{u("kantone/")}"><b>{26 - len(AKTIV)} weitere Kantone</b><span>in Vorbereitung</span>'
+                  f'<span class="bar"></span><span>Ausbau Kanton um Kanton</span></a>')
     n0 = termine[0] if termine else None
     nxt0 = (f'<a class="nxt" href="{u("projekte/" + n0[1]["slug"] + "/")}"><span>Nächster Entscheid</span>'
             f'<b>{e(dlabel(n0[2]["datum"]))} →</b><small>{e(n0[1]["titel"])}</small></a>' if n0 else "")
-    mast = (f'<section class="mast"><div class="wm"><h1>Planstand</h1><p>Was in Zug und Zürich geplant, entwickelt und gebaut wird.</p></div>'
+    mast = (f'<section class="mast"><div class="wm"><h1>Planstand</h1><p>Was in der Schweiz geplant, entwickelt und gebaut wird. Im Überblick für die Branche, im Detail bis zum Projekt.</p></div>'
             f'<div class="stats"><div><b>{len(projekte)}</b><span>Projekte<br>im Fokus</span></div>'
-            f'<div><b>{len(haupt)}</b><span>Orte<br>({e(", ".join(o["name"] for _, o in haupt[:3]))})</span></div>'
+            f'<div><b>{len(AKTIV)}</b><span>von 26 Kantonen<br>({e(", ".join(KANTONE[k] for k in AKTIV))})</span></div>'
             f'<div><b>{wohn30}</b><span>Wohnungen<br>beantragt (30 Tage)</span></div>{nxt0}</div></section>')
     body = (mast
             + f'<div class="row1">{buehne}<section class="termine"><h2 class="sh">Nächste Termine</h2><ul>{term_html}</ul>'
@@ -381,7 +399,7 @@ def build() -> None:
               f'<div class="pcards">{akt_html}</div></section>'
               f'<section><div class="sh"><h2>Entwicklungen</h2><a href="{u("meldungen/")}">Alle News →</a></div><ul class="entw">{entw}</ul></section>'
               f'<section><div class="sh"><h2>Kennzahlen</h2></div>{kz}</section></div>'
-            + f'<div class="row3"><section><div class="sh"><h2>Orte</h2><a href="{u("orte/")}">Alle Orte →</a></div><div class="orte">{ort_html}</div></section>'
+            + f'<div class="row3"><section><div class="sh"><h2>Kantone</h2><a href="{u("kantone/")}">Alle Kantone →</a></div><div class="orte">{kant_html}</div></section>'
               f'<section class="pitch"><b>Sie entwickeln, bauen oder vermarkten?</b><p>Senden Sie uns Ihre Medienmitteilung oder tragen Sie Ihr Projekt ein. '
               f'Planstand begleitet es von der Planung bis zum Bezug.</p><a class="btn" href="{u("projekt-melden/")}">Projekt melden</a> '
               f'<a class="btn ghost" href="{u("newsletter/")}">Wochenbrief abonnieren</a></section></div>'
@@ -447,7 +465,7 @@ def build() -> None:
         fakten = "".join(f"<dt>{e(a)}</dt><dd>{e(b)}</dd>" for a, b in p.get("fakten", []))
         links = "".join(f'<li><a href="{e(b)}" rel="noopener" target="_blank">{e(a)}</a></li>' for a, b in p.get("links", []))
         pm = [m for m in meldungen if p["slug"] in m.get("projekte", [])]
-        body = (f'<div class="ph{p["phase"]}"><p class="crumb"><a href="{u("orte/" + p["kslug"] + "/")}">{e(p["gemeinde"])}</a>, {e(p.get("art", ""))}</p>'
+        body = (f'<div class="ph{p["phase"]}"><p class="crumb"><a href="{u("kantone/" + p["kanton"].lower() + "/")}">{KT[p["kanton"]]}</a> › <a href="{u("orte/" + p["kslug"] + "/")}">{e(p["gemeinde"])}</a> · {e(p.get("art", ""))}</p>'
                 f'<h1>{e(p["titel"])}</h1><p class="lead">{e(p.get("untertitel", ""))}</p>{phasebar(p["phase"])}'
                 + (f'<div class="nextbox"><b>Nächster Schritt, {e(dlabel(n["datum"]))}:</b> {e(n["text"])}</div>' if n else "")
                 + f'<section class="two"><div><p>{e(p.get("kurz", ""))}</p>'
@@ -463,7 +481,7 @@ def build() -> None:
 
     # Orte
     lst = ""
-    for kt in ("ZG", "ZH"):
+    for kt in AKTIV:
         items = sorted(((k, o) for k, o in orte.items() if o["kanton"] == kt), key=lambda kv: kv[1]["name"])
         lst += (f'<section><h2>{KT[kt]}</h2><ul class="olist">' + "".join(
             f'<li><a href="{u("orte/" + k + "/")}">{e(o["name"])}</a> <span>{len(o["p"])} Projekte · {len(o["m"])} Meldungen</span></li>'
@@ -475,7 +493,7 @@ def build() -> None:
         tm = sorted(((mdate(n["datum"]), p, n) for p in o["p"] if (n := next_step(p)) and mdate(n["datum"]) and bald(n)), key=lambda t: t[0])
         tm_html = "".join(f'<li><span class="meta">{e(dlabel(n["datum"]))}</span><a href="{u("projekte/" + p["slug"] + "/")}">'
                           f'{e(p["titel"])}</a><span class="d">{e(n["text"])}</span></li>' for _, p, n in tm)
-        body = (f'<p class="crumb"><a href="{u("orte/")}">Orte</a> · {KT[o["kanton"]]}</p>'
+        body = (f'<p class="crumb"><a href="{u("kantone/")}">Schweiz</a> › <a href="{u("kantone/" + o["kanton"].lower() + "/")}">{KT[o["kanton"]]}</a> › {e(o["name"])}</p>'
                 + (board(o["p"], f'Bauprojekte in {o["name"]}', f'{len(o["p"])} Projekte von der ersten Planung bis zum Bezug.')
                    if o["p"] else f'<h1>{e(o["name"])}</h1><p class="note">Noch keine Projekt-Steckbriefe. '
                    f'<a href="{u("projekt-melden/")}">Projekt melden</a></p>')
@@ -485,6 +503,42 @@ def build() -> None:
         page(f"orte/{k}/", f'Bauprojekte {o["name"]}', f'Bauprojekte, Baugesuche und Planungen in {o["name"]} '
              f'({KT[o["kanton"]]}): Phase, nächste Schritte, amtliche Meldungen.', body, f"orte/{k}/rss.xml")
         rss(f"orte/{k}/rss.xml", f'{NAME} – {o["name"]}', o["m"])
+
+    # Kantone (Ebene 2): Pipeline, nächste Entscheide, Orte, News
+    zeilen = ""
+    for kt in sorted(KANTONE, key=lambda k: (k not in AKTIV, KANTONE[k])):
+        if kt in AKTIV:
+            zeilen += (f'<li><a href="{u("kantone/" + kt.lower() + "/")}">{e(KT[kt])}</a> <span>{sum(1 for p in projekte if p["kanton"] == kt)} Projekte · '
+                       f'{sum(1 for o in orte.values() if o["kanton"] == kt)} Gemeinden mit Meldungen</span></li>')
+        else:
+            zeilen += f'<li class="off">{e(KT[kt])} <span>in Vorbereitung</span></li>'
+    kk = "".join(kantkachel(kt, [p for p in projekte if p["kanton"] == kt],
+                            sum(1 for o in orte.values() if o["kanton"] == kt and o["p"])) for kt in AKTIV)
+    page("kantone/", "Kantone", "Immobilien- und Arealentwicklung nach Kanton: Projekte, Phasen und nächste Entscheide.",
+         f'<p class="crumb">Schweiz</p><h1>Kantone</h1><p class="lead">Planstand berichtet national und baut die Datentiefe Kanton um Kanton aus. '
+         f'Erfasst sind derzeit {", ".join(KANTONE[k] for k in AKTIV)}.</p><div class="orte">{kk}</div>'
+         f'<section><h2>Alle Kantone</h2><ul class="olist">{zeilen}</ul></section>')
+    for kt in AKTIV:
+        kp = [p for p in projekte if p["kanton"] == kt]
+        km = [m for m in meldungen if m.get("kanton") == kt]
+        kbg = [m for m in bg30 if m.get("kanton") == kt]
+        ktm = sorted(((mdate(n["datum"]), p, n) for p in kp if (n := next_step(p)) and mdate(n["datum"]) and bald(n)), key=lambda t: t[0])
+        ktm_html = "".join(f'<li>{dblock(n, i == 0)}<span><a href="{u("projekte/" + p["slug"] + "/")}">{e(p["titel"])}</a>'
+                           f'<small>{e(p["gemeinde"])} · {e(n["text"])}</small></span></li>' for i, (_, p, n) in enumerate(ktm[:8]))
+        ko = sorted(((k, o) for k, o in orte.items() if o["kanton"] == kt and o["p"]), key=lambda kv: (-len(kv[1]["p"]), kv[1]["name"]))
+        body = (f'<p class="crumb"><a href="{u("kantone/")}">Schweiz</a> › {e(KT[kt])}</p>'
+                f'<section class="mast"><div class="wm"><h1>{e(KT[kt])}</h1><p>Pipeline der grösseren Immobilien- und Arealprojekte, '
+                f'nächste Entscheide und News.</p></div><div class="stats"><div><b>{len(kp)}</b><span>Projekte<br>im Fokus</span></div>'
+                f'<div><b>{len(ko)}</b><span>Orte mit<br>Dossiers</span></div><div><b>{sum(wohnungen(m) for m in kbg)}</b>'
+                f'<span>Wohnungen<br>beantragt (30 Tage)</span></div></div></section>'
+                + (board(kp, "Pipeline", f'{len(kp)} Projekte von der ersten Planung bis zum Bezug.') if kp else
+                   '<p class="note">Noch keine Projekt-Steckbriefe.</p>')
+                + (f'<section class="termine voll"><h2 class="sh">Nächste Entscheide</h2><ul>{ktm_html}</ul></section>' if ktm_html else "")
+                + (f'<section><div class="sh"><h2>Orte</h2><a href="{u("orte/")}">Alle Orte →</a></div><div class="orte">'
+                   f'{"".join(ortkachel(k, o) for k, o in ko)}</div></section>' if ko else "")
+                + f'<section><div class="sh"><h2>News</h2></div>{mlist([m for m in km if m["typ"] != "Baugesuch"][:40])}</section>')
+        page(f"kantone/{kt.lower()}/", f"Immobilienprojekte {KT[kt]}", f"Immobilien- und Arealentwicklung im {KT[kt]}: "
+             f"Projekt-Pipeline nach Phase, nächste Entscheide, Orte und News.", body)
 
     page("meldungen/", "News", "News zur Immobilien- und Arealentwicklung in Zug und Zürich: Medienmitteilungen, Planungen, Medienberichte.",
          f'<h1>News</h1><p class="note">Medienmitteilungen, Planungsentscheide und Medienberichte. Baugesuche finden Sie im '

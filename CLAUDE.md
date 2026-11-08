@@ -18,11 +18,15 @@ Sprache: Deutsch (Schweiz, «ss» statt «ß»).
    Automatisch beobachtet werden bereits: siehe NEWSROOMS und FEEDS in collector/collect.py (Diagnose: site/data/newsroom_debug.json).
 6. Wochenartikel «Die Woche» in `site/data/artikel.json` schreiben (vorne einfügen): Titel mit den 2 wichtigsten Themen, Lead,
    4–6 Absätze mit **fettem** Einstieg, nur Fakten aus Originalquellen (Medienmitteilungen, Amtsblatt, Projektseiten), Quellenliste.
-   Planstand ist ein Medium für die Branche (Entwickler, Eigentümer, Vermarkter), kein Baugesuch-Verzeichnis: Projekte und Entscheide vor Baugesuchen.
+   Planstand ist «das Immobilien Business der Zukunft»: Branchenmedium für die ganze Schweiz (Entwickler, Eigentümer, Vermarkter),
+   hohe Flughöhe im Text, Tiefe dank Daten. Kein Baugesuch-Verzeichnis: Projekte und Entscheide vor Baugesuchen.
 7. `python3 tests/test_collect.py && python3 collector/build.py` laufen lassen, dann committen und pushen.
 
 ## Leitplanken
-- Startseite bleibt allgemein (Ortswahl, Nächste Entscheide, News). Die Phasen-Tafel gibt es nur auf den Ortsseiten (`/orte/<kt>/<gemeinde>/`), leere Phasen werden ausgeblendet.
+- Drei Ebenen: Schweiz (Startseite, Wochenbrief) → Kanton (`/kantone/<kt>/`: Pipeline, nächste Entscheide, Orte, News) → Projekt (Steckbrief).
+  Ortsseiten (`/orte/<kt>/<gemeinde>/`) bleiben als Vertiefung. Phasen-Tafel nur auf Kantons- und Ortsseiten, leere Phasen ausgeblendet.
+- Text national, Datentiefe Kanton um Kanton: erfasste Kantone in `AKTIV` (collector/build.py). Neuer Kanton erst mit Quellen und mehreren Steckbriefen.
+- Baugesuch-Radar und «Projekt melden» sind Rohstoff für die Datenbank, keine Hauptprodukte (nicht in die Hauptnavigation).
 - Einen Ort erst mit mehreren Projekt-Steckbriefen ausbauen; Stadt Zürich und Stadt Zug haben Vorrang.
 - Keine Personendaten privater Bauherrschaften publizieren.
 - Keine Kundenprojekte von Creafactory ohne ausdrückliche Freigabe von Sergio aufnehmen.

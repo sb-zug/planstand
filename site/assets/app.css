@@ -282,3 +282,8 @@ svg.plan{display:block;width:100%;height:100%}
 .plan .sc rect{fill:var(--ink)}.plan .sc text{text-anchor:start;font-size:8px}
 .vis img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);display:block}
 .vis .credit{position:absolute;right:6px;bottom:4px;background:var(--surface);padding:0 4px}
+
+/* Kantone (Ebene 2): noch nicht erfasste Kantone gedämpft */
+.ort.off{opacity:.5;border-style:dashed}
+.ort.off .bar{background:repeating-linear-gradient(90deg,var(--line,#999) 0 4px,transparent 4px 8px)}
+.olist li.off{opacity:.5}
