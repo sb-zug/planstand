@@ -333,7 +333,7 @@ def build() -> None:
     if artikel:
         a0 = artikel[0]
         rp = next((p for p in projekte if p["slug"] in a0.get("projekte", [])), None)
-        slides.append((planbild(rp) if rp else planbild({"slug": a0["slug"], "phase": 3}), f'Die Woche / {dlabel(a0["datum"])}',
+        slides.append((planbild(rp) if rp else planbild({"slug": a0["slug"], "phase": 3}), f'{a0["rubrik"]} / {dlabel(a0["datum"])}',
                        a0["titel"], a0["lead"], u("artikel/" + a0["slug"] + "/"), "Weiterlesen"))
     buehne_p = [p for p in aktiv if next_step(p)][:2]
     for p in buehne_p:
@@ -418,15 +418,24 @@ def build() -> None:
 
     # Artikel
     for a in artikel:
-        txt = "".join("<p>" + re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", e(t)) + "</p>" for t in a["absaetze"])
+        fett = lambda t: re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", e(t))
+        txt = "".join("<p>" + fett(t) + "</p>" for t in a.get("absaetze", []))
+        if a.get("top"):  # Wochenbrief: Zahlen der Woche, Top 5, Einordnung
+            zl = "".join(f'<div class="kz"><b>{e(z["wert"])}</b><span>{e(z["text"])}</span></div>' for z in a.get("zahlen", []))
+            tp = "".join(f'<li><span class="meta">{e(t.get("ort", ""))}</span><h3>{e(t["titel"])}</h3><p>{fett(t["text"])}</p>'
+                         + (f'<a href="{e(t["quelle"][1])}" rel="noopener" target="_blank">{e(t["quelle"][0])}</a>' if t.get("quelle") else "")
+                         + "</li>" for t in a["top"])
+            txt = ((f'<h2 class="sh">Zahlen der Woche</h2><div class="wb-zahlen">{zl}</div>' if zl else "")
+                   + f'<h2 class="sh">Die {len(a["top"])} wichtigsten Entwicklungen</h2><ol class="wb-top">{tp}</ol>'
+                   + (f'<h2 class="sh">Einordnung</h2>{txt}' if txt else ""))
         q = "".join(f'<li><a href="{e(b)}" rel="noopener" target="_blank">{e(l)}</a></li>' for l, b in a.get("quellen", []))
         rel = "".join(card(p) for p in projekte if p["slug"] in a.get("projekte", []))
         page(f'artikel/{a["slug"]}/', a["titel"], a["lead"],
              f'<article class="artikel"><span class="rubrik">{e(a["rubrik"])}</span> <span class="meta" style="display:inline-flex">{e(dlabel(a["datum"]))}, Redaktion Planstand</span>'
              f'<h1>{e(a["titel"])}</h1><p class="lead">{e(a["lead"])}</p>{txt}<h3>Quellen</h3><ul class="links">{q}</ul></article>'
              + (f'<section><h2>Projekte in diesem Artikel</h2><div class="grid">{rel}</div></section>' if rel else ""))
-    page("artikel/", "Artikel", "Wochenüberblick und Hintergründe zur Immobilien- und Arealentwicklung in Zug und Zürich.",
-         "<h1>Artikel</h1>" + "".join(f'<article class="hero-a small"><span class="rubrik">{e(a["rubrik"])}</span> <span class="meta" style="display:inline-flex">{e(dlabel(a["datum"]))}</span>'
+    page("artikel/", "Wochenbrief", "Der Planstand-Wochenbrief: die wichtigsten Entwicklungen und Zahlen der Immobilien- und Arealentwicklung in der Schweiz.",
+         "<h1>Wochenbrief</h1>" + "".join(f'<article class="hero-a small"><span class="rubrik">{e(a["rubrik"])}</span> <span class="meta" style="display:inline-flex">{e(dlabel(a["datum"]))}</span>'
                                       f'<h2><a href="{u("artikel/" + a["slug"] + "/")}">{e(a["titel"])}</a></h2><p>{e(a["lead"])}</p></article>' for a in artikel))
 
     # Baugesuch-Radar
@@ -543,9 +552,9 @@ def build() -> None:
     page("meldungen/", "News", "News zur Immobilien- und Arealentwicklung in Zug und Zürich: Medienmitteilungen, Planungen, Medienberichte.",
          f'<h1>News</h1><p class="note">Medienmitteilungen, Planungsentscheide und Medienberichte. Baugesuche finden Sie im '
          f'<a href="{u("baugesuche/")}">Baugesuch-Radar</a>.</p>{mlist([m for m in meldungen if m["typ"] != "Baugesuch"][:300])}')
-    page("newsletter/", "Newsletter", "Der Planstand-Newsletter: jede Woche die wichtigsten Schritte bei Bauvorhaben in Zug und Zürich.",
-         '<h1>Wochen-Newsletter</h1><p>Jede Woche die wichtigsten Schritte bei Immobilien- und Arealprojekten in Zug und Zürich: '
-         'neue Projekte, Auflagen, Abstimmungen, Baugesuche. Kostenlos.</p><p class="note">Anmeldung folgt in Kürze. '
+    page("newsletter/", "Newsletter", "Der Planstand-Wochenbrief: jede Woche die wichtigsten Entwicklungen der Immobilien- und Arealentwicklung in der Schweiz.",
+         '<h1>Wochenbrief</h1><p>Jede Woche die fünf wichtigsten Entwicklungen und die Zahlen der Woche aus der Immobilien- '
+         'und Arealentwicklung in der Schweiz: Projekte, Entscheide, Termine. Kostenlos.</p><p class="note">Anmeldung folgt in Kürze. '
          f'Bis dahin: <a href="{u("rss.xml")}">RSS-Feed</a>.</p>')
     page("ueber/", "Über", "Was Planstand ist, woher die Daten stammen und wie sie aktualisiert werden.",
          '<h1>Über Planstand</h1><p>Planstand ist ein unabhängiges Online-Medium zur Immobilien- und Arealentwicklung in den '

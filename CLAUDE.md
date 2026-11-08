@@ -16,8 +16,11 @@ Sprache: Deutsch (Schweiz, «ss» statt «ß»).
    oder Projekt-Eintrag aufnehmen: Mobimo, Allreal, Implenia, Steiner, HRS, PSP Swiss Property, Pensimo/Turidomus/Adimora,
    Swiss Life AM, UBS/Zürich Anlagestiftung, Ecoreal, SBB Immobilien, Senn, Walde, Ginesta, Livit, PWG, ABZ, Allgemeine BG Zürich.
    Automatisch beobachtet werden bereits: siehe NEWSROOMS und FEEDS in collector/collect.py (Diagnose: site/data/newsroom_debug.json).
-6. Wochenartikel «Die Woche» in `site/data/artikel.json` schreiben (vorne einfügen): Titel mit den 2 wichtigsten Themen, Lead,
-   4–6 Absätze mit **fettem** Einstieg, nur Fakten aus Originalquellen (Medienmitteilungen, Amtsblatt, Projektseiten), Quellenliste.
+6. Wochenbrief in `site/data/artikel.json` schreiben (vorne einfügen; Format wie `wochenbrief-2026-45`): slug `wochenbrief-JJJJ-KW`,
+   rubrik «Wochenbrief», titel (2–3 wichtigste Themen), lead (2 Sätze), `zahlen` (3 Kennzahlen: wert + text mit Quelle, mind. eine
+   nationale, eine aus den Planstand-Daten), `top` (5 Entwicklungen: ort, titel, text 2–3 Sätze, quelle [Label, URL]; mind. eine
+   nationale bzw. ausserhalb ZG/ZH), `absaetze` = Einordnung (2–3 Absätze mit **fettem** Einstieg, inkl. Ausblick nächste Woche),
+   quellen, projekte, orte. Nur Fakten aus Originalquellen, eigene Worte.
    Planstand ist «das Immobilien Business der Zukunft»: Branchenmedium für die ganze Schweiz (Entwickler, Eigentümer, Vermarkter),
    hohe Flughöhe im Text, Tiefe dank Daten. Kein Baugesuch-Verzeichnis: Projekte und Entscheide vor Baugesuchen.
 7. `python3 tests/test_collect.py && python3 collector/build.py` laufen lassen, dann committen und pushen.
