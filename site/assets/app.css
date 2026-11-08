@@ -343,7 +343,7 @@ svg.plan{display:block;width:100%;height:100%}
 .hf b{font:700 14px var(--font);color:var(--ink);letter-spacing:0}
 
 .row4{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr);gap:48px;align-items:start}
-@media(max-width:1000px){.row4{grid-template-columns:1fr}}
+@media(max-width:1000px){.row4{grid-template-columns:minmax(0,1fr)}}
 .filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 16px}
 @media(max-width:700px){.filter{grid-template-columns:1fr 1fr}}
 .filter label{display:flex;flex-direction:column;gap:6px;font:11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
@@ -353,7 +353,7 @@ svg.plan{display:block;width:100%;height:100%}
 .phead{padding:10px 0;border-bottom:1px solid var(--ink);font:11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 .prow{padding:13px 0;border-bottom:1px solid var(--line);text-decoration:none}
 .prow:hover{background:rgba(255,255,255,.7)}.prow:hover b{text-decoration:underline;text-decoration-color:var(--sig)}
-.pn{display:flex;flex-direction:column}.pn b{font-size:16px}.pn small{font-size:13px;color:var(--muted)}
+.pn{display:flex;flex-direction:column}.pn em{display:none;font-style:normal}.pn b{font-size:16px}.pn small{font-size:13px;color:var(--muted)}
 .pk{font:600 13px var(--mono)}.pa{font-size:14px;color:#33406B}.px{font:13px var(--mono)}
 .pp{display:flex;flex-direction:column;gap:5px}.pp small{font:11px var(--mono);text-transform:uppercase;letter-spacing:.04em}
 .seg{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}.seg i{height:6px;background:rgba(22,35,90,.13)}.seg i.d{background:var(--ink)}.seg i.n{background:var(--sig)}
@@ -386,7 +386,40 @@ main.wrap{background:transparent}
   .ltxt h1{font-size:30px}
   .ltxt p{font-size:16px}
   .lbtn .btn{padding:11px 14px;font-size:14px}
-  .lvis .vis{min-height:220px}
+  .lvis .vis{height:230px;min-height:0;flex:none}
+  .abo span{font-size:10px}
   .lsb{padding:16px}.lsb div{flex-direction:row;justify-content:space-between;align-items:baseline;gap:12px}.lsb div span{order:-1}
   .hb>b{font-size:20px}
+}
+
+/* ===== Handy-Version (≤ 640 px) ===== */
+html,body{overflow-x:clip}
+@media(max-width:640px){
+  body{font-size:16px}
+  .sh,h2.sh{padding:10px 0;margin:0 0 14px}.sh h2,h2.sh{font-size:13px;letter-spacing:.14em}.sh a{font-size:14px}
+  .cnt{font-size:11px}.high .cnt{display:none}
+  /* Highlights: wischbare Karten */
+  .high{margin:0 0 36px}
+  .hgrid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 6px;scroll-padding-inline:16px;scrollbar-width:none}
+  .hgrid::-webkit-scrollbar{display:none}
+  .hcard{flex:0 0 82%;scroll-snap-align:start}
+  .hcard .vis{aspect-ratio:16/9}
+  .hb{padding:14px}.hb>b{font-size:19px}.hb>small{font-size:13px}
+  /* Filter kompakt */
+  .filter{grid-template-columns:1fr 1fr;gap:8px}
+  .filter label{font-size:10px;gap:4px}
+  .filter select{min-height:42px;font-size:14px;padding:0 28px 0 10px;background-position:right 10px center}
+  /* Projektliste als Karten statt Tabelle */
+  .ptab{overflow:visible}
+  .phead{display:none}
+  .prow{min-width:0;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pk" "pp px";gap:8px 12px;padding:14px 0}
+  .pn{grid-area:pn}.pn em{display:inline}.pk{grid-area:pk;align-self:start;justify-self:end;width:auto;border:1px solid var(--ink);padding:2px 6px;font-size:11px}
+  .pa{display:none}.pp{grid-area:pp}.px{grid-area:px;align-self:end;font-size:12px;text-align:right}
+  .pn b{font-size:16px;line-height:1.2}
+  /* Seitenspalte */
+  .side2{gap:28px;margin-top:8px}
+  .termine li{grid-template-columns:62px 1fr;gap:12px}
+  .dat b{font-size:20px}
+  .ch{max-width:200px}
+  .foot{margin-top:40px}
 }

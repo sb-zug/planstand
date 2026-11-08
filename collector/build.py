@@ -82,7 +82,7 @@ def page(path: str, title: str, desc: str, body: str, rss: str | None = None) ->
 <link rel="canonical" href="{e(canon)}"><meta property="og:title" content="{e(full)}">
 <meta property="og:description" content="{e(desc)}"><meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.bunny.net"><link rel="stylesheet" href="https://fonts.bunny.net/css?family=schibsted-grotesk:400,500,600,700,800|ibm-plex-mono:400,500&display=swap">
-<link rel="stylesheet" href="{u('assets/app.css')}">{feed}
+<link rel="stylesheet" href="{u('assets/app.css')}?v={CSSV}">{feed}
 <link rel="alternate" type="application/rss+xml" title="{NAME} – alle Meldungen" href="{u('rss.xml')}">
 </head><body>
 <div class="plankopf"><div class="wrap"><span>Wochenbrief Nr. {TODAY.isocalendar()[1]:02d} · KW {TODAY.isocalendar()[1]:02d}/{TODAY.year}</span><span class="pk-hide">47°10′ N · 8°31′ E</span><span>Stand {TODAY.strftime("%d.%m.%Y")}</span><span>Schweiz · Daten ZG, ZH</span></div></div>
@@ -104,6 +104,8 @@ Originalquellen. Medienberichte werden nur verlinkt. Prototyp, Stand {dlabel(TOD
 
 
 PAGES: list[str] = []
+import hashlib
+CSSV = hashlib.md5((SITE / "assets" / "app.css").read_bytes()).hexdigest()[:8]
 LOGO = "".join(f'<b class="{c}"></b>' for c in "nnnnnoonnoonnnnn")
 
 
@@ -129,54 +131,50 @@ def bald(m: dict) -> bool:
 
 
 def planbild(p: dict, H: int = 250) -> str:
-    """Projektbild, sonst Situationsplan im Architekturstil (deterministisch aus dem Slug)."""
+    """Projektbild, sonst Situationsplan im Architekturstil (Platzhalter, deterministisch aus dem Slug)."""
     if p.get("bild"):
         cr = f'<span class="credit">Bild: {e(p.get("bild_credit", ""))}</span>' if p.get("bild_credit") else ""
         return f'<img src="{e(p["bild"])}" alt="" loading="lazy">{cr}'
     import random
     r = random.Random(p["slug"])
-    W = 400
+    W, INK, SIG, BG = 400, "#16235A", "#C4500F", "#FBFAF7"
     sid = re.sub(r"[^a-z0-9]", "", p["slug"])[:20] or "p"
     ang = r.choice([-14, -9, -5, 6, 10])
     out = []
-    # Umgebung: Nachbarblöcke (hell), Raster aus Strassen
     for gx in range(-60, W + 60, 92):
         for gy in range(-60, H + 60, 78):
             if r.random() < .82:
                 w, h = r.randint(46, 70), r.randint(36, 58)
-                out.append(f'<rect class="nb" x="{gx + r.randint(4, 14)}" y="{gy + r.randint(4, 12)}" width="{w}" height="{h}"/>')
+                out.append(f'<rect x="{gx + r.randint(4, 14)}" y="{gy + r.randint(4, 12)}" width="{w}" height="{h}" fill="#EFEDE6" stroke="{INK}" stroke-opacity=".28" stroke-width=".6"/>')
                 if r.random() < .6:
-                    out.append(f'<rect class="nh" x="{gx + r.randint(10, 20)}" y="{gy + r.randint(10, 18)}" width="{r.randint(14, 30)}" height="{r.randint(10, 22)}"/>')
+                    out.append(f'<rect x="{gx + r.randint(10, 20)}" y="{gy + r.randint(10, 18)}" width="{r.randint(14, 30)}" height="{r.randint(10, 22)}" fill="none" stroke="{INK}" stroke-opacity=".22" stroke-width=".5"/>')
     hood = f'<g transform="rotate({ang} {W / 2} {H / 2})">{"".join(out)}</g>'
     px, py, pw, ph = 70, (H - 140) // 2 - 6, 250, 140
     ry = py + ph + r.randint(18, 40)
-    road = (f'<path class="rd" d="M-20 {ry} C 120 {ry - 40}, 260 {ry + 30}, 420 {ry - 10}"/>'
-            f'<path class="rdl" d="M-20 {ry} C 120 {ry - 40}, 260 {ry + 30}, 420 {ry - 10}"/>')
-    # Projektperimeter + Gebäude
-    bld = []
-    x = px + 16
+    d = f"M-20 {ry} C 120 {ry - 40}, 260 {ry + 30}, 420 {ry - 10}"
+    road = f'<path d="{d}" fill="none" stroke="{INK}" stroke-opacity=".35" stroke-width="20"/><path d="{d}" fill="none" stroke="{BG}" stroke-width="18"/>'
+    bld, x = [], px + 16
     while x < px + pw - 40:
-        w = r.randint(28, 52)
-        h = r.randint(36, 96)
+        w, h = r.randint(28, 52), r.randint(36, 96)
         y = py + r.randint(10, ph - h - 8) if ph - h - 8 > 10 else py + 10
-        lvl = r.choice(["b1", "b2", "b2", "b3"])
-        bld.append(f'<rect class="sh" x="{x + 5}" y="{y - 5}" width="{w}" height="{h}"/><rect class="{lvl}" x="{x}" y="{y}" width="{w}" height="{h}"/>')
+        sw = r.choice(["1.3", "1.3", "2"])
+        bld.append(f'<rect x="{x + 5}" y="{y - 5}" width="{w}" height="{h}" fill="{INK}" fill-opacity=".16"/>'
+                   f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="url(#h{sid})" stroke="{INK}" stroke-width="{sw}"/>')
         if r.random() < .5 and h > 50:
-            bld.append(f'<line class="fl" x1="{x}" y1="{y + h / 2}" x2="{x + w}" y2="{y + h / 2}"/>')
+            bld.append(f'<line x1="{x}" y1="{y + h / 2}" x2="{x + w}" y2="{y + h / 2}" stroke="{INK}" stroke-width=".8"/>')
         x += w + r.randint(10, 22)
-    trees = "".join(f'<circle class="tr" cx="{r.randint(px - 30, px + pw + 30)}" cy="{r.choice([py - 10, py + ph + 12, r.randint(py, py + ph)])}" r="{r.choice([4, 5, 6])}"/>'
-                    for _ in range(26))
-    proj = (f'<g transform="rotate({ang} {W / 2} {H / 2})"><rect class="pa" x="{px}" y="{py}" width="{pw}" height="{ph}"/>'
-            f'{trees}{"".join(bld)}<rect class="per" x="{px - 8}" y="{py - 8}" width="{pw + 16}" height="{ph + 16}"/></g>')
+    trees = "".join(f'<circle cx="{r.randint(px - 30, px + pw + 30)}" cy="{r.choice([py - 10, py + ph + 12, r.randint(py, py + ph)])}" '
+                    f'r="{r.choice([4, 5, 6])}" fill="#fff" stroke="{INK}" stroke-opacity=".65" stroke-width=".8"/>' for _ in range(26))
+    proj = (f'<g transform="rotate({ang} {W / 2} {H / 2})"><rect x="{px}" y="{py}" width="{pw}" height="{ph}" fill="#fff"/>'
+            f'{trees}{"".join(bld)}<rect x="{px - 8}" y="{py - 8}" width="{pw + 16}" height="{ph + 16}" fill="none" stroke="{SIG}" stroke-width="1.4" stroke-dasharray="7 4"/></g>')
     defs = (f'<defs><pattern id="h{sid}" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">'
-            f'<line x1="0" y1="0" x2="0" y2="5" class="hl"/></pattern>'
-            f'<pattern id="g{sid}" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" class="gl"/></pattern></defs>'
-            f'<style>#s{sid} .b1,#s{sid} .b2,#s{sid} .b3{{fill:url(#h{sid})}}</style>')
-    return (f'<svg id="s{sid}" class="plan ph{p.get("phase", 3)}" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Situationsplan, schematisch">'
-            f'{defs}<rect class="bg" width="{W}" height="{H}"/><rect width="{W}" height="{H}" fill="url(#g{sid})"/>{hood}{road}{proj}'
-            f'<g class="n"><path d="M{W - 22} 12 l6 16 l-6 -5 l-6 5 z"/><text x="{W - 22}" y="40">N</text></g>'
-            f'<g class="sc"><rect x="14" y="{H - 14}" width="24" height="4"/><rect class="o" x="38" y="{H - 14}" width="24" height="4"/>'
-            f'<rect x="62" y="{H - 14}" width="24" height="4"/><text x="92" y="{H - 9}">0 – 100 m · Schema</text></g></svg>')
+            f'<rect width="5" height="5" fill="#fff"/><line x1="0" y1="0" x2="0" y2="5" stroke="{INK}" stroke-width=".9"/></pattern>'
+            f'<pattern id="g{sid}" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="{INK}" stroke-opacity=".07" stroke-width=".6"/></pattern></defs>')
+    return (f'<svg class="plan" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Situationsplan, Platzhalter">'
+            f'{defs}<rect width="{W}" height="{H}" fill="{BG}"/><rect width="{W}" height="{H}" fill="url(#g{sid})"/>{hood}{road}{proj}'
+            f'<path d="M{W - 22} 12 l6 16 l-6 -5 l-6 5 z" fill="{INK}"/><text x="{W - 22}" y="40" font-family="monospace" font-size="9" fill="{INK}" text-anchor="middle">N</text>'
+            f'<rect x="14" y="{H - 14}" width="24" height="4" fill="{INK}"/><rect x="38" y="{H - 14}" width="24" height="4" fill="#fff" stroke="{INK}" stroke-width=".6"/>'
+            f'<rect x="62" y="{H - 14}" width="24" height="4" fill="{INK}"/><text x="92" y="{H - 9}" font-family="monospace" font-size="8" fill="{INK}">0 – 100 m · Platzhalter</text></svg>')
 
 
 CH_SVG = ('<svg class="ch" viewBox="0 0 102 70" role="img" aria-label="Schweizer Karte: Zürich und Zug erfasst">'
@@ -418,7 +416,7 @@ def build() -> None:
         nd = mdate((next_step(p) or {}).get("datum")) or date(2100, 1, 1)
         art = (p.get("art") or "").split(" ")[0].strip(",&")
         return (f'<a class="prow" href="{u("projekte/" + p["slug"] + "/")}" data-kt="{p["kanton"]}" data-ph="{p["phase"]}" data-art="{e(art)}" '
-                f'data-next="{nd.isoformat()}" data-az="{e(slug(p["titel"]))}"><span class="pn"><b>{e(p["titel"])}</b><small>{e(p["gemeinde"])}</small></span>'
+                f'data-next="{nd.isoformat()}" data-az="{e(slug(p["titel"]))}"><span class="pn"><b>{e(p["titel"])}</b><small>{e(p["gemeinde"])}<em> · {e(p.get("art") or "")}</em></small></span>'
                 f'<span class="pk">{p["kanton"]}</span><span class="pa">{e(p.get("art") or "")}</span>'
                 f'<span class="pp"><span class="seg">{segs}</span><small>{e(PHASEN[p["phase"] - 1])}</small></span>'
                 f'<span class="px">{e(nxt_txt(p))}</span></a>')
