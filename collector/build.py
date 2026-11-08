@@ -82,7 +82,7 @@ def page(path: str, title: str, desc: str, body: str, rss: str | None = None) ->
 </head><body>
 <div class="plankopf"><div class="wrap"><span>Plan Nr. {TODAY.isocalendar()[1]:02d}/{TODAY.year}</span><span>Kantone ZG · ZH</span><span class="pk-hide">Massstab 1:1</span><span>Stand {TODAY.strftime("%d.%m.%Y")}</span></div></div>
 <header class="top"><div class="wrap"><a class="logo" href="{u('')}"><i aria-hidden="true"><b style="background:var(--p1)"></b><b style="background:var(--p3)"></b><b style="background:var(--p5)"></b><b style="background:var(--p7)"></b></i>{NAME}<span>Beta</span></a><span class="claim">{CLAIM}</span>
-<nav><a href="{u('meldungen/')}">News</a><a href="{u('projekte/')}">Projekte</a><a href="{u('orte/')}">Orte</a>
+<nav><a href="{u('meldungen/')}">News</a><a href="{u('projekte/')}">Projekte</a><a href="{u('orte/')}">Orte</a><a href="{u('termine/')}">Termine</a>
 <a href="{u('projekt-melden/')}" class="nl">Projekt melden</a></nav></div></header>
 <main class="wrap">{body}</main>
 <footer class="foot"><div class="wrap"><p><b>{NAME}</b> sammelt automatisch amtliche Publikationen, Medienmitteilungen und
@@ -120,6 +120,37 @@ def bald(m: dict) -> bool:
     """Termin innerhalb der nächsten 12 Monate (für «Nächste Entscheide»)."""
     d = mdate(m.get("datum"))
     return bool(d) and d <= date.fromordinal(TODAY.toordinal() + 365)
+
+
+def planbild(p: dict) -> str:
+    """Projektbild, sonst schematischer Situationsplan (deterministisch aus dem Slug)."""
+    if p.get("bild"):
+        cr = f'<span class="credit">Bild: {e(p.get("bild_credit", ""))}</span>' if p.get("bild_credit") else ""
+        return f'<img src="{e(p["bild"])}" alt="" loading="lazy">{cr}'
+    import random
+    r = random.Random(p["slug"])
+    shapes = []
+    for _ in range(r.randint(5, 9)):
+        w, h = r.choice([(r.randint(24, 60), r.randint(14, 24)), (r.randint(14, 22), r.randint(24, 56))])
+        x, y = r.randint(40, 300 - w - 40), r.randint(34, 200 - h - 34)
+        cls = "f" if r.random() < .45 else "o"
+        shapes.append(f'<rect class="{cls}" x="{x}" y="{y}" width="{w}" height="{h}"/>')
+    road = r.randint(60, 140)
+    return (f'<svg class="plan ph{p.get("phase", 3)}" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Schematischer Plan">'
+            f'<rect class="bg" width="300" height="200"/><path class="road" d="M0 {road} C 90 {road - 30}, 200 {road + 40}, 300 {road + 6}"/>'
+            f'<rect class="per" x="30" y="24" width="240" height="152"/>{"".join(shapes)}'
+            f'<g class="n"><path d="M274 14 l5 14 l-5 -4 l-5 4 z"/><text x="274" y="40">N</text></g>'
+            f'<g class="sc"><rect x="34" y="186" width="20" height="4"/><rect class="o" x="54" y="186" width="20" height="4"/>'
+            f'<rect x="74" y="186" width="20" height="4"/><text x="100" y="191">M 1:2000 · Schema</text></g></svg>')
+
+
+SLIDER_JS = """<script>
+document.querySelectorAll('.buehne').forEach(function(b){var t=b.querySelector('.slides'),d=b.querySelectorAll('.dots a');
+function i(){return Math.round(t.scrollLeft/t.clientWidth)}function g(n){n=(n+d.length)%d.length;t.scrollTo({left:n*t.clientWidth,behavior:'smooth'})}
+function m(){var k=i();d.forEach(function(a,j){a.classList.toggle('on',j===k)})}
+b.querySelector('.prev').onclick=function(){g(i()-1)};b.querySelector('.next').onclick=function(){g(i()+1)};
+d.forEach(function(a,j){a.onclick=function(ev){ev.preventDefault();g(j)}});t.addEventListener('scroll',m,{passive:true});m();});
+</script>"""
 
 
 def card(p: dict) -> str:
@@ -283,45 +314,89 @@ def build() -> None:
         hero = (f'<article class="hero-a"><span class="rubrik">{e(a0["rubrik"])}</span> <span class="meta" style="display:inline-flex">{e(dlabel(a0["datum"]))}</span>'
                 f'<h1><a href="{u("artikel/" + a0["slug"] + "/")}">{e(a0["titel"])}</a></h1><p>{e(a0["lead"])}</p>'
                 f'<a class="more" href="{u("artikel/" + a0["slug"] + "/")}">Weiterlesen</a></article>')
-    bildnews = [m for m in news if m.get("bild")][:3]
-    tiles = "".join(
-        f'<a class="tile" href="{e(m["url"])}" rel="noopener" target="_blank"><span class="img" style="background-image:url({e(m["bild"])})"></span>'
-        f'<span class="meta">{e(m.get("gemeinde") or "")}</span><b>{e(headline(m)[0])}</b>'
-        f'<span class="credit">Bild: {e(m["quelle"])}</span></a>' for m in bildnews)
-    rest = [m for m in news if m not in bildnews][:14]
-    proj = "".join(card(p) for p in aktiv[:4])
-    term_html = "".join(f'<li><span class="meta">{e(p["gemeinde"])}, {e(dlabel(n["datum"]))}</span>'
-                        f'<a href="{u("projekte/" + p["slug"] + "/")}">{e(p["titel"])}</a><span class="d">{e(n["text"])}</span></li>'
-                        for _, p, n in termine)
+    # Bühne (Slider): Wochenartikel + Projekte mit den nächsten Entscheiden
+    slides = []
+    if artikel:
+        a0 = artikel[0]
+        rp = next((p for p in projekte if p["slug"] in a0.get("projekte", [])), None)
+        slides.append((planbild(rp) if rp else planbild({"slug": a0["slug"], "phase": 3}), f'Die Woche / {dlabel(a0["datum"])}',
+                       a0["titel"], a0["lead"], u("artikel/" + a0["slug"] + "/"), "Weiterlesen"))
+    buehne_p = [p for p in aktiv if next_step(p)][:2]
+    for p in buehne_p:
+        slides.append((planbild(p), f'Projekt / {p["gemeinde"]}', p["titel"], p.get("kurz") or p.get("untertitel", ""),
+                       u("projekte/" + p["slug"] + "/"), "Zum Projekt"))
+    slide_html = "".join(
+        f'<article class="slide" id="s{i}"><a class="vis" href="{h}" tabindex="-1" aria-hidden="true">{vis}</a><div class="txt">'
+        f'<span class="kl">{e(k)}</span><h2><a href="{h}">{e(t)}</a></h2><p>{e(_cut(d, 230))}</p><a class="more" href="{h}">{e(c)}</a></div></article>'
+        for i, (vis, k, t, d, h, c) in enumerate(slides))
+    dots = "".join(f'<a href="#s{i}" aria-label="Beitrag {i + 1}"></a>' for i in range(len(slides)))
+    buehne = (f'<section class="buehne" aria-label="Im Fokus"><div class="slides">{slide_html}</div>'
+              f'<div class="sctl"><button class="prev" aria-label="Zurück">‹</button><span class="dots">{dots}</span>'
+              f'<button class="next" aria-label="Weiter">›</button></div></section>')
+
+    def dblock(n: dict, first=False) -> str:
+        d = mdate(n["datum"])
+        top, bot = (f"{d.day}.", MON[d.month - 1]) if re.fullmatch(r"\d{4}-\d{2}-\d{2}", n["datum"]) else (MON[d.month - 1], str(d.year))
+        return f'<span class="dat{" hi" if first else ""}"><b>{e(top)}</b>{e(bot)}</span>'
+
+    term_html = "".join(f'<li>{dblock(n, i == 0)}<span><a href="{u("projekte/" + p["slug"] + "/")}">{e(p["titel"])}</a>'
+                        f'<small>{e(p["gemeinde"])} · {e(n["text"])}</small></span></li>'
+                        for i, (_, p, n) in enumerate(termine[:4]))
+
+    # Aktuelle Projekte (andere als auf der Bühne)
+    akt = [p for p in sorted(projekte, key=lambda p: -p["phase"]) if p not in buehne_p][:3]
+    akt_html = "".join(f'<a class="pcard" href="{u("projekte/" + p["slug"] + "/")}"><span class="vis">{planbild(p)}'
+                       f'<span class="badge">{e(p["gemeinde"])}</span></span><b>{e(p["titel"])}</b>'
+                       f'<small>{e(PHASEN[p["phase"] - 1])} · {e(p.get("art") or "")}</small></a>' for p in akt)
+    entw = "".join(f'<li><a href="{e(m["url"])}" rel="noopener" target="_blank">{e(headline(m)[0])}</a>'
+                   f'<small>{e(m.get("gemeinde") or m["quelle"])} · {e(dlabel(m["datum"]))}</small></li>' for m in news[:6])
+
+    # Kennzahlen (nur aus Steckbriefen mit bekannter Zahl)
+    known = [p for p in projekte if (p.get("wohnungen") or {}).get("total")]
+    w_tot = sum(p["wohnungen"]["total"] for p in known)
+    w_pg = sum(p["wohnungen"].get("preisguenstig") or 0 for p in known)
+    share = round(100 * w_pg / w_tot) if w_tot else 0
+    phseg = "".join(f'<i class="ph{i}" style="flex:{c}" title="{PHASEN[i - 1]}: {c}"></i>'
+                    for i in range(1, 8) if (c := sum(1 for p in projekte if p["phase"] == i)))
+    kz = (f'<div class="kz"><b>{share}&nbsp;%</b><span>preisgünstige Wohnungen in {len(known)} Projekten mit bekannter Zahl</span>'
+          f'<span class="kbar"><i style="width:{share}%"></i></span></div>'
+          f'<div class="kz"><b>{w_tot:,}'.replace(",", "'") + f'</b><span>Wohnungen in diesen {len(known)} Projekten</span></div>'
+          f'<div class="kz"><b>{len(projekte)}</b><span>Projekte nach Phase, von Planung bis Bezug</span>'
+          f'<span class="kbar seg">{phseg}</span></div>')
 
     # Ortswahl: Orte mit Projekt-Dossiers, grösste zuerst
     haupt = sorted(((k, o) for k, o in orte.items() if o["p"]), key=lambda kv: (-len(kv[1]["p"]), kv[1]["name"]))
     ort_html = "".join(ortkachel(k, o) for k, o in haupt)
     n0 = termine[0] if termine else None
-    nxt0 = (f'<div><span>Nächster Entscheid</span><b class="sig">{e(dlabel(n0[2]["datum"]))}</b><small>{e(n0[1]["titel"])}</small></div>'
-            if n0 else "")
-    stats = (f'<div class="titelblock"><div><span>Projekte</span><b>{len(projekte)}</b><small>mit Steckbrief</small></div>'
-             f'<div><span>Orte</span><b>{len(haupt)}</b><small>mit Projekten</small></div>'
-             f'<div><span>Wohnungen beantragt</span><b>{wohn30}</b><small>Baugesuche, 30 Tage</small></div>{nxt0}</div>')
-    start = (f'<section class="start"><p class="kl">Blatt 01 · Übersicht</p><h1>Was in Zug und Zürich geplant und gebaut wird</h1>'
-             f'<p class="sub">Projekte, Entscheide und Termine der Immobilien- und Arealentwicklung, laufend nachgeführt aus Amtsblättern, '
-             f'Medienmitteilungen und Projektseiten.</p>{stats}<div class="startgrid"><div><h2 class="kl">Orte</h2><div class="orte">{ort_html}</div>'
-             f'<a class="more" href="{u("orte/")}">Alle Orte</a></div>'
-             f'<div class="entscheide"><h2 class="kl">Nächste Entscheide</h2><ul class="mlist">{term_html}</ul></div></div></section>')
-    body = (start + f'<div class="news"><div class="main">{hero}'
-            + (f'<div class="tiles">{tiles}</div>' if tiles else "")
-            + f'<div class="shead"><h2>News</h2><a href="{u("meldungen/")}">Alle News</a></div>{mlist(rest)}'
-            f'<div class="shead"><h2>Projekte</h2><a href="{u("projekte/")}">Alle {len(projekte)}</a></div><div class="grid g2">{proj}</div></div>'
-            f'<aside class="side"><div class="pitch"><b>Sie entwickeln, bauen oder vermarkten?</b><p>Senden Sie uns Ihre Medienmitteilung '
-            f'oder tragen Sie Ihr Projekt ein. Planstand begleitet es von der Planung bis zum Bezug.</p>'
-            f'<a class="btn" href="{u("projekt-melden/")}">Projekt melden</a></div>'
-            f'<div class="nlbox"><b>Der Wochenbrief</b><p>Jeden Freitag: die wichtigsten Projekte, Entscheide und Termine in Zug und Zürich.</p>'
-            f'<a class="btn" href="{u("newsletter/")}">Abonnieren</a></div>'
-            f'<a class="radar" href="{u("baugesuche/")}"><b>{wohn30}</b><span>Wohnungen beantragt</span>'
-            f'<span>in {len(bg30)} grösseren Baugesuchen der letzten 30 Tage</span></a>'
-            f'</aside></div>')
+    nxt0 = (f'<a class="nxt" href="{u("projekte/" + n0[1]["slug"] + "/")}"><span>Nächster Entscheid</span>'
+            f'<b>{e(dlabel(n0[2]["datum"]))} →</b><small>{e(n0[1]["titel"])}</small></a>' if n0 else "")
+    mast = (f'<section class="mast"><div class="wm"><h1>Planstand</h1><p>Was in Zug und Zürich geplant, entwickelt und gebaut wird.</p></div>'
+            f'<div class="stats"><div><b>{len(projekte)}</b><span>Projekte<br>im Fokus</span></div>'
+            f'<div><b>{len(haupt)}</b><span>Orte<br>({e(", ".join(o["name"] for _, o in haupt[:3]))})</span></div>'
+            f'<div><b>{wohn30}</b><span>Wohnungen<br>beantragt (30 Tage)</span></div>{nxt0}</div></section>')
+    body = (mast
+            + f'<div class="row1">{buehne}<section class="termine"><h2 class="sh">Nächste Termine</h2><ul>{term_html}</ul>'
+              f'<a class="more" href="{u("termine/")}">Alle Termine</a></section></div>'
+            + f'<div class="row2"><section><div class="sh"><h2>Aktuelle Projekte</h2><a href="{u("projekte/")}">Alle Projekte →</a></div>'
+              f'<div class="pcards">{akt_html}</div></section>'
+              f'<section><div class="sh"><h2>Entwicklungen</h2><a href="{u("meldungen/")}">Alle News →</a></div><ul class="entw">{entw}</ul></section>'
+              f'<section><div class="sh"><h2>Kennzahlen</h2></div>{kz}</section></div>'
+            + f'<div class="row3"><section><div class="sh"><h2>Orte</h2><a href="{u("orte/")}">Alle Orte →</a></div><div class="orte">{ort_html}</div></section>'
+              f'<section class="pitch"><b>Sie entwickeln, bauen oder vermarkten?</b><p>Senden Sie uns Ihre Medienmitteilung oder tragen Sie Ihr Projekt ein. '
+              f'Planstand begleitet es von der Planung bis zum Bezug.</p><a class="btn" href="{u("projekt-melden/")}">Projekt melden</a> '
+              f'<a class="btn ghost" href="{u("newsletter/")}">Wochenbrief abonnieren</a></section></div>'
+            + SLIDER_JS)
     page("", NAME, f"{CLAIM}: Projekte, Entscheide und Termine der Immobilien- und Arealentwicklung, jede Woche neu.",
          body, "rss.xml")
+
+    # Termine
+    alle = sorted(((mdate(m["datum"]), p, m) for p in projekte for m in p.get("meilensteine", [])
+                   if mdate(m.get("datum")) and mdate(m["datum"]) >= TODAY), key=lambda t: t[0])
+    tl = "".join(f'<li>{dblock(m, i == 0)}<span><a href="{u("projekte/" + p["slug"] + "/")}">{e(p["titel"])}</a>'
+                 f'<small>{e(p["gemeinde"])} · {e(m["text"])}</small></span></li>' for i, (_, p, m) in enumerate(alle))
+    page("termine/", "Termine", "Nächste Termine und Entscheide der Immobilien- und Arealentwicklung in Zug und Zürich.",
+         f'<p class="crumb">Übersicht</p><h1>Termine</h1><p class="lead">Informationsanlässe, Parlamentsdebatten, Abstimmungen und '
+         f'Meilensteine aller Projekte, chronologisch.</p><section class="termine voll"><ul>{tl}</ul></section>')
 
     # Artikel
     for a in artikel:
