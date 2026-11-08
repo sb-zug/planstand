@@ -114,11 +114,43 @@ def next_step(p: dict):
     return None
 
 
+
+def bald(m: dict) -> bool:
+    """Termin innerhalb der nächsten 12 Monate (für «Nächste Entscheide»)."""
+    d = mdate(m.get("datum"))
+    return bool(d) and d <= date.fromordinal(TODAY.toordinal() + 365)
+
+
 def card(p: dict) -> str:
     n = next_step(p)
     nxt = f'<p class="next"><b>{e(dlabel(n["datum"]))}</b> {e(n["text"])}</p>' if n else ""
     return (f'<a class="card ph{p["phase"]}" href="{u("projekte/" + p["slug"] + "/")}"><span class="tag">{e(p["gemeinde"])}, '
             f'{e(PHASEN[p["phase"] - 1])}</span><h3>{e(p["titel"])}</h3><p>{e(p.get("untertitel", ""))}</p>{nxt}</a>')
+
+
+def board(projekte: list[dict], titel: str, sub: str) -> str:
+    """Phasen-Tafel; nur Phasen mit Projekten (keine leeren Spalten)."""
+    cols, n = "", 0
+    for i, ph in enumerate(PHASEN, 1):
+        ps = [p for p in projekte if p["phase"] == i]
+        if not ps:
+            continue
+        n += 1
+        items = "".join(f'<a href="{u("projekte/" + p["slug"] + "/")}">{e(p["titel"])}'
+                        + (f'<small>{e(dlabel(x["datum"]))}</small>' if (x := next_step(p)) and mdate(x["datum"]) else "")
+                        + "</a>" for p in ps)
+        cols += f'<section class="col ph{i}" aria-label="{ph}"><header>{ph}<span>{len(ps)}</span></header>{items}</section>'
+    return (f'<section class="board"><h1>{e(titel)}</h1><p class="sub">{e(sub)}</p>'
+            f'<div class="cols" style="--n:{n}">{cols}</div></section>')
+
+
+def ortkachel(k: str, o: dict) -> str:
+    """Kachel für die Ortswahl: Name, Zahl, Phasen-Streifen."""
+    ps = o["p"]
+    seg = "".join(f'<i class="ph{i}" style="flex:{c}" title="{PHASEN[i - 1]}: {c}"></i>'
+                  for i in range(1, 8) if (c := sum(1 for p in ps if p["phase"] == i)))
+    return (f'<a class="ort" href="{u("orte/" + k + "/")}"><b>{e(o["name"])}</b><span>{KT[o["kanton"]]}</span>'
+            f'<span class="bar">{seg}</span><span>{len(ps)} Projekte · {len(o["m"])} Meldungen</span></a>')
 
 
 def _cut(t: str, n: int) -> str:
@@ -242,8 +274,8 @@ def build() -> None:
     bg = [m for m in meldungen if m["typ"] == "Baugesuch"]
     bg30 = [m for m in bg if m["datum"] >= (TODAY.fromordinal(TODAY.toordinal() - 30)).isoformat()]
     wohn30 = sum(wohnungen(m) for m in bg30)
-    termine = sorted(((mdate(n["datum"]), p, n) for p in projekte if (n := next_step(p)) and mdate(n["datum"])),
-                     key=lambda t: t[0])[:5]
+    termine = sorted(((mdate(n["datum"]), p, n) for p in projekte if (n := next_step(p)) and mdate(n["datum"]) and bald(n)),
+                     key=lambda t: t[0])[:6]
     hero = ""
     if artikel:
         a0 = artikel[0]
@@ -260,17 +292,16 @@ def build() -> None:
     term_html = "".join(f'<li><span class="meta">{e(p["gemeinde"])}, {e(dlabel(n["datum"]))}</span>'
                         f'<a href="{u("projekte/" + p["slug"] + "/")}">{e(p["titel"])}</a><span class="d">{e(n["text"])}</span></li>'
                         for _, p, n in termine)
-    cols = ""
-    for i, ph in enumerate(PHASEN, 1):
-        ps = [p for p in projekte if p["phase"] == i]
-        items = "".join(f'<a href="{u("projekte/" + p["slug"] + "/")}">{e(p["titel"])}<small>{e(p["gemeinde"])}'
-                        + (f', {e(dlabel(n["datum"]))}' if (n := next_step(p)) and mdate(n["datum"]) else "") + "</small></a>" for p in ps)
-        cols += (f'<section class="col ph{i}{"" if ps else " leer"}" aria-label="{ph}"><header>{ph}<span>{len(ps)}</span></header>'
-                 + (items or '<em>Noch keine</em>') + "</section>")
-    board = (f'<section class="board"><h1>Wo Bauprojekte in Zug und Zürich stehen</h1>'
-             f'<p class="sub">Jedes Projekt von der ersten Planung bis zum Bezug. Täglich nachgeführt aus Amtsblättern, Medienmitteilungen und Projektseiten.</p>'
-             f'<div class="cols">{cols}</div></section>')
-    body = (board + f'<div class="news"><div class="main">{hero}'
+
+    # Ortswahl: Orte mit Projekt-Dossiers, grösste zuerst
+    haupt = sorted(((k, o) for k, o in orte.items() if o["p"]), key=lambda kv: (-len(kv[1]["p"]), kv[1]["name"]))
+    ort_html = "".join(ortkachel(k, o) for k, o in haupt)
+    start = (f'<section class="start"><h1>Was in Zug und Zürich geplant und gebaut wird</h1>'
+             f'<p class="sub">Projekte, Entscheide und Termine der Immobilien- und Arealentwicklung, laufend nachgeführt aus Amtsblättern, '
+             f'Medienmitteilungen und Projektseiten.</p><div class="startgrid"><div><h2 class="kl">Orte</h2><div class="orte">{ort_html}</div>'
+             f'<a class="more" href="{u("orte/")}">Alle Orte</a></div>'
+             f'<div class="entscheide"><h2 class="kl">Nächste Entscheide</h2><ul class="mlist">{term_html}</ul></div></div></section>')
+    body = (start + f'<div class="news"><div class="main">{hero}'
             + (f'<div class="tiles">{tiles}</div>' if tiles else "")
             + f'<div class="shead"><h2>News</h2><a href="{u("meldungen/")}">Alle News</a></div>{mlist(rest)}'
             f'<div class="shead"><h2>Projekte</h2><a href="{u("projekte/")}">Alle {len(projekte)}</a></div><div class="grid g2">{proj}</div></div>'
@@ -279,7 +310,6 @@ def build() -> None:
             f'<a class="btn" href="{u("projekt-melden/")}">Projekt melden</a></div>'
             f'<div class="nlbox"><b>Der Wochenbrief</b><p>Jeden Freitag: die wichtigsten Projekte, Entscheide und Termine in Zug und Zürich.</p>'
             f'<a class="btn" href="{u("newsletter/")}">Abonnieren</a></div>'
-            f'<div class="shead"><h2>Termine</h2></div><ul class="mlist">{term_html}</ul>'
             f'<a class="radar" href="{u("baugesuche/")}"><b>{wohn30}</b><span>Wohnungen beantragt</span>'
             f'<span>in {len(bg30)} grösseren Baugesuchen der letzten 30 Tage</span></a>'
             f'</aside></div>')
@@ -356,12 +386,19 @@ def build() -> None:
         lst += (f'<section><h2>{KT[kt]}</h2><ul class="olist">' + "".join(
             f'<li><a href="{u("orte/" + k + "/")}">{e(o["name"])}</a> <span>{len(o["p"])} Projekte · {len(o["m"])} Meldungen</span></li>'
             for k, o in items) + "</ul></section>")
-    page("orte/", "Orte", "Bauvorhaben und amtliche Meldungen nach Gemeinde in den Kantonen Zug und Zürich.", f"<h1>Orte</h1>{lst}")
+    ok = "".join(ortkachel(k, o) for k, o in sorted(((k, o) for k, o in orte.items() if o["p"]), key=lambda kv: (-len(kv[1]["p"]), kv[1]["name"])))
+    page("orte/", "Orte", "Bauvorhaben und amtliche Meldungen nach Gemeinde in den Kantonen Zug und Zürich.",
+         f'<h1>Orte</h1><p class="lead">Orte mit Projekt-Dossiers. Darunter alle Gemeinden mit amtlichen Meldungen.</p><div class="orte">{ok}</div>{lst}')
     for k, o in orte.items():
-        body = (f'<p class="crumb">{KT[o["kanton"]]}</p><h1>{e(o["name"])}</h1>'
-                f'<section><h2>Projekte</h2>' + (f'<div class="grid">{"".join(card(p) for p in o["p"])}</div>' if o["p"]
-                                                 else '<p class="note">Noch keine Projekt-Steckbriefe.</p>')
-                + f'</section><section><div class="shead"><h2>Meldungen</h2><a href="{u("orte/" + k + "/rss.xml")}">RSS</a></div>'
+        tm = sorted(((mdate(n["datum"]), p, n) for p in o["p"] if (n := next_step(p)) and mdate(n["datum"]) and bald(n)), key=lambda t: t[0])
+        tm_html = "".join(f'<li><span class="meta">{e(dlabel(n["datum"]))}</span><a href="{u("projekte/" + p["slug"] + "/")}">'
+                          f'{e(p["titel"])}</a><span class="d">{e(n["text"])}</span></li>' for _, p, n in tm)
+        body = (f'<p class="crumb"><a href="{u("orte/")}">Orte</a> · {KT[o["kanton"]]}</p>'
+                + (board(o["p"], f'Bauprojekte in {o["name"]}', f'{len(o["p"])} Projekte von der ersten Planung bis zum Bezug.')
+                   if o["p"] else f'<h1>{e(o["name"])}</h1><p class="note">Noch keine Projekt-Steckbriefe. '
+                   f'<a href="{u("projekt-melden/")}">Projekt melden</a></p>')
+                + (f'<section><h2>Nächste Termine</h2><ul class="mlist">{tm_html}</ul></section>' if tm_html else "")
+                + f'<section><div class="shead"><h2>Meldungen</h2><a href="{u("orte/" + k + "/rss.xml")}">RSS</a></div>'
                 f'{mlist(o["m"][:80], False)}</section>')
         page(f"orte/{k}/", f'Bauprojekte {o["name"]}', f'Bauprojekte, Baugesuche und Planungen in {o["name"]} '
              f'({KT[o["kanton"]]}): Phase, nächste Schritte, amtliche Meldungen.', body, f"orte/{k}/rss.xml")

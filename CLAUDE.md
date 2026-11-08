@@ -22,6 +22,8 @@ Sprache: Deutsch (Schweiz, «ss» statt «ß»).
 7. `python3 tests/test_collect.py && python3 collector/build.py` laufen lassen, dann committen und pushen.
 
 ## Leitplanken
+- Startseite bleibt allgemein (Ortswahl, Nächste Entscheide, News). Die Phasen-Tafel gibt es nur auf den Ortsseiten (`/orte/<kt>/<gemeinde>/`), leere Phasen werden ausgeblendet.
+- Einen Ort erst mit mehreren Projekt-Steckbriefen ausbauen; Stadt Zürich und Stadt Zug haben Vorrang.
 - Keine Personendaten privater Bauherrschaften publizieren.
 - Keine Kundenprojekte von Creafactory ohne ausdrückliche Freigabe von Sergio aufnehmen.
 - Nur Python-Standardbibliothek.

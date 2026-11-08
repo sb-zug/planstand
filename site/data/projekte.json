@@ -1,6 +1,6 @@
 {
  "_hinweis": "Redaktionell gepflegt (Claude, Wochen-Durchlauf). Phasen: 1 Planung, 2 Mitwirkung, 3 Parlament, 4 Abstimmung, 5 Bewilligung, 6 Bau, 7 Bezug. gemeinde = Name wie in orte, kanton = ZG/ZH. keywords = Stichworte (klein) für die automatische Zuordnung von Meldungen. Meilensteine: datum (JJJJ-MM-TT, JJJJ-MM, JJJJ oder Text), text, quelle.",
- "stand": "2026-11-07",
+ "stand": "2026-11-08",
  "projekte": [
   {
    "slug": "lg-areal",
@@ -504,6 +504,432 @@
    },
    "mitreden": "Bewerben können sich nur Mitglieder der Gewoba. Wer eine Wohnung sucht, wird zuerst Mitglied und meldet sein Interesse an.",
    "quelle_dossier": "zug.now"
+  },
+  {
+   "slug": "hardturm-ensemble",
+   "titel": "Hardturm-Areal «Ensemble»",
+   "untertitel": "Fussballstadion, zwei Hochhäuser und eine Genossenschaftssiedlung",
+   "art": "Stadion, Wohnen & Büro",
+   "quartier": "Escher Wyss / Zürich-West",
+   "gemeinde": "Zürich",
+   "kanton": "ZH",
+   "phase": 5,
+   "kurz": "Auf der Brache des alten Hardturmstadions sollen ein Fussballstadion für FCZ und GC, zwei Hochhäuser zur Finanzierung und eine genossenschaftliche Wohnsiedlung entstehen. Der Gestaltungsplan ist vom Volk angenommen, wegen Rechtsmitteln aber noch nicht in Kraft. Erst danach kann das Baugesuch folgen.",
+   "fakten": [
+    [
+     "Stadion",
+     "max. 18 500 Plätze"
+    ],
+    [
+     "Genossenschaftswohnungen",
+     "174"
+    ],
+    [
+     "Hochhäuser",
+     "2"
+    ],
+    [
+     "Gestaltungsplan",
+     "privat, mit UVP"
+    ]
+   ],
+   "meilensteine": [
+    {
+     "datum": "2019-10-23",
+     "text": "Gemeinderat stimmt dem privaten Gestaltungsplan «Areal Hardturm-Stadion» zu",
+     "quelle": "https://oerebdocs.zh.ch/getDoc?docid=7859"
+    },
+    {
+     "datum": "2020-09-27",
+     "text": "Volksabstimmung: Ja zum Gestaltungsplan (59,1 %)",
+     "quelle": "https://law.ch/lawnews/2022/07/gestaltungsplan-hardturm-stadion-stimmrechtsbeschwerden-vom-bundesgericht-abgewiesen/"
+    },
+    {
+     "datum": "2025-10",
+     "text": "Verwaltungsgericht weist Beschwerden gegen den Gestaltungsplan ab",
+     "quelle": "https://www.srf.ch/news/schweiz/urteil-des-verwaltungsgerichts-zuerich-ist-einen-schritt-naeher-an-einem-neuen-fussballstadion"
+    },
+    {
+     "datum": "2025-11",
+     "text": "Gegner ziehen den Entscheid ans Bundesgericht weiter",
+     "quelle": "https://www.srf.ch/news/schweiz/abstimmung-stadt-winterthur-winterthur-stimmt-ueber-sein-stadion-ab-zuerich-wartet-weiter"
+    },
+    {
+     "datum": "offen",
+     "text": "Urteil Bundesgericht, danach Baugesuch",
+     "quelle": "https://www.srf.ch/news/schweiz/abstimmung-stadt-winterthur-winterthur-stimmt-ueber-sein-stadion-ab-zuerich-wartet-weiter"
+    }
+   ],
+   "links": [
+    [
+     "Projekt Ensemble",
+     "https://projekt-ensemble.ch/"
+    ],
+    [
+     "Genehmigung Kanton (PDF)",
+     "https://oerebdocs.zh.ch/getDoc?docid=7859"
+    ]
+   ],
+   "keywords": [
+    "hardturm",
+    "projekt ensemble",
+    "hardturm-stadion"
+   ],
+   "stand": "2026-11-08"
+  },
+  {
+   "slug": "thurgauerstrasse",
+   "titel": "Areal Thurgauerstrasse",
+   "untertitel": "Neuer Quartierteil mit rund 650 gemeinnützigen Wohnungen",
+   "art": "Wohnen & Quartier",
+   "quartier": "Seebach",
+   "gemeinde": "Zürich",
+   "kanton": "ZH",
+   "phase": 5,
+   "kurz": "Auf einer der grössten Baulandreserven der Stadt entsteht ein Quartierteil für rund 1800 Menschen: Schule (seit 2024 in Betrieb), Quartierpark, ein Gesundheitszentrum mit Alterswohnungen und Siedlungen gemeinnütziger Bauträger. Die Architekturwettbewerbe sind entschieden, nun folgt die Projektierung.",
+   "fakten": [
+    [
+     "Fläche",
+     "rund 65 000 m²"
+    ],
+    [
+     "Gemeinnützige Wohnungen",
+     "rund 650"
+    ],
+    [
+     "Alterswohnungen",
+     "rund 130 (SAW)"
+    ],
+    [
+     "Quartierpark",
+     "rund 12 000 m²"
+    ]
+   ],
+   "meilensteine": [
+    {
+     "datum": "2020-11-29",
+     "text": "Volksabstimmung: Ja zum Gestaltungsplan Wohnen und Gewerbe",
+     "quelle": "https://www.stadt-zuerich.ch/areal-thurgauerstrasse"
+    },
+    {
+     "datum": "2022-10-01",
+     "text": "Gestaltungsplan Teilgebiete A und C–F in Kraft",
+     "quelle": "https://www.stadt-zuerich.ch/areal-thurgauerstrasse"
+    },
+    {
+     "datum": "2024-06",
+     "text": "Schulanlage Nordstern fertiggestellt",
+     "quelle": "https://www.stadt-zuerich.ch/areal-thurgauerstrasse"
+    },
+    {
+     "datum": "2025-05-22",
+     "text": "Siegerprojekt Gesundheitszentrum und Alterswohnungen bekannt",
+     "quelle": "https://www.stadt-zuerich.ch/areal-thurgauerstrasse"
+    },
+    {
+     "datum": "2026-09-03",
+     "text": "Siegerprojekte für die Siedlungen auf C und D bekannt",
+     "quelle": "https://www.stadt-zuerich.ch/areal-thurgauerstrasse"
+    },
+    {
+     "datum": "2026-11-23",
+     "text": "Quartierinformation mit Mitgliedern des Stadtrats",
+     "quelle": "https://www.stadt-zuerich.ch/areal-thurgauerstrasse"
+    },
+    {
+     "datum": "später",
+     "text": "Teilgebiete E und F in einer zweiten Etappe",
+     "quelle": "https://www.stadt-zuerich.ch/areal-thurgauerstrasse"
+    }
+   ],
+   "links": [
+    [
+     "Stadt Zürich: Areal Thurgauerstrasse",
+     "https://www.stadt-zuerich.ch/areal-thurgauerstrasse"
+    ]
+   ],
+   "keywords": [
+    "thurgauerstrasse",
+    "nordnordost"
+   ],
+   "stand": "2026-11-08"
+  },
+  {
+   "slug": "koch-areal",
+   "titel": "Koch-Quartier",
+   "untertitel": "Über 300 preisgünstige Wohnungen und ein Quartierpark",
+   "art": "Wohnen & Gewerbe",
+   "quartier": "Altstetten / Albisrieden",
+   "gemeinde": "Zürich",
+   "kanton": "ZH",
+   "phase": 6,
+   "kurz": "Auf dem früheren Koch-Areal bauen die Genossenschaften ABZ und Kraftwerk1 Wohnungen im Baurecht, Senn ein Gewerbehaus, die Stadt einen Quartierpark. Herzstück ist der 26-geschossige ABZ-Turm. Die ABZ-Wohnungen werden seit Juni 2026 vermietet, zuerst an Mitglieder.",
+   "fakten": [
+    [
+     "Wohnungen",
+     "rund 330"
+    ],
+    [
+     "ABZ-Turm",
+     "85 m, 164 Wohnungen"
+    ],
+    [
+     "Bauträger",
+     "ABZ, Kraftwerk1, Senn, Stadt"
+    ],
+    [
+     "Mobilität",
+     "autofrei"
+    ]
+   ],
+   "meilensteine": [
+    {
+     "datum": "2013",
+     "text": "Stadt Zürich kauft das Areal",
+     "quelle": "https://www.moneycab.com/?p=1650983"
+    },
+    {
+     "datum": "2023-02",
+     "text": "Räumung und Baubeginn",
+     "quelle": "https://www.baublatt.ch/file/2337/BB_2515_Koch-Park.pdf"
+    },
+    {
+     "datum": "2026-06-01",
+     "text": "Vermietungsstart ABZ (zuerst für Mitglieder)",
+     "quelle": "https://www.blick.ch/wirtschaft/200-guenstige-wohnungen-neues-koch-areal-in-zuerich-startet-id21988239.html"
+    },
+    {
+     "datum": "Ende 2026",
+     "typ": "vermietung",
+     "text": "Etappenweiser Bezug (geplant)",
+     "quelle": "https://www.baublatt.ch/file/2337/BB_2515_Koch-Park.pdf"
+    }
+   ],
+   "links": [
+    [
+     "Baublatt: Koch-Park (PDF)",
+     "https://www.baublatt.ch/file/2337/BB_2515_Koch-Park.pdf"
+    ]
+   ],
+   "mitreden": "Bewerben können sich zuerst nur Mitglieder der ABZ bzw. von Kraftwerk1.",
+   "keywords": [
+    "koch-areal",
+    "koch-quartier",
+    "koch-park"
+   ],
+   "stand": "2026-11-08"
+  },
+  {
+   "slug": "werkstadt",
+   "titel": "Werkstadt Zürich",
+   "untertitel": "SBB-Werkstätten werden zum Quartier für Gewerbe und Kultur",
+   "art": "Gewerbe & Kultur",
+   "quartier": "Altstetten",
+   "gemeinde": "Zürich",
+   "kanton": "ZH",
+   "phase": 6,
+   "kurz": "Die SBB wandeln ihr Werkstatt-Areal an der Hohlstrasse schrittweise in einen Standort für Gewerbe, Produktion, Start-ups und Kultur um. Als Pionierbau entsteht seit Juni 2026 das Gebäude X aus wiederverwendeten Bauteilen.",
+   "fakten": [
+    [
+     "Fläche",
+     "rund 40 000 m²"
+    ],
+    [
+     "Eigentümerin",
+     "SBB Immobilien"
+    ],
+    [
+     "Abschluss",
+     "2035 (geplant)"
+    ]
+   ],
+   "meilensteine": [
+    {
+     "datum": "2017",
+     "text": "Start der Transformation",
+     "quelle": "https://sbb-immobilien.ch/en/?p=474497"
+    },
+    {
+     "datum": "2026-06",
+     "text": "Baubeginn Gebäude X (Wiederverwendung)",
+     "quelle": "https://www.stadt-zuerich.ch/altstetten-albisrieden"
+    },
+    {
+     "datum": "2035",
+     "text": "Fertigstellung des Areals (geplant)",
+     "quelle": "https://sbb-immobilien.ch/en/?p=474497"
+    }
+   ],
+   "links": [
+    [
+     "SBB Immobilien: Werkstadt",
+     "https://sbb-immobilien.ch/en/?p=474497"
+    ]
+   ],
+   "keywords": [
+    "werkstadt"
+   ],
+   "stand": "2026-11-08"
+  },
+  {
+   "slug": "hardau-1",
+   "titel": "Wohnsiedlung Hardau I",
+   "untertitel": "122 preisgünstige städtische Wohnungen",
+   "art": "Wohnen",
+   "quartier": "Hard",
+   "gemeinde": "Zürich",
+   "kanton": "ZH",
+   "phase": 7,
+   "kurz": "Die Stadt hat ihre Siedlung von 1962 durch zwei Neubauten mit drei Höfen ersetzt. Dazu gehören Gewerbe, ein Kindergarten, die Offene Jugendarbeit und das Personenmeldeamt Zürich West. Alle Wohnungen sind vermietet, der Bezug läuft seit Ende Mai 2026.",
+   "fakten": [
+    [
+     "Wohnungen",
+     "122"
+    ],
+    [
+     "Für",
+     "rund 360 Personen"
+    ],
+    [
+     "Miete",
+     "Kostenmiete, ein Drittel subventioniert"
+    ],
+    [
+     "Architektur",
+     "Graber Pulver"
+    ]
+   ],
+   "meilensteine": [
+    {
+     "datum": "2025-09",
+     "text": "Vermietungsstart",
+     "quelle": "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2025/09/vermietungsstart-der-wohnsiedlung-hardau-I.html"
+    },
+    {
+     "datum": "2026-05",
+     "text": "Bezug ab Ende Mai, alle Wohnungen vermietet",
+     "quelle": "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/05/siedlung-hardau-I-122-wohnungen-bezugsbereit.html"
+    }
+   ],
+   "links": [
+    [
+     "Stadt Zürich: Hardau I bezugsbereit",
+     "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/05/siedlung-hardau-I-122-wohnungen-bezugsbereit.html"
+    ]
+   ],
+   "keywords": [
+    "hardau"
+   ],
+   "stand": "2026-11-08"
+  },
+  {
+   "slug": "hohlstrasse-600",
+   "titel": "Standort Hohlstrasse 600–612",
+   "untertitel": "Julius Bär und Allreal entwickeln ihr Areal beim Bahnhof Altstetten",
+   "art": "Büro & Dienstleistung",
+   "quartier": "Altstetten",
+   "gemeinde": "Zürich",
+   "kanton": "ZH",
+   "phase": 1,
+   "kurz": "Julius Bär will ihren grössten Bürostandort weiterentwickeln, zusammen mit Allreal und weiteren Eigentümern. Der Masterplan setzt auf Umbau statt Abriss, einen neuen Platz an der Hohlstrasse und einen öffentlichen Dachgarten. Als Nächstes wird ein Gestaltungsplan erarbeitet, über den der Gemeinderat entscheidet.",
+   "fakten": [
+    [
+     "Eigentümer",
+     "Julius Bär, Allreal u. a."
+    ],
+    [
+     "Grundlage",
+     "Testplanung 2024, Masterplan 2026"
+    ],
+    [
+     "Architektur Masterplan",
+     "Herzog & de Meuron"
+    ]
+   ],
+   "meilensteine": [
+    {
+     "datum": "2024",
+     "text": "Testplanung mit Begleitung der Stadt",
+     "quelle": "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/06/mehrwerte-fuer-bevoelkerung-stadtrat-beschliesst-masterplan-zuerich-altstetten-standortentwicklung-hohlstrasse-600-612.html"
+    },
+    {
+     "datum": "2026-06-10",
+     "text": "Stadtrat beschliesst den Masterplan",
+     "quelle": "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/06/mehrwerte-fuer-bevoelkerung-stadtrat-beschliesst-masterplan-zuerich-altstetten-standortentwicklung-hohlstrasse-600-612.html"
+    },
+    {
+     "datum": "2026-06-25",
+     "text": "Öffentliche Information im Hotel Spirgarten",
+     "quelle": "https://www.stadt-zuerich.ch/altstetten-albisrieden"
+    },
+    {
+     "datum": "offen",
+     "text": "Gestaltungsplan in Bearbeitung, später Beschluss im Gemeinderat",
+     "quelle": "https://www.stadt-zuerich.ch/altstetten-albisrieden"
+    }
+   ],
+   "links": [
+    [
+     "Stadt Zürich: Medienmitteilung Masterplan",
+     "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/06/mehrwerte-fuer-bevoelkerung-stadtrat-beschliesst-masterplan-zuerich-altstetten-standortentwicklung-hohlstrasse-600-612.html"
+    ]
+   ],
+   "keywords": [
+    "hohlstrasse 600",
+    "hohlstrasse 602",
+    "hohlstrasse 604",
+    "hohlstrasse 606",
+    "hohlstrasse 608"
+   ],
+   "stand": "2026-11-08"
+  },
+  {
+   "slug": "badenerstrasse-501",
+   "titel": "Wohnhochhaus Badenerstrasse 501–505",
+   "untertitel": "Allreal baut 40 Meter hoch mit 65 Mietwohnungen",
+   "art": "Wohnen & Gewerbe",
+   "quartier": "Altstetten",
+   "gemeinde": "Zürich",
+   "kanton": "ZH",
+   "phase": 5,
+   "kurz": "Allreal plant an der Badenerstrasse ein 40 Meter hohes Haus mit Mietwohnungen und Gewerbe im Erdgeschoss. Seit Juli 2026 liegt die rechtskräftige Baubewilligung vor.",
+   "fakten": [
+    [
+     "Wohnungen",
+     "65"
+    ],
+    [
+     "Höhe",
+     "40 m"
+    ],
+    [
+     "Bauherrin",
+     "Allreal"
+    ]
+   ],
+   "meilensteine": [
+    {
+     "datum": "2022-12-16",
+     "text": "Allreal stellt das Projekt vor",
+     "quelle": "https://marketscreener.com/quote/stock/ALLREAL-HOLDING-AG-73872/news/Allreal-plans-a-carbon-neutral-high-rise-residential-building-with-64-rental-apartments-in-Zurich-42568805"
+    },
+    {
+     "datum": "2026-07-30",
+     "text": "Rechtskräftige Baubewilligung",
+     "quelle": "https://www.vermoegenszentrum.ch/en/stock-exchange-and-markets/news/allreal-wins-permit-65-unit-zurich-altstetten-rental-project"
+    }
+   ],
+   "links": [
+    [
+     "Meldung Baubewilligung (AWP)",
+     "https://www.vermoegenszentrum.ch/en/stock-exchange-and-markets/news/allreal-wins-permit-65-unit-zurich-altstetten-rental-project"
+    ]
+   ],
+   "keywords": [
+    "badenerstrasse 501",
+    "badenerstrasse 505"
+   ],
+   "stand": "2026-11-08"
   }
  ]
 }
