@@ -76,10 +76,11 @@ def page(path: str, title: str, desc: str, body: str, rss: str | None = None) ->
 <title>{e(full)}</title><meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{e(canon)}"><meta property="og:title" content="{e(full)}">
 <meta property="og:description" content="{e(desc)}"><meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.bunny.net"><link rel="stylesheet" href="https://fonts.bunny.net/css?family=schibsted-grotesk:400,500,600,700,800&display=swap">
+<link rel="preconnect" href="https://fonts.bunny.net"><link rel="stylesheet" href="https://fonts.bunny.net/css?family=schibsted-grotesk:400,500,600,700,800|ibm-plex-mono:400,500&display=swap">
 <link rel="stylesheet" href="{u('assets/app.css')}">{feed}
 <link rel="alternate" type="application/rss+xml" title="{NAME} – alle Meldungen" href="{u('rss.xml')}">
 </head><body>
+<div class="plankopf"><div class="wrap"><span>Plan Nr. {TODAY.isocalendar()[1]:02d}/{TODAY.year}</span><span>Kantone ZG · ZH</span><span class="pk-hide">Massstab 1:1</span><span>Stand {TODAY.strftime("%d.%m.%Y")}</span></div></div>
 <header class="top"><div class="wrap"><a class="logo" href="{u('')}"><i aria-hidden="true"><b style="background:var(--p1)"></b><b style="background:var(--p3)"></b><b style="background:var(--p5)"></b><b style="background:var(--p7)"></b></i>{NAME}<span>Beta</span></a><span class="claim">{CLAIM}</span>
 <nav><a href="{u('meldungen/')}">News</a><a href="{u('projekte/')}">Projekte</a><a href="{u('orte/')}">Orte</a>
 <a href="{u('projekt-melden/')}" class="nl">Projekt melden</a></nav></div></header>
@@ -296,9 +297,15 @@ def build() -> None:
     # Ortswahl: Orte mit Projekt-Dossiers, grösste zuerst
     haupt = sorted(((k, o) for k, o in orte.items() if o["p"]), key=lambda kv: (-len(kv[1]["p"]), kv[1]["name"]))
     ort_html = "".join(ortkachel(k, o) for k, o in haupt)
-    start = (f'<section class="start"><h1>Was in Zug und Zürich geplant und gebaut wird</h1>'
+    n0 = termine[0] if termine else None
+    nxt0 = (f'<div><span>Nächster Entscheid</span><b class="sig">{e(dlabel(n0[2]["datum"]))}</b><small>{e(n0[1]["titel"])}</small></div>'
+            if n0 else "")
+    stats = (f'<div class="titelblock"><div><span>Projekte</span><b>{len(projekte)}</b><small>mit Steckbrief</small></div>'
+             f'<div><span>Orte</span><b>{len(haupt)}</b><small>mit Projekten</small></div>'
+             f'<div><span>Wohnungen beantragt</span><b>{wohn30}</b><small>Baugesuche, 30 Tage</small></div>{nxt0}</div>')
+    start = (f'<section class="start"><p class="kl">Blatt 01 · Übersicht</p><h1>Was in Zug und Zürich geplant und gebaut wird</h1>'
              f'<p class="sub">Projekte, Entscheide und Termine der Immobilien- und Arealentwicklung, laufend nachgeführt aus Amtsblättern, '
-             f'Medienmitteilungen und Projektseiten.</p><div class="startgrid"><div><h2 class="kl">Orte</h2><div class="orte">{ort_html}</div>'
+             f'Medienmitteilungen und Projektseiten.</p>{stats}<div class="startgrid"><div><h2 class="kl">Orte</h2><div class="orte">{ort_html}</div>'
              f'<a class="more" href="{u("orte/")}">Alle Orte</a></div>'
              f'<div class="entscheide"><h2 class="kl">Nächste Entscheide</h2><ul class="mlist">{term_html}</ul></div></div></section>')
     body = (start + f'<div class="news"><div class="main">{hero}'
