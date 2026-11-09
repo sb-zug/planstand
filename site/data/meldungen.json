@@ -1,6 +1,32 @@
 {
- "stand": "2026-11-08T17:57+00:00",
+ "stand": "2026-11-09T13:56+00:00",
  "meldungen": [
+  {
+   "id": "9f624959-e66b-4f61-afd5-fc308bbb7165",
+   "datum": "2026-11-09",
+   "typ": "Raumplanung",
+   "titel": "Gesamtrevision kommunale Nutzungsplanung - Teilweise Nichtgenehmigung",
+   "beschrieb": "",
+   "kanton": "ZH",
+   "gemeinde": "Unterengstringen",
+   "frist": "2029-11-09",
+   "quelle": "Amtsblatt ZH",
+   "url": "https://amtsblatt.zh.ch/#!/search/publications/detail/9f624959-e66b-4f61-afd5-fc308bbb7165",
+   "projekte": []
+  },
+  {
+   "id": "mk-er-com-ch-de-blog-wohnungsmarkt-welche-nachfrage-im-bestand-schlummert",
+   "datum": "2026-11-09",
+   "typ": "Marktstudie",
+   "titel": "Wohnungsmarkt: Welche Nachfrage im Bestand schlummert",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Wüest Partner",
+   "url": "https://www.wuestpartner.com/ch-de/blog/wohnungsmarkt-welche-nachfrage-im-bestand-schlummert/",
+   "projekte": []
+  },
   {
    "id": "md-h-wohnen-bauen-baurechtsexperte-zug-muss-ueber-einzonung-reden-2909879",
    "datum": "2026-11-08",
@@ -236,6 +262,32 @@
    "projekte": []
   },
   {
+   "id": "ms-a-stadt-zuerich-will-aufwertungsgewinn-fuer-guenstige-mieten-einsetzen",
+   "datum": "2026-11-06",
+   "typ": "Medien",
+   "titel": "Stadt Zürich will Aufwertungsgewinn für günstige Mieten einsetzen",
+   "beschrieb": "Ordnet ein, wie die Stadt einen reinen Buchgewinn aus der Neubewertung ihrer Liegenschaften in Wohnraumfonds und Rahmenkredit lenken will.",
+   "kanton": "ZH",
+   "gemeinde": "Zürich",
+   "frist": null,
+   "quelle": "Tsüri.ch",
+   "url": "https://tsri.ch/a/stadt-zuerich-will-aufwertungsgewinn-fuer-guenstige-mieten-einsetzen",
+   "projekte": []
+  },
+  {
+   "id": "ms-adt-zuerich-will-milliarden-buchgewinn-fuer-wohnungen-nutzen-165937056",
+   "datum": "2026-11-06",
+   "typ": "Medien",
+   "titel": "Stadt Zürich will Milliarden-Buchgewinn für Wohnungen nutzen",
+   "beschrieb": "Agenturmeldung zum ausserordentlichen Massnahmenpaket Wohnen im Budget 2027.",
+   "kanton": "ZH",
+   "gemeinde": "Zürich",
+   "frist": null,
+   "quelle": "Radio Central (sda)",
+   "url": "https://www.radiocentral.ch/news/schweiz/stadt-zuerich-will-milliarden-buchgewinn-fuer-wohnungen-nutzen-165937056",
+   "projekte": []
+  },
+  {
    "id": "mm-teilungen-2026-11-ersatzneubau-vereint-betreuung-unter-einem-dach-html",
    "datum": "2026-11-05",
    "typ": "Medienmitteilung",
@@ -250,6 +302,19 @@
    "projekte": []
   },
   {
+   "id": "ms-11-04-wohneigentum-angebotspreise-fallen-nur-atempause-oder-trendwende",
+   "datum": "2026-11-04",
+   "typ": "Medien",
+   "titel": "Wohneigentum: Angebotspreise fallen, nur Atempause oder Trendwende?",
+   "beschrieb": "Branchenportal zum Kaufindex Oktober: Rückgang im Monat, Jahresplus bleibt.",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Real Estate Move",
+   "url": "https://realestatemove.ch/2026/11/04/wohneigentum-angebotspreise-fallen-nur-atempause-oder-trendwende/",
+   "projekte": []
+  },
+  {
    "id": "mm-rthur-ch-medien-winterthur-entwickelt-sein-immobilienmanagement-weiter",
    "datum": "2026-11-03",
    "typ": "Medienmitteilung",
@@ -261,6 +326,19 @@
    "quelle": "Stadt Winterthur",
    "url": "https://stadt.winterthur.ch/medien/winterthur-entwickelt-sein-immobilienmanagement-weiter",
    "bild": "https://winterthur.rokka.io/og_image/60d61f1e150b69d4b9995dfb8bda8002fc126e29/stadthaus.jpg?h=c4708816&itok=ujMXFoD7",
+   "projekte": []
+  },
+  {
+   "id": "ms-https-www-plattformj-ch-artikel-248079",
+   "datum": "2026-10-31",
+   "typ": "Medien",
+   "titel": "Wohnungsmarkt: Zehntausende können keinen eigenen Haushalt gründen",
+   "beschrieb": "Zur Wüest-Partner-Analyse über aufgeschobene Haushaltsgründungen und die Abwanderung aus dem Kanton Zürich.",
+   "kanton": "ZH",
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Plattform J (sda)",
+   "url": "https://www.plattformj.ch/artikel/248079/",
    "projekte": []
   },
   {
