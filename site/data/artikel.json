@@ -2,6 +2,134 @@
   "_hinweis": "Eigene Artikel der Redaktion (wöchentlich von Claude im Donnerstags-Durchlauf). Nur Fakten aus verlinkten Originalquellen, eigene Worte. Felder: slug, datum, rubrik, titel, lead, absaetze (Liste; **fett** erlaubt), quellen [[Label, URL]], projekte [slugs], orte [Namen].",
   "artikel": [
     {
+      "slug": "wochenbrief-2026-46",
+      "datum": "2026-11-09",
+      "rubrik": "Wochenbrief",
+      "titel": "Eigentumspreise geben nach, Zürich lenkt Buchgewinn in den Wohnungsbau",
+      "lead": "Die Angebotspreise für Wohneigentum sind im Oktober in den meisten Regionen gesunken, das Jahresplus bleibt aber bestehen. In Zürich und Winterthur zeigen die Städte, wie sie ihr eigenes Immobilienportfolio als Hebel für die Wohnpolitik einsetzen wollen.",
+      "zahlen": [
+        {
+          "wert": "–0,7 %",
+          "text": "Angebotspreise für Einfamilienhäuser in der Schweiz im Oktober gegenüber September; im Jahresvergleich bleiben sie 3,1 % höher (ImmoScout24-Kaufindex mit IAZI)"
+        },
+        {
+          "wert": "800 Mio.",
+          "text": "Franken will die Stadt Zürich in den Wohnraumfonds einlegen, statt der budgetierten 50 Millionen (Stadt Zürich, Budget 2027)"
+        },
+        {
+          "wert": "2 von 3",
+          "text": "kantonalen Genehmigungen kommunaler Nutzungsplanungen im Zürcher Amtsblatt vom 6. November erfolgten nur teilweise (Planstand-Auswertung)"
+        }
+      ],
+      "top": [
+        {
+          "ort": "Schweiz",
+          "titel": "Wohneigentum: Preise geben im Oktober nach",
+          "text": "Die inserierten Preise für Einfamilienhäuser sanken landesweit um 0,7 %, jene für Eigentumswohnungen um 0,1 %. Am stärksten gaben Einfamilienhäuser in der Zentralschweiz nach (–2,5 %); in der Grossregion Zürich stiegen die Preise für Eigentumswohnungen dagegen leicht (+0,4 %). Über zwölf Monate liegen beide Segmente weiterhin 3 bis 4 % im Plus.",
+          "quelle": [
+            "SMG: Kaufindex Oktober 2026",
+            "https://swissmarketplace.group/de/media-release/kaufindex-10-2026-de/"
+          ]
+        },
+        {
+          "ort": "Zürich · ZH",
+          "titel": "2,5 Milliarden Buchgewinn für bezahlbare Mieten",
+          "text": "Die vorgeschriebene Neubewertung der städtischen Liegenschaften im Finanzvermögen dürfte rund 2,5 Milliarden Franken Buchgewinn bringen, aber keine zusätzliche Liquidität. Der Stadtrat will damit 800 Millionen in den Wohnraumfonds legen, mit einem Rahmenkredit von rund 1,75 Milliarden Liegenschaften für den gemeinnützigen Wohnungsbau ins Verwaltungsvermögen übertragen und Baurechte vergünstigt an Genossenschaften und Stiftungen vergeben. Gemeinderat und Stimmbevölkerung müssen zustimmen.",
+          "quelle": [
+            "Stadt Zürich: Budget 2027 und Massnahmenpaket Wohnen",
+            "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/11/budget-2027-aufwertungsgewinn-von-2-komma-5-milliarden-franken-soll-bezahlbare-mieten-langfristig-sichern.html"
+          ]
+        },
+        {
+          "ort": "Winterthur · ZH",
+          "titel": "Stadt bündelt ihre Eigentümerrolle",
+          "text": "Der Winterthurer Stadtrat will die Eigentümervertretung für einen Grossteil des städtischen Immobilienportfolios im Bereich Immobilien zentralisieren. Für Baurechtsnehmer, Genossenschaften und Investoren dürfte es damit künftig eine zentrale Ansprechstelle der Stadt geben.",
+          "quelle": [
+            "Stadt Winterthur: Immobilienmanagement",
+            "https://stadt.winterthur.ch/medien/winterthur-entwickelt-sein-immobilienmanagement-weiter"
+          ]
+        },
+        {
+          "ort": "Kanton Zürich",
+          "titel": "Kanton genehmigt Ortsplanungen nur teilweise",
+          "text": "Im Amtsblatt vom 6. November hat der Kanton die Revision der Nutzungsplanung von Marthalen und eine Teilrevision in Thalheim an der Thur jeweils nur teilweise genehmigt. Die Teilrevision «Seeben Nord» in Marthalen ist dagegen vollständig genehmigt. Wer in kleineren Gemeinden entwickelt, muss mit kantonalen Korrekturen an den kommunalen Zonen rechnen.",
+          "quelle": [
+            "Amtsblatt ZH: Nutzungsplanung Marthalen",
+            "https://amtsblatt.zh.ch/#!/search/publications/detail/91ff6c62-cf40-4e7b-9737-8d3944778476"
+          ]
+        },
+        {
+          "ort": "Zug · ZG",
+          "titel": "Lorzenallmend liegt ab Donnerstag auf",
+          "text": "Ab 12. November bis 11. Dezember liegen die Bebauungspläne für die Äussere Lorzenallmend öffentlich auf, die grösste zusammenhängende Baulandreserve der Stadt Zug. Vorgesehen sind mindestens 50 % Wohnanteil pro Baubereich, 40 % der neuen Wohnungen preisgünstig. Während der Auflage sind Eingaben möglich.",
+          "quelle": [
+            "Stadt Zug: Medienmitteilung Äussere Lorzenallmend (PDF)",
+            "https://www.baudepartement-stadtzug.ch/file/get/xwznphpjcydmldcl/20261030_MM_BBP_Aeussere_Lorzenallmend.pdf"
+          ]
+        }
+      ],
+      "absaetze": [
+        "**Ein Monat ist kein Trend:** Der Rückgang im Oktober folgt auf eine kleine Preispause bei den Einfamilienhäusern im September; im Jahresvergleich bleibt Wohneigentum 3 bis 4 % teurer. Bemerkenswert ist die Breite: Bei den Einfamilienhäusern sanken die Angebotspreise in sechs von sieben Grossregionen. Für Entwickler von Eigentumswohnungen heisst das vorerst: genauer auf Lage und Preispunkt achten, nicht auf eine Wende setzen.",
+        "**Die Städte als Bodenbesitzer:** Zürich nutzt einen buchhalterischen Gewinn aus der Neubewertung, um eigene Liegenschaften dem gemeinnützigen Wohnungsbau zuzuführen und Baurechte günstiger abzugeben; Winterthur organisiert die Eigentümerrolle neu. Für private Entwickler bedeutet das mehr Konkurrenz um Areale, aber auch mehr Baurechte und Partnerschaften mit Genossenschaften. Am Zürcher Seeufer in Wollishofen zeigt sich die andere Seite: Dort will die Stadt eine Wohnzone teilweise auszonen und verhandelt mit der Eigentümerin, Planstand führt das Vorhaben neu als Projekt.",
+        "**Ausblick:** Am 12. November beginnt in Zug die Auflage der Lorzenallmend, am 17. November berät der Grosse Gemeinderat in erster Lesung den Bebauungsplan für das LG-Areal. Am 23. November informiert die Stadt Zürich das Quartier zum Areal Thurgauerstrasse, am 29. November entscheidet Baar über den Planungskredit Bahnmatt."
+      ],
+      "quellen": [
+        [
+          "SMG: ImmoScout24-Kaufindex Oktober 2026",
+          "https://swissmarketplace.group/de/media-release/kaufindex-10-2026-de/"
+        ],
+        [
+          "Stadt Zürich: Budget 2027 und Massnahmenpaket Wohnen",
+          "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/11/budget-2027-aufwertungsgewinn-von-2-komma-5-milliarden-franken-soll-bezahlbare-mieten-langfristig-sichern.html"
+        ],
+        [
+          "Stadt Winterthur: Immobilienmanagement",
+          "https://stadt.winterthur.ch/medien/winterthur-entwickelt-sein-immobilienmanagement-weiter"
+        ],
+        [
+          "Amtsblatt ZH: Nutzungsplanung Marthalen",
+          "https://amtsblatt.zh.ch/#!/search/publications/detail/91ff6c62-cf40-4e7b-9737-8d3944778476"
+        ],
+        [
+          "Amtsblatt ZH: Nutzungsplanung «Seeben Nord», Marthalen",
+          "https://amtsblatt.zh.ch/#!/search/publications/detail/9381f02c-4752-45ae-90ec-3ee367e99b2b"
+        ],
+        [
+          "Amtsblatt ZH: Nutzungsplanung Thalheim an der Thur",
+          "https://amtsblatt.zh.ch/#!/search/publications/detail/e681afbc-3342-4b2a-8294-f6c75ed69b62"
+        ],
+        [
+          "Stadt Zug: Medienmitteilung Äussere Lorzenallmend (PDF)",
+          "https://www.baudepartement-stadtzug.ch/file/get/xwznphpjcydmldcl/20261030_MM_BBP_Aeussere_Lorzenallmend.pdf"
+        ],
+        [
+          "Stadt Zürich: Seeufer Wollishofen",
+          "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/10/seeufer-wollishofen-stadtrat-will-moeglichkeiten-fuer-kibag-areal-neu-ausloten.html"
+        ],
+        [
+          "Ratsinfo Stadt Zug: LG-Areal",
+          "https://ratsinfo.stadtzug.ch/gremium/1/geschaefte/1223"
+        ],
+        [
+          "Stadt Zürich: Areal Thurgauerstrasse",
+          "https://www.stadt-zuerich.ch/areal-thurgauerstrasse"
+        ]
+      ],
+      "projekte": [
+        "aeussere-lorzenallmend",
+        "lg-areal",
+        "seeufer-wollishofen",
+        "thurgauerstrasse"
+      ],
+      "orte": [
+        "Zürich",
+        "Winterthur",
+        "Marthalen",
+        "Thalheim an der Thur",
+        "Zug"
+      ]
+    },
+    {
       "slug": "wochenbrief-2026-45",
       "datum": "2026-11-08",
       "rubrik": "Wochenbrief",

@@ -1,6 +1,6 @@
 {
  "_hinweis": "Redaktionell gepflegt (Claude, Wochen-Durchlauf). Phasen: 1 Planung, 2 Mitwirkung, 3 Parlament, 4 Abstimmung, 5 Bewilligung, 6 Bau, 7 Bezug. gemeinde = Name wie in orte, kanton = ZG/ZH. keywords = Stichworte (klein) für die automatische Zuordnung von Meldungen. Meilensteine: datum (JJJJ-MM-TT, JJJJ-MM, JJJJ oder Text), text, quelle.",
- "stand": "2026-11-08",
+ "stand": "2026-11-09",
  "projekte": [
   {
    "slug": "lg-areal",
@@ -930,6 +930,88 @@
     "badenerstrasse 505"
    ],
    "stand": "2026-11-08"
+  },
+  {
+   "slug": "seeufer-wollishofen",
+   "titel": "Seeufer Wollishofen",
+   "untertitel": "Seeuferpark statt Wohnungen am Wasser: Stadt plant das KIBAG-Areal neu",
+   "art": "Freiraum & Gewerbe",
+   "quartier": "Wollishofen",
+   "lat": 47.3466,
+   "lon": 8.5362,
+   "phase": 1,
+   "kurz": "Zwischen Landiwiese und Roter Fabrik will die Stadt Zürich mehr öffentlichen Freiraum, neue Wege und die gewerbliche Prägung erhalten. Das KIBAG-Areal ist heute Wohnzone W4: Seeseitig soll es für einen zusammenhängenden Seeuferpark ausgezont, strassenseitig in eine Gewerbezone umgezont werden. Wohnungen mit Seeanstoss schliesst der Stadtrat aus; für das Teilareal am Mythenquai prüft er einen beschränkten, vor allem preisgünstigen Wohnanteil.",
+   "fakten": [
+    [
+     "Grundeigentum",
+     "KIBAG (KIBAG-Areal), Stadt Zürich (Werft-Areal)"
+    ],
+    [
+     "Heutige Zone",
+     "Wohnzone W4 (KIBAG-Areal)"
+    ],
+    [
+     "Ziel",
+     "Seeuferpark seeseitig, Gewerbe strassenseitig"
+    ],
+    [
+     "Grundlage",
+     "Masterplan 2023, Richtplan-Teilrevisionen 2025"
+    ]
+   ],
+   "meilensteine": [
+    {
+     "datum": "2023-06",
+     "text": "Stadtrat beschliesst den Masterplan «Seeufer Wollishofen»",
+     "quelle": "https://www.stadt-zuerich.ch/de/planen-und-bauen/projekte-und-ausschreibungen/gebiete-areale/seeufer-wollishofen.html"
+    },
+    {
+     "datum": "2024-05-03",
+     "text": "Baurekursgericht heisst Rekurs der KIBAG gegen die Planungszone gut",
+     "quelle": "https://www.stadt-zuerich.ch/de/planen-und-bauen/projekte-und-ausschreibungen/gebiete-areale/seeufer-wollishofen.html"
+    },
+    {
+     "datum": "2025-04-09",
+     "text": "Stadtrat beschliesst Teilrevisionen von regionalem und kommunalem Richtplan",
+     "quelle": "https://www.stadt-zuerich.ch/de/planen-und-bauen/projekte-und-ausschreibungen/gebiete-areale/seeufer-wollishofen.html"
+    },
+    {
+     "datum": "2026-01",
+     "text": "Bundesgericht stützt die Stadt: Planungszone bleibt in Kraft",
+     "quelle": "https://www.stadt-zuerich.ch/de/planen-und-bauen/projekte-und-ausschreibungen/gebiete-areale/seeufer-wollishofen.html"
+    },
+    {
+     "datum": "2026-10-29",
+     "text": "Stadtrat nimmt Verhandlungen mit der KIBAG auf, Erwerb eines Teilareals als Option",
+     "quelle": "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/10/seeufer-wollishofen-stadtrat-will-moeglichkeiten-fuer-kibag-areal-neu-ausloten.html"
+    },
+    {
+     "datum": "offen",
+     "text": "Anpassung der Nutzungsplanung (Aus- und Umzonung), Beschluss im Gemeinderat",
+     "quelle": "https://www.stadt-zuerich.ch/de/planen-und-bauen/projekte-und-ausschreibungen/gebiete-areale/seeufer-wollishofen.html"
+    }
+   ],
+   "links": [
+    [
+     "Stadt Zürich: Seeufer Wollishofen",
+     "https://www.stadt-zuerich.ch/de/planen-und-bauen/projekte-und-ausschreibungen/gebiete-areale/seeufer-wollishofen.html"
+    ],
+    [
+     "Medienmitteilung vom 29.10.2026",
+     "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/10/seeufer-wollishofen-stadtrat-will-moeglichkeiten-fuer-kibag-areal-neu-ausloten.html"
+    ]
+   ],
+   "keywords": [
+    "kibag",
+    "seeufer wollishofen",
+    "werft-areal",
+    "mythenquai",
+    "savera"
+   ],
+   "gemeinde": "Zürich",
+   "kanton": "ZH",
+   "mitreden": "Zu Zonenplanänderungen gibt es eine öffentliche Auflage; danach entscheidet der Gemeinderat.",
+   "stand": "2026-11-09"
   }
  ]
 }
