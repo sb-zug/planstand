@@ -1,8 +1,8 @@
 {
- "lauf": "2026-11-09T13:56+00:00",
+ "lauf": "2026-11-10T13:30+00:00",
  "quellen": {
   "Amtsblatt ZG": "ok (0 relevant)",
-  "Amtsblatt ZH": "ok (17 relevant)",
+  "Amtsblatt ZH": "ok (19 relevant)",
   "Stadt Zürich": "ok (1 relevant)",
   "Stadt Winterthur": "ok (1 relevant)",
   "Gemeinde Hünenberg": "ok (10 relevant)",
@@ -11,7 +11,7 @@
   "zentralplus": "ok (0 relevant)",
   "moneycab": "ok (0 relevant)",
   "Korporation Zug": "ok (1 relevant)",
-  "IAZI": "ok (2 relevant)",
+  "IAZI": "ok (3 relevant)",
   "Wüest Partner": "ok (6 relevant)",
   "Fahrländer Partner": "ok (9 relevant)",
   "Raiffeisen": "Fehler: HTTP Error 404: Not Found",
@@ -27,5 +27,5 @@
   "Wincasa": "ok (8 Links, 0 relevant)",
   "Zuger Kantonalbank": "ok (4 Links, 0 relevant)"
  },
- "anzahl": 64
+ "anzahl": 67
 }

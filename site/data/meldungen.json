@@ -1,6 +1,45 @@
 {
- "stand": "2026-11-09T13:56+00:00",
+ "stand": "2026-11-10T13:30+00:00",
  "meldungen": [
+  {
+   "id": "1ed64345-383d-46f0-b620-eedc38c3480f",
+   "datum": "2026-11-10",
+   "typ": "Baugesuch",
+   "titel": "Fachstrasse 12, 14",
+   "beschrieb": "Ersatzneubau von 2 Mehrfamilienhäuser mit gemeinsamer Tiefgarage",
+   "kanton": "ZH",
+   "gemeinde": "Oberrieden",
+   "frist": "2027-11-10",
+   "quelle": "Amtsblatt ZH",
+   "url": "https://amtsblatt.zh.ch/#!/search/publications/detail/1ed64345-383d-46f0-b620-eedc38c3480f",
+   "projekte": []
+  },
+  {
+   "id": "d05579c9-b1a2-4585-8eab-20b5ce6e49bd",
+   "datum": "2026-11-10",
+   "typ": "Raumplanung",
+   "titel": "Totalrevision kommunaler Teilrichtplan Verkehr – Festsetzung, teilweise Nichtgenehmigung und Wiedererwägung der Baudirektion, Festsetzung, Wettswil am Albis",
+   "beschrieb": "",
+   "kanton": "ZH",
+   "gemeinde": "Wettswil a.A.",
+   "frist": "2029-11-10",
+   "quelle": "Amtsblatt ZH",
+   "url": "https://amtsblatt.zh.ch/#!/search/publications/detail/d05579c9-b1a2-4585-8eab-20b5ce6e49bd",
+   "projekte": []
+  },
+  {
+   "id": "mk-https-www-iazicifi-ch-medienmitteilung-wohnraumpotenzial-zuerich",
+   "datum": "2026-11-10",
+   "typ": "Marktstudie",
+   "titel": "Medienmitteilung: Wohnraumpotenzial im Kanton Zürich",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "IAZI",
+   "url": "https://www.iazicifi.ch/medienmitteilung-wohnraumpotenzial-zuerich/",
+   "projekte": []
+  },
   {
    "id": "9f624959-e66b-4f61-afd5-fc308bbb7165",
    "datum": "2026-11-09",
