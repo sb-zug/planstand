@@ -1,6 +1,19 @@
 {
- "stand": "2026-11-10T13:30+00:00",
+ "stand": "2026-11-11T12:45+00:00",
  "meldungen": [
+  {
+   "id": "e4842b9b-389f-4fa3-ac41-e2937a7963d0",
+   "datum": "2026-11-11",
+   "typ": "Raumplanung",
+   "titel": "Amt für Städtebau, Teilrevision Bau- und Zonenordnung, Zonenplanänderung, «Sporthalle Witikon», Zürich-Witikon, Kreis 7, Bekanntmachung der kommunalen Festsetzung und der kantonalen Genehmigung",
+   "beschrieb": "",
+   "kanton": "ZH",
+   "gemeinde": "Zürich",
+   "frist": "2029-11-11",
+   "quelle": "Amtsblatt ZH",
+   "url": "https://amtsblatt.zh.ch/#!/search/publications/detail/e4842b9b-389f-4fa3-ac41-e2937a7963d0",
+   "projekte": []
+  },
   {
    "id": "1ed64345-383d-46f0-b620-eedc38c3480f",
    "datum": "2026-11-10",
@@ -38,6 +51,19 @@
    "frist": null,
    "quelle": "IAZI",
    "url": "https://www.iazicifi.ch/medienmitteilung-wohnraumpotenzial-zuerich/",
+   "projekte": []
+  },
+  {
+   "id": "md-ers-studie-sieht-platz-fuer-42000-menschen-auf-zuercher-gewerbearealen",
+   "datum": "2026-11-10",
+   "typ": "Medien",
+   "titel": "Studie sieht Platz für 42’000 Menschen auf Zürcher Gewerbearealen",
+   "beschrieb": "",
+   "kanton": "ZH",
+   "gemeinde": "Zürich",
+   "frist": null,
+   "quelle": "moneycab",
+   "url": "https://www.moneycab.com/dossiers/studie-sieht-platz-fuer-42000-menschen-auf-zuercher-gewerbearealen/",
    "projekte": []
   },
   {
