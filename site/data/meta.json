@@ -1,15 +1,15 @@
 {
- "lauf": "2026-11-11T12:45+00:00",
+ "lauf": "2026-11-12T13:49+00:00",
  "quellen": {
-  "Amtsblatt ZG": "ok (0 relevant)",
-  "Amtsblatt ZH": "ok (20 relevant)",
-  "Stadt Zürich": "ok (1 relevant)",
+  "Amtsblatt ZG": "ok (4 relevant)",
+  "Amtsblatt ZH": "ok (4 relevant)",
+  "Stadt Zürich": "ok (0 relevant)",
   "Stadt Winterthur": "ok (1 relevant)",
   "Gemeinde Hünenberg": "ok (10 relevant)",
   "Gemeinde Menzingen": "ok (0 relevant)",
   "presseportal.ch": "ok (0 relevant)",
   "zentralplus": "ok (0 relevant)",
-  "moneycab": "ok (1 relevant)",
+  "moneycab": "ok (0 relevant)",
   "Korporation Zug": "ok (1 relevant)",
   "IAZI": "ok (3 relevant)",
   "Wüest Partner": "ok (6 relevant)",
@@ -27,5 +27,5 @@
   "Wincasa": "ok (8 Links, 0 relevant)",
   "Zuger Kantonalbank": "ok (4 Links, 0 relevant)"
  },
- "anzahl": 69
+ "anzahl": 73
 }

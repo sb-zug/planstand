@@ -1,6 +1,62 @@
 {
- "stand": "2026-11-11T12:45+00:00",
+ "stand": "2026-11-12T13:49+00:00",
  "meldungen": [
+  {
+   "id": "28433263-f905-4ed0-99d6-6322c2f40dd3",
+   "datum": "2026-11-12",
+   "typ": "Politik",
+   "titel": "Beschluss des Gemeinderats: Nr. 1839 betreffend Ortsplanungsrevision Stadt Zug: Gewässerraumfestlegung Teil 1 \"Siedlungsgebiet; Festsetzung",
+   "beschrieb": "",
+   "kanton": "ZG",
+   "gemeinde": "Zug",
+   "frist": null,
+   "quelle": "Amtsblatt ZG",
+   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/28433263-f905-4ed0-99d6-6322c2f40dd3",
+   "projekte": [
+    "ortsplanung"
+   ]
+  },
+  {
+   "id": "8829f51a-a98e-4542-ada6-488e6e1d2159",
+   "datum": "2026-11-12",
+   "typ": "Raumplanung",
+   "titel": "Anpassung kantonaler Richtplan / Einladung zur öffentlichen Mitwirkung, Öffentliche Auflage, mehrere Gemeinden",
+   "beschrieb": "",
+   "kanton": "ZG",
+   "gemeinde": null,
+   "frist": "2027-02-12",
+   "quelle": "Amtsblatt ZG",
+   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/8829f51a-a98e-4542-ada6-488e6e1d2159",
+   "projekte": []
+  },
+  {
+   "id": "a81cde8f-5a1a-463b-b6de-6d47fba01dfa",
+   "datum": "2026-11-12",
+   "typ": "Raumplanung",
+   "titel": "Gebietsplanung Äussere Lorzenallmend, 1. Öffentliche Auflage",
+   "beschrieb": "",
+   "kanton": "ZG",
+   "gemeinde": "Zug",
+   "frist": "2026-12-12",
+   "quelle": "Amtsblatt ZG",
+   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/a81cde8f-5a1a-463b-b6de-6d47fba01dfa",
+   "projekte": [
+    "aeussere-lorzenallmend"
+   ]
+  },
+  {
+   "id": "dbd9b9c6-99b8-4d31-a7c7-62770f4143ea",
+   "datum": "2026-11-12",
+   "typ": "Kanton",
+   "titel": "Öffentliche Auflage: Festsetzung Naturinventar",
+   "beschrieb": "",
+   "kanton": "ZG",
+   "gemeinde": "Cham",
+   "frist": "2027-02-12",
+   "quelle": "Amtsblatt ZG",
+   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/dbd9b9c6-99b8-4d31-a7c7-62770f4143ea",
+   "projekte": []
+  },
   {
    "id": "e4842b9b-389f-4fa3-ac41-e2937a7963d0",
    "datum": "2026-11-11",
