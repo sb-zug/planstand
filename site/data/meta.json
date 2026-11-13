@@ -1,9 +1,9 @@
 {
- "lauf": "2026-11-12T13:49+00:00",
+ "lauf": "2026-11-13T13:12+00:00",
  "quellen": {
   "Amtsblatt ZG": "ok (4 relevant)",
-  "Amtsblatt ZH": "ok (4 relevant)",
-  "Stadt Zürich": "ok (0 relevant)",
+  "Amtsblatt ZH": "ok (12 relevant)",
+  "Stadt Zürich": "ok (1 relevant)",
   "Stadt Winterthur": "ok (1 relevant)",
   "Gemeinde Hünenberg": "ok (10 relevant)",
   "Gemeinde Menzingen": "ok (0 relevant)",
@@ -20,12 +20,12 @@
   "Losinger Marazzi": "ok (12 Links, 0 relevant)",
   "Swiss Prime Site": "ok (86 Links, 0 relevant)",
   "Senn": "ok (1 Links, 0 relevant)",
-  "Intershop": "ok (5 Links, 0 relevant)",
+  "Intershop": "ok (4 Links, 0 relevant)",
   "Zug Estates": "ok (2 Links, 0 relevant)",
   "Avadis": "ok (12 Links, 0 relevant)",
   "Patrimonium": "ok (7 Links, 0 relevant)",
   "Wincasa": "ok (8 Links, 0 relevant)",
   "Zuger Kantonalbank": "ok (4 Links, 0 relevant)"
  },
- "anzahl": 73
+ "anzahl": 82
 }
