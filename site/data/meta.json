@@ -1,5 +1,5 @@
 {
- "lauf": "2026-11-14T12:13+00:00",
+ "lauf": "2026-11-14T18:08+00:00",
  "quellen": {
   "Amtsblatt ZG": "ok (4 relevant)",
   "Amtsblatt ZH": "ok (9 relevant)",
@@ -8,7 +8,7 @@
   "Gemeinde Hünenberg": "ok (10 relevant)",
   "Gemeinde Menzingen": "ok (0 relevant)",
   "presseportal.ch": "ok (0 relevant)",
-  "zentralplus": "ok (1 relevant)",
+  "zentralplus": "ok (2 relevant)",
   "moneycab": "ok (0 relevant)",
   "Korporation Zug": "ok (1 relevant)",
   "IAZI": "ok (3 relevant)",
@@ -27,5 +27,5 @@
   "Wincasa": "ok (8 Links, 0 relevant)",
   "Zuger Kantonalbank": "ok (4 Links, 0 relevant)"
  },
- "anzahl": 82
+ "anzahl": 83
 }

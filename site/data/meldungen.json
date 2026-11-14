@@ -1,6 +1,19 @@
 {
- "stand": "2026-11-14T12:13+00:00",
+ "stand": "2026-11-14T18:08+00:00",
  "meldungen": [
+  {
+   "id": "md-plus-ch-news-gaswerkareal-stadt-zug-muss-millionen-draufzahlen-2911658",
+   "datum": "2026-11-14",
+   "typ": "Medien",
+   "titel": "Gaswerkareal: Stadt Zug muss Millionen draufzahlen",
+   "beschrieb": "",
+   "kanton": "ZG",
+   "gemeinde": "Zug",
+   "frist": null,
+   "quelle": "zentralplus",
+   "url": "https://www.zentralplus.ch/news/gaswerkareal-stadt-zug-muss-millionen-draufzahlen-2911658/",
+   "projekte": []
+  },
   {
    "id": "df43f9f2-61d7-4232-ba59-d0a935accedc",
    "datum": "2026-11-13",
