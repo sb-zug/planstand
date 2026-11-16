@@ -1,6 +1,47 @@
 {
- "stand": "2026-11-15T12:46+00:00",
+ "stand": "2026-11-16T13:41+00:00",
  "meldungen": [
+  {
+   "id": "mm-nterthur-ch-medien-neubau-staedtischer-recycling-hof-der-kronaustrasse",
+   "datum": "2026-11-16",
+   "typ": "Medienmitteilung",
+   "titel": "Neubau städtischer Recycling-Hof an der Kronaustrasse",
+   "beschrieb": "Der Stadtrat beantragt beim Stadtparlament einen Verpflichtungskredit von 6,25 Millionen Franken für den neuen städtischen Recycling-Hof in der Grüze.",
+   "kanton": "ZH",
+   "gemeinde": "Winterthur",
+   "frist": null,
+   "quelle": "Stadt Winterthur",
+   "url": "https://stadt.winterthur.ch/medien/neubau-staedtischer-recycling-hof-der-kronaustrasse",
+   "bild": "https://winterthur.rokka.io/og_image/60d61f1e150b69d4b9995dfb8bda8002fc126e29/stadthaus.jpg?h=c4708816&itok=ujMXFoD7",
+   "projekte": []
+  },
+  {
+   "id": "mm-https-www-presseportal-ch-de-pm-100000982-100943611",
+   "datum": "2026-11-16",
+   "typ": "Medienmitteilung",
+   "titel": "HEV-Immobilienumfrage 2026: Fachleute erwarten weiter steigende Preise für Wohnimmobilien",
+   "beschrieb": "HEV Schweiz: Zürich (ots) - Die Mehrheit der befragten Immobilienfachleute rechnet in den kommenden zwölf Monaten mit höheren Preisen für Einfamilienhäuser, Eigentumswohnungen und Mehrfamilienhäuser. Auch bei den Wohnungsmieten erwartet eine Mehrheit einen ...",
+   "kanton": "ZH",
+   "gemeinde": "Zürich",
+   "frist": null,
+   "quelle": "presseportal.ch",
+   "url": "https://www.presseportal.ch/de/pm/100000982/100943611",
+   "bild": null,
+   "projekte": []
+  },
+  {
+   "id": "mk-e-ch-resultate-der-immobilienumfrage-schweiz-datenstand-4-quartal-2026",
+   "datum": "2026-11-16",
+   "typ": "Marktstudie",
+   "titel": "Resultate der Immobilienumfrage Schweiz (Datenstand: 4. Quartal 2026)",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Fahrländer Partner",
+   "url": "https://fpre.ch/resultate-der-immobilienumfrage-schweiz-datenstand-4-quartal-2026/",
+   "projekte": []
+  },
   {
    "id": "md-plus-ch-news-gaswerkareal-stadt-zug-muss-millionen-draufzahlen-2911658",
    "datum": "2026-11-14",
