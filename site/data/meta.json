@@ -1,5 +1,5 @@
 {
- "lauf": "2026-11-16T13:41+00:00",
+ "lauf": "2026-11-17T14:27+00:00",
  "quellen": {
   "Amtsblatt ZG": "ok (4 relevant)",
   "Amtsblatt ZH": "ok (8 relevant)",
@@ -7,15 +7,15 @@
   "Stadt Winterthur": "ok (2 relevant)",
   "Gemeinde Hünenberg": "ok (10 relevant)",
   "Gemeinde Menzingen": "ok (0 relevant)",
-  "presseportal.ch": "ok (1 relevant)",
-  "zentralplus": "ok (1 relevant)",
+  "presseportal.ch": "ok (0 relevant)",
+  "zentralplus": "ok (0 relevant)",
   "moneycab": "ok (0 relevant)",
   "Korporation Zug": "ok (1 relevant)",
   "IAZI": "ok (3 relevant)",
   "Wüest Partner": "ok (6 relevant)",
   "Fahrländer Partner": "ok (9 relevant)",
   "Raiffeisen": "Fehler: HTTP Error 404: Not Found",
-  "Stadt Zug": "ok (0 relevant)",
+  "Stadt Zug": "ok (1 relevant)",
   "Halter": "ok (138 Links, 0 relevant)",
   "Losinger Marazzi": "ok (12 Links, 0 relevant)",
   "Swiss Prime Site": "ok (86 Links, 0 relevant)",
@@ -27,5 +27,5 @@
   "Wincasa": "ok (8 Links, 0 relevant)",
   "Zuger Kantonalbank": "ok (4 Links, 0 relevant)"
  },
- "anzahl": 86
+ "anzahl": 87
 }

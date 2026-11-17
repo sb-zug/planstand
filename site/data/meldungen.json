@@ -1,6 +1,22 @@
 {
- "stand": "2026-11-16T13:41+00:00",
+ "stand": "2026-11-17T14:27+00:00",
  "meldungen": [
+  {
+   "datum": "2026-11-17",
+   "titel": "Stadt Zug legt die wesentlichen Änderungen der Ortsplanungsrevision gemäss Beschluss des Grossen Gemeinderats öffentlich auf",
+   "beschrieb": "Die Stadt Zug legt vom 19. November bis 18. Dezember 2026 die wesentlichen Änderungen der revidierten Nutzungsplanung öffentlich auf. Der Grosse Gemeinderat hat diese am 1. Oktober 2026 in zweiter Lesung beschlossen.",
+   "url": "https://stadtzug.ch/de/news/2026/november-2026/stadt-zug-legt-die-wesentlichen-aenderungen-der-ortsplanungsrevision-gemaess-beschluss-des-grossen-gemeinderats-oeffentlich-auf",
+   "frist": null,
+   "id": "mm-ngsrevision-gemaess-beschluss-des-grossen-gemeinderats-oeffentlich-auf",
+   "typ": "Medienmitteilung",
+   "kanton": "ZG",
+   "gemeinde": "Zug",
+   "quelle": "Stadt Zug",
+   "bild": null,
+   "projekte": [
+    "ortsplanung"
+   ]
+  },
   {
    "id": "mm-nterthur-ch-medien-neubau-staedtischer-recycling-hof-der-kronaustrasse",
    "datum": "2026-11-16",
