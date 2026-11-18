@@ -1,6 +1,34 @@
 {
- "stand": "2026-11-17T14:27+00:00",
+ "stand": "2026-11-18T14:01+00:00",
  "meldungen": [
+  {
+   "id": "md-lplus-ch-news-lg-areal-bezahlbare-wohnungen-sorgen-fuer-streit-2912352",
+   "datum": "2026-11-18",
+   "typ": "Medien",
+   "titel": "LG-Areal: Bezahlbare Wohnungen sorgen für Streit",
+   "beschrieb": "",
+   "kanton": "ZG",
+   "gemeinde": "Zug",
+   "frist": null,
+   "quelle": "zentralplus",
+   "url": "https://www.zentralplus.ch/news/lg-areal-bezahlbare-wohnungen-sorgen-fuer-streit-2912352/",
+   "projekte": [
+    "lg-areal"
+   ]
+  },
+  {
+   "id": "md-tralplus-ch-news-beim-baarer-sonnenberg-sind-wohnungen-geplant-2912217",
+   "datum": "2026-11-18",
+   "typ": "Medien",
+   "titel": "Beim Baarer Sonnenberg sind Wohnungen geplant",
+   "beschrieb": "",
+   "kanton": "ZG",
+   "gemeinde": "Baar",
+   "frist": null,
+   "quelle": "zentralplus",
+   "url": "https://www.zentralplus.ch/news/beim-baarer-sonnenberg-sind-wohnungen-geplant-2912217/",
+   "projekte": []
+  },
   {
    "datum": "2026-11-17",
    "titel": "Stadt Zug legt die wesentlichen Änderungen der Ortsplanungsrevision gemäss Beschluss des Grossen Gemeinderats öffentlich auf",
