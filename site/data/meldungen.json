@@ -1,6 +1,61 @@
 {
- "stand": "2026-11-18T14:01+00:00",
+ "stand": "2026-11-19T14:29+00:00",
  "meldungen": [
+  {
+   "id": "76a5f6fe-3de4-4d4b-a04b-3d836fa02a81",
+   "datum": "2026-11-19",
+   "typ": "Baugesuch",
+   "titel": "In der Breiti 2, 4, 6, Weihermattstrasse 51, 53, 55, 57, 59, 59.1, 61, 63, 65, Uitikonerstrasse 38.1, 40, 42, 44, 46, 48, 50",
+   "beschrieb": "Überbauung Weihermatt: Abbruch 11 Wohngebäude, Tiefgaragen, Kindergarten und Neubau 11 Wohngebäude mit Tiefgaragen und Kindergarten",
+   "kanton": "ZH",
+   "gemeinde": "Urdorf",
+   "frist": "2027-11-19",
+   "quelle": "Amtsblatt ZH",
+   "url": "https://amtsblatt.zh.ch/#!/search/publications/detail/76a5f6fe-3de4-4d4b-a04b-3d836fa02a81",
+   "projekte": []
+  },
+  {
+   "id": "27e0b75a-b03a-4d06-9ffa-d8e392a3233f",
+   "datum": "2026-11-19",
+   "typ": "Raumplanung",
+   "titel": "Privater Gestaltungsplan \"Juckeren\", Bekanntmachung des Inkrafttretens",
+   "beschrieb": "",
+   "kanton": "ZH",
+   "gemeinde": "Bauma",
+   "frist": "2029-11-19",
+   "quelle": "Amtsblatt ZH",
+   "url": "https://amtsblatt.zh.ch/#!/search/publications/detail/27e0b75a-b03a-4d06-9ffa-d8e392a3233f",
+   "projekte": []
+  },
+  {
+   "id": "mk--blog-geschaftsliegenschaften-investitionen-in-neu-und-umbau-nehmen-zu",
+   "datum": "2026-11-19",
+   "typ": "Marktstudie",
+   "titel": "Geschäftsliegenschaften: Investitionen in Neu- und Umbau nehmen zu",
+   "beschrieb": "",
+   "kanton": null,
+   "gemeinde": null,
+   "frist": null,
+   "quelle": "Wüest Partner",
+   "url": "https://www.wuestpartner.com/ch-de/blog/geschaftsliegenschaften-investitionen-in-neu-und-umbau-nehmen-zu/",
+   "projekte": []
+  },
+  {
+   "datum": "2026-11-19",
+   "titel": "Ortsplanungsrevision – Nutzungsplanung (Bauordnung und Zonenplan); 1. Öffentliche Auflage von wesentlichen Änderungen",
+   "beschrieb": "Gestützt auf § 39 des Planungs- und Baugesetzes (PBG) des Kantons Zug vom 26. November 1998, liegen ab Donnerstag, 19. November 2026, bis und mit Freitag, 18.",
+   "url": "https://stadtzug.ch/de/news/2026/november-2026/ortsplanungsrevision-nutzungsplanung-oeffentliche-auflage-wesentliche-aenderungen",
+   "frist": null,
+   "id": "mm-srevision-nutzungsplanung-oeffentliche-auflage-wesentliche-aenderungen",
+   "typ": "Medienmitteilung",
+   "kanton": "ZG",
+   "gemeinde": "Zug",
+   "quelle": "Stadt Zug",
+   "bild": null,
+   "projekte": [
+    "ortsplanung"
+   ]
+  },
   {
    "id": "md-lplus-ch-news-lg-areal-bezahlbare-wohnungen-sorgen-fuer-streit-2912352",
    "datum": "2026-11-18",
