@@ -1,6 +1,97 @@
 {
- "stand": "2026-11-19T14:29+00:00",
+ "stand": "2026-11-20T14:05+00:00",
  "meldungen": [
+  {
+   "id": "ad1be2f5-3682-424a-ae63-34eb828f87dd",
+   "datum": "2026-11-20",
+   "typ": "Baugesuch",
+   "titel": "Kirchgasse 2+4",
+   "beschrieb": "Abbruch Gebäude Vers.-Nr. 150 sowie Neubau von zwei MFH mit gemeinsamer Tiefgarage",
+   "kanton": "ZH",
+   "gemeinde": "Otelfingen",
+   "frist": "2027-11-20",
+   "quelle": "Amtsblatt ZH",
+   "url": "https://amtsblatt.zh.ch/#!/search/publications/detail/ad1be2f5-3682-424a-ae63-34eb828f87dd",
+   "projekte": []
+  },
+  {
+   "id": "614c4d77-e34b-4c41-9bed-d4ffd1350668",
+   "datum": "2026-11-20",
+   "typ": "Baugesuch",
+   "titel": "Max-Högger-Strasse 81",
+   "beschrieb": "Ersatzneubau Hochhaus mit Büro- und Gastroflächen, PV-Anlage an Fassade, Tiefgarage mit 14 Autoabstellplätze, Aussengastronomie, Umgebungsveränderungen",
+   "kanton": "ZH",
+   "gemeinde": "Zürich",
+   "frist": "2027-11-20",
+   "quelle": "Amtsblatt ZH",
+   "url": "https://amtsblatt.zh.ch/#!/search/publications/detail/614c4d77-e34b-4c41-9bed-d4ffd1350668",
+   "projekte": []
+  },
+  {
+   "id": "03b8a889-5e22-4545-8115-55ec067d17f4",
+   "datum": "2026-11-20",
+   "typ": "Baugesuch",
+   "titel": "Gärtnerstrasse 1 / Adlerstrasse 2",
+   "beschrieb": "Erweiterungsneubau Alterszentrum Adlergarten (7-geschossiger Neubau + Untergeschoss, inkl. eingeschossigem Verbindungsbau), Umbau Gärtnerstrasse 1 (Gastroküche, Restaurant), Abbruch Saalanbau und Bürotrakt (Gärtnerstrasse 1), Abbruch Personalhaus 2 (Adlerstrasse 2), Provisorium während der Bauzeit",
+   "kanton": "ZH",
+   "gemeinde": "Winterthur",
+   "frist": "2027-11-20",
+   "quelle": "Amtsblatt ZH",
+   "url": "https://amtsblatt.zh.ch/#!/search/publications/detail/03b8a889-5e22-4545-8115-55ec067d17f4",
+   "projekte": []
+  },
+  {
+   "id": "dc3c5f52-4d62-49fd-ae91-af155e867eb2",
+   "datum": "2026-11-20",
+   "typ": "Baugesuch",
+   "titel": "Flüelastrasse 29",
+   "beschrieb": "Zwei neue Entsorgungsstationen (3 bzw. 2 UFC, je 1 Liftomat Grüngut), Verlegung der Autoabstellplätze, zusätzliche Grünflächen (Arealüberbauung)",
+   "kanton": "ZH",
+   "gemeinde": "Zürich",
+   "frist": "2027-11-20",
+   "quelle": "Amtsblatt ZH",
+   "url": "https://amtsblatt.zh.ch/#!/search/publications/detail/dc3c5f52-4d62-49fd-ae91-af155e867eb2",
+   "projekte": []
+  },
+  {
+   "id": "a85d5576-9481-4f5a-be7e-facfac18e92e",
+   "datum": "2026-11-20",
+   "typ": "Raumplanung",
+   "titel": "Teilrevision kommunale Nutzungsplanung \"Abstandsvorschriften für Windenergieanlagen\", Nichtgenehmigung",
+   "beschrieb": "",
+   "kanton": "ZH",
+   "gemeinde": "Hombrechtikon",
+   "frist": "2029-11-20",
+   "quelle": "Amtsblatt ZH",
+   "url": "https://amtsblatt.zh.ch/#!/search/publications/detail/a85d5576-9481-4f5a-be7e-facfac18e92e",
+   "projekte": []
+  },
+  {
+   "id": "8d955ab5-06ee-4c23-b362-379e922c169b",
+   "datum": "2026-11-20",
+   "typ": "Raumplanung",
+   "titel": "Privater Gestaltungsplan \"Thalacker\"",
+   "beschrieb": "",
+   "kanton": "ZH",
+   "gemeinde": "Ossingen",
+   "frist": "2029-11-20",
+   "quelle": "Amtsblatt ZH",
+   "url": "https://amtsblatt.zh.ch/#!/search/publications/detail/8d955ab5-06ee-4c23-b362-379e922c169b",
+   "projekte": []
+  },
+  {
+   "id": "a6dab9c6-32a5-49c3-aa4d-ab5799a90353",
+   "datum": "2026-11-20",
+   "typ": "Raumplanung",
+   "titel": "Kommunale Richtplanung; Revision der kommunalen Richtplanung «Siedlung und Landschaft»; teilweise Nichtgenehmigung",
+   "beschrieb": "",
+   "kanton": "ZH",
+   "gemeinde": "Volketswil",
+   "frist": "2029-11-20",
+   "quelle": "Amtsblatt ZH",
+   "url": "https://amtsblatt.zh.ch/#!/search/publications/detail/a6dab9c6-32a5-49c3-aa4d-ab5799a90353",
+   "projekte": []
+  },
   {
    "id": "76a5f6fe-3de4-4d4b-a04b-3d836fa02a81",
    "datum": "2026-11-19",
@@ -55,6 +146,141 @@
    "projekte": [
     "ortsplanung"
    ]
+  },
+  {
+   "id": "5dc6fbe4-5c13-4a9a-962a-71e6e8efcd1d",
+   "datum": "2026-11-19",
+   "typ": "Baugesuch",
+   "titel": "Lüthärtigenstrasse",
+   "beschrieb": "Abbruch der Ökonomiegebäude Assek.-Nrn. 238b, 238c und 238e sowie Neubau von zwei Ersatzwohnhäusern, GS-Nr. 173, Lüthärtigenstrasse, 6313 Edlibach",
+   "kanton": "ZG",
+   "gemeinde": "Menzingen",
+   "frist": "2026-12-19",
+   "quelle": "Amtsblatt ZG",
+   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/5dc6fbe4-5c13-4a9a-962a-71e6e8efcd1d",
+   "projekte": []
+  },
+  {
+   "id": "e7c7de9d-48b7-4f7c-8bf3-937dab91e3d9",
+   "datum": "2026-11-19",
+   "typ": "Baugesuch",
+   "titel": "Stockerstrasse und Am Lindenpark, Unterfeld Süd",
+   "beschrieb": "Neubau Wohn- und Gewerbegebäude auf GS Nrn. 4186, 4534, 4535, 4536 und 4537, Stockerstrasse und Am Lindenpark, Unterfeld Süd, Baubereich 1A, gemäss Bebauungsplan \"Unterfeld Süd - Baubereiche 1A und 1B\"",
+   "kanton": "ZG",
+   "gemeinde": "Baar",
+   "frist": "2026-12-19",
+   "quelle": "Amtsblatt ZG",
+   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/e7c7de9d-48b7-4f7c-8bf3-937dab91e3d9",
+   "projekte": []
+  },
+  {
+   "id": "a599ffa5-7620-44a2-9628-b1d47e7be5e2",
+   "datum": "2026-11-19",
+   "typ": "Baugesuch",
+   "titel": "Huobhöhe",
+   "beschrieb": "Arealbebauung Kemberg-Huob, Hof B",
+   "kanton": "ZG",
+   "gemeinde": "Hünenberg",
+   "frist": "2027-02-19",
+   "quelle": "Amtsblatt ZG",
+   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/a599ffa5-7620-44a2-9628-b1d47e7be5e2",
+   "projekte": []
+  },
+  {
+   "id": "f5649356-d005-4e5f-a1a3-3005656729e4",
+   "datum": "2026-11-19",
+   "typ": "Baugesuch",
+   "titel": "Huobhöhe",
+   "beschrieb": "Arealbebauung Kemberg-Huob, Hof C",
+   "kanton": "ZG",
+   "gemeinde": "Hünenberg",
+   "frist": "2027-02-19",
+   "quelle": "Amtsblatt ZG",
+   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/f5649356-d005-4e5f-a1a3-3005656729e4",
+   "projekte": []
+  },
+  {
+   "id": "10253bef-6240-4f2b-8225-9d5e7f828f31",
+   "datum": "2026-11-19",
+   "typ": "Raumplanung",
+   "titel": "Plandossier einfacher Bebauungsplan Zugerstrasse/Andreasweg, Cham",
+   "beschrieb": "",
+   "kanton": "ZG",
+   "gemeinde": "Cham",
+   "frist": "2027-01-19",
+   "quelle": "Amtsblatt ZG",
+   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/10253bef-6240-4f2b-8225-9d5e7f828f31",
+   "projekte": []
+  },
+  {
+   "id": "094b370b-f92b-4e45-8457-7706f6ad2308",
+   "datum": "2026-11-19",
+   "typ": "Raumplanung",
+   "titel": "Gebietsplanung Äussere Lorzenallmend, 1. Öffentliche Auflage",
+   "beschrieb": "",
+   "kanton": "ZG",
+   "gemeinde": "Zug",
+   "frist": "2026-12-19",
+   "quelle": "Amtsblatt ZG",
+   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/094b370b-f92b-4e45-8457-7706f6ad2308",
+   "projekte": [
+    "aeussere-lorzenallmend"
+   ]
+  },
+  {
+   "id": "126dd9a2-b262-473a-a111-558f2f977086",
+   "datum": "2026-11-19",
+   "typ": "Raumplanung",
+   "titel": "Ortsplanungsrevision – Nutzungsplanung (Bauordnung und Zonenplan); 1. Öffentliche Auflage von wesentlichen Änderungen",
+   "beschrieb": "",
+   "kanton": "ZG",
+   "gemeinde": "Zug",
+   "frist": "2026-12-19",
+   "quelle": "Amtsblatt ZG",
+   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/126dd9a2-b262-473a-a111-558f2f977086",
+   "projekte": [
+    "ortsplanung"
+   ]
+  },
+  {
+   "id": "9a214187-d6b8-4890-b15b-b87d1969804c",
+   "datum": "2026-11-19",
+   "typ": "Kanton",
+   "titel": "Öffentliche Auflage: Öffentliche Planauflage und Rechtserwerb",
+   "beschrieb": "",
+   "kanton": "ZG",
+   "gemeinde": "Hünenberg",
+   "frist": "2027-02-19",
+   "quelle": "Amtsblatt ZG",
+   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/9a214187-d6b8-4890-b15b-b87d1969804c",
+   "projekte": []
+  },
+  {
+   "id": "57728f76-e632-46f7-998e-112850d5d95f",
+   "datum": "2026-11-19",
+   "typ": "Kanton",
+   "titel": "Öffentliche Auflage: Öffentliche Planauflage im Baubewilligungsverfahren",
+   "beschrieb": "",
+   "kanton": "ZG",
+   "gemeinde": "Zug",
+   "frist": "2027-02-19",
+   "quelle": "Amtsblatt ZG",
+   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/57728f76-e632-46f7-998e-112850d5d95f",
+   "projekte": []
+  },
+  {
+   "id": "mm-https-www-presseportal-ch-de-pm-100082222-100943714",
+   "datum": "2026-11-19",
+   "typ": "Medienmitteilung",
+   "titel": "Green Datacenter liefern Wärme für die Region Dielsdorf und Regensdorf / Erste Wohnungen werden mit Abwärme aus den Rechenzentren beheizt. Energie 360° nimmt heute die neue Energiezentrale in Betrieb.",
+   "beschrieb": "Green: Lupfig, Schweiz (ots) - In den Rechenzentren von Green in Dielsdorf betreiben Unternehmen ihre Server und IT-Systeme. Die dabei entstehende Wärme wird konsequent weitergenutzt: Green koppelt sie aus und stellt sie zur Verfügung. Seit der ...",
+   "kanton": "ZH",
+   "gemeinde": "Dielsdorf",
+   "frist": null,
+   "quelle": "presseportal.ch",
+   "url": "https://www.presseportal.ch/de/pm/100082222/100943714",
+   "bild": "https://cache.pressmailing.net/thumbnail/highlight/d39746b3-a95b-44ed-b2df-bbf887933379/still.jpg?crop=0,183,630,412",
+   "projekte": []
   },
   {
    "id": "md-lplus-ch-news-lg-areal-bezahlbare-wohnungen-sorgen-fuer-streit-2912352",
@@ -299,21 +525,6 @@
    "quelle": "Amtsblatt ZG",
    "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/8829f51a-a98e-4542-ada6-488e6e1d2159",
    "projekte": []
-  },
-  {
-   "id": "a81cde8f-5a1a-463b-b6de-6d47fba01dfa",
-   "datum": "2026-11-12",
-   "typ": "Raumplanung",
-   "titel": "Gebietsplanung Äussere Lorzenallmend, 1. Öffentliche Auflage",
-   "beschrieb": "",
-   "kanton": "ZG",
-   "gemeinde": "Zug",
-   "frist": "2026-12-12",
-   "quelle": "Amtsblatt ZG",
-   "url": "https://amtsblatt.zg.ch/#!/search/publications/detail/a81cde8f-5a1a-463b-b6de-6d47fba01dfa",
-   "projekte": [
-    "aeussere-lorzenallmend"
-   ]
   },
   {
    "id": "dbd9b9c6-99b8-4d31-a7c7-62770f4143ea",

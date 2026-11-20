@@ -1,13 +1,13 @@
 {
- "lauf": "2026-11-19T14:29+00:00",
+ "lauf": "2026-11-20T14:05+00:00",
  "quellen": {
-  "Amtsblatt ZG": "Fehler: <urlopen error timed out>",
-  "Amtsblatt ZH": "ok (2 relevant)",
+  "Amtsblatt ZG": "ok (15 relevant)",
+  "Amtsblatt ZH": "ok (9 relevant)",
   "Stadt Zürich": "ok (0 relevant)",
   "Stadt Winterthur": "ok (2 relevant)",
   "Gemeinde Hünenberg": "ok (10 relevant)",
   "Gemeinde Menzingen": "ok (0 relevant)",
-  "presseportal.ch": "ok (0 relevant)",
+  "presseportal.ch": "ok (1 relevant)",
   "zentralplus": "ok (0 relevant)",
   "moneycab": "ok (0 relevant)",
   "Korporation Zug": "ok (1 relevant)",
@@ -27,5 +27,5 @@
   "Wincasa": "ok (8 Links, 0 relevant)",
   "Zuger Kantonalbank": "ok (4 Links, 0 relevant)"
  },
- "anzahl": 93
+ "anzahl": 109
 }
